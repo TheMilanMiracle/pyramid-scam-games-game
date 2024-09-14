@@ -1,11 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://ygpasvck8iev"]
+[gd_scene load_steps=12 format=3 uid="uid://ygpasvck8iev"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_mos1g"]
 [ext_resource type="Texture2D" uid="uid://bgjovafntp5uc" path="res://assets/circle.png" id="2_0yfqf"]
 [ext_resource type="Texture2D" uid="uid://dqc7fr2e5rltf" path="res://assets/attack_anim.png" id="3_fmobb"]
+[ext_resource type="Script" path="res://scripts/hitbox.gd" id="4_0t2rx"]
+[ext_resource type="Script" path="res://scripts/hurtbox.gd" id="5_imgmi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4i42i"]
-radius = 58.3095
+radius = 44.0
+
+[sub_resource type="Animation" id="Animation_f1hva"]
+length = 0.001
 
 [sub_resource type="Animation" id="Animation_ucpo6"]
 resource_name = "attack"
@@ -34,32 +39,22 @@ tracks/1/keys = {
 "update": 1,
 "values": [true, false]
 }
-
-[sub_resource type="Animation" id="Animation_f1hva"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AttackPivot/AttackSprite:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AttackPivot/AttackSprite:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackPivot/Hitbox/HitboxShape")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": ["disabled", false],
+"method": &"set_deferred"
+}, {
+"args": ["disabled", true],
+"method": &"set_deferred"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rd48s"]
@@ -68,18 +63,27 @@ _data = {
 "attack": SubResource("Animation_ucpo6")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0uv5o"]
+size = Vector2(59, 85)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bqv7i"]
+radius = 41.0
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_mos1g")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
+modulate = Color(0.172549, 0.631373, 1, 1)
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_0yfqf")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 2)
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_4i42i")
+debug_color = Color(0.917647, 0.21824, 0.470979, 0.42)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)
+[node name="Camera" type="Camera2D" parent="."]
+zoom = Vector2(0.7, 0.7)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -87,8 +91,31 @@ libraries = {
 }
 
 [node name="AttackPivot" type="Node2D" parent="."]
-scale = Vector2(2, 2)
 
 [node name="AttackSprite" type="Sprite2D" parent="AttackPivot"]
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("3_fmobb")
 hframes = 3
+
+[node name="Hitbox" type="Area2D" parent="AttackPivot"]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("4_0t2rx")
+
+[node name="HitboxShape" type="CollisionShape2D" parent="AttackPivot/Hitbox"]
+position = Vector2(69, -5)
+shape = SubResource("RectangleShape2D_0uv5o")
+debug_color = Color(0.961971, 0, 0.507286, 0.42)
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("5_imgmi")
+
+[node name="HurtboxShape" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_bqv7i")
+
+[node name="OnDamageTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
