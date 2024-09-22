@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctph8joortxmw"]
+
+[ext_resource type="Script" path="res://scripts/slow_area.gd" id="1_drs0c"]
+[ext_resource type="Texture2D" uid="uid://bgjovafntp5uc" path="res://assets/circle.png" id="2_36yh5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_epgcd"]
+radius = 200.0
+
+[node name="SlowArea" type="Area2D"]
+script = ExtResource("1_drs0c")
+
+[node name="SlowAreaSprite" type="Sprite2D" parent="."]
+modulate = Color(0.0901961, 1, 1, 0.286275)
+position = Vector2(1.5, -5.00001)
+scale = Vector2(3.42969, 3.46875)
+texture = ExtResource("2_36yh5")
+
+[node name="SlowAreaShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_epgcd")
+debug_color = Color(0.141176, 0.356863, 0.756863, 0.419608)
+
+[node name="ActionTimer" type="Timer" parent="."]
+one_shot = true
