@@ -8,8 +8,6 @@ size = Vector2(26, 10)
 
 [node name="enemyBullet" type="Area2D"]
 show_behind_parent = true
-collision_layer = 16
-collision_mask = 43
 script = ExtResource("1_gqclq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

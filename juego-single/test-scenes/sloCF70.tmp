@@ -15,6 +15,7 @@ position = Vector2(1598, -177)
 
 [node name="SlowArea" parent="." instance=ExtResource("3_c1okv")]
 scale = Vector2(2, 2)
+SLOW = 0.4
 
 [node name="Enemy" parent="." instance=ExtResource("4_j70xu")]
 position = Vector2(944, -212)

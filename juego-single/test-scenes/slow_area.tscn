@@ -10,9 +10,9 @@ radius = 200.0
 script = ExtResource("1_drs0c")
 
 [node name="SlowAreaSprite" type="Sprite2D" parent="."]
-modulate = Color(0.0901961, 1, 1, 0.286275)
+modulate = Color(0.0901961, 1, 1, 0.156863)
 position = Vector2(1.5, -5.00001)
-scale = Vector2(3.42969, 3.46875)
+scale = Vector2(3.5, 3.54)
 texture = ExtResource("2_36yh5")
 
 [node name="SlowAreaShape" type="CollisionShape2D" parent="."]
@@ -20,4 +20,27 @@ shape = SubResource("CircleShape2D_epgcd")
 debug_color = Color(0.141176, 0.356863, 0.756863, 0.419608)
 
 [node name="ActionTimer" type="Timer" parent="."]
+wait_time = 2.0
 one_shot = true
+
+[node name="CyanParticles" type="CPUParticles2D" parent="."]
+scale = Vector2(2, 2)
+emitting = false
+amount = 150
+lifetime = 0.5
+fixed_fps = 60
+emission_shape = 1
+emission_sphere_radius = 110.0
+gravity = Vector2(0, 0)
+color = Color(0.215686, 1, 1, 0.705882)
+
+[node name="BlueParticles" type="CPUParticles2D" parent="."]
+scale = Vector2(2, 2)
+emitting = false
+amount = 50
+lifetime = 0.5
+fixed_fps = 60
+emission_shape = 1
+emission_sphere_radius = 110.0
+gravity = Vector2(0, 0)
+color = Color(0.0784314, 0.423529, 1, 0.705882)
