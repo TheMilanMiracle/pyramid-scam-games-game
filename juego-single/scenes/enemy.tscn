@@ -55,5 +55,5 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_2nxlp")
 
 [node name="ShootCooldown" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.25
 autostart = true
