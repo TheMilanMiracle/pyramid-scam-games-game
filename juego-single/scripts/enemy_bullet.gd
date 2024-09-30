@@ -34,6 +34,7 @@ func _on_area_entered(body: Area2D):
 	if body.has_method("take_damage"):
 		body.take_damage()
 		queue_free()
+	
 	if body.has_method("defense"):
 		queue_free()
 	

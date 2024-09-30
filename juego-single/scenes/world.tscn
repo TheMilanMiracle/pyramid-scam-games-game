@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1ovwb5ersi2u"]
+[gd_scene load_steps=9 format=3 uid="uid://d1ovwb5ersi2u"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_i52eo"]
 [ext_resource type="Texture2D" uid="uid://djwwy1eb7uf25" path="res://assets/bg.png" id="2_jx4gy"]
@@ -6,6 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://ctph8joortxmw" path="res://test-scenes/slow_area.tscn" id="4_tpcng"]
 [ext_resource type="PackedScene" uid="uid://08jybrruisy" path="res://scenes/SquareEnemy.tscn" id="4_vpkfg"]
 [ext_resource type="PackedScene" uid="uid://8bkc5iqcovta" path="res://scenes/enemy.tscn" id="5_ncu25"]
+[ext_resource type="Script" path="res://scripts/bullets_killzone.gd" id="7_qjbmy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_waefd"]
+size = Vector2(3964, 318)
 
 [node name="world" type="Node2D"]
 script = ExtResource("1_i52eo")
@@ -47,3 +51,11 @@ rotation = 5.93412
 [node name="Enemy4" parent="." instance=ExtResource("5_ncu25")]
 position = Vector2(3746, 271)
 rotation = 0.349066
+
+[node name="BulletsKillzone" type="Area2D" parent="."]
+position = Vector2(1995, 1984)
+script = ExtResource("7_qjbmy")
+
+[node name="BulletKillzoneShape" type="CollisionShape2D" parent="BulletsKillzone"]
+position = Vector2(538, -121)
+shape = SubResource("RectangleShape2D_waefd")

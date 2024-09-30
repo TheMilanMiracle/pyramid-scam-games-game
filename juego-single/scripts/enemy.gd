@@ -8,9 +8,10 @@ const bulletPath = preload("res://scenes/enemy_bullet.tscn")
 func take_damage_en():
 	queue_free()
 
+
 func _ready() -> void:
 	shoot_cooldown.timeout.connect(shoot)
-	
+
 
 func shoot():
 	var bullet = bulletPath.instantiate()
