@@ -49,3 +49,5 @@ debug_color = Color(0.89279, 0.299703, 0.314116, 0.42)
 process_callback = 0
 wait_time = 0.2
 one_shot = true
+
+[connection signal="input_event" from="Hurtbox" to="." method="_on_hurtbox_input_event"]
