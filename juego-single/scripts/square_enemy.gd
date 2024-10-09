@@ -17,10 +17,14 @@ func _physics_process(delta: float) -> void:
 	if on_damage_timer.time_left == 0:
 		sprite_2d.modulate = defaultColor
 		
+	# only Drag and drop
+	#if selected: 
+	#	followMouse()
+		
+	# Force with physics
 	if selected and Input.is_action_pressed("force"):  # Apply impulse when holding a key
 		print("force")
-		apply_my_impulse()
-		
+		apply_my_impulse()	
 	
 func take_damage() -> void:
 	print("damage taken")
@@ -34,17 +38,14 @@ func apply_my_impulse() -> void:
 	rigid_body.apply_central_impulse(impulse_direction * 4)  # Apply a scaled impulse
 	selected = false  # Unselect after applying impulse
 
-#func followMouse():
-	#mouse_position = get_global_mouse_position()
-	#new_pos = Vector2(mouse_position.x, mouse_position.y)
-	#position += rigid_body.apply_central_impulse(new_pos) + mouse_offset
-	#position = get_global_mouse_position() + mouse_offset
 	
-
+func followMouse():
+	position = get_global_mouse_position()
 
 func _on_hurtbox_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if Input.is_action_pressed("select"):
-		mouse_offset = position - get_global_mouse_position()
+		mouse_offset = position - get_global_mouse_position() # for physics, comment for drag and drop
 		selected = true
-		print("selected")
-		
+		print("selected")		
+	#else: #comment for physics
+	#	selected = false 
