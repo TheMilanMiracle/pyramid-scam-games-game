@@ -1,7 +1,10 @@
-extends CharacterBody2D
+extends RigidBody2D
+
+
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var on_damage_timer: Timer = $OnDamageTimer
-@onready var rigid_body: RigidBody2D = $RigidBody2D
+#@onready var rigid_body: RigidBody2D = $RigidBody2D
+@onready var rigid_body: RigidBody2D = $"."
 
 var defaultColor: Color = Color(0.18, 0.42, 0.18, 1.)
 var damageColor: Color = Color(0.8, 0.4, 0.2, 1.)
@@ -47,4 +50,3 @@ func _on_hurtbox_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 		mouse_offset = position - get_global_mouse_position()
 		selected = true
 		print("selected")
-		
