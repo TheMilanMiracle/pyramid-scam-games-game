@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1ovwb5ersi2u"]
+[gd_scene load_steps=6 format=3 uid="uid://d1ovwb5ersi2u"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_i52eo"]
 [ext_resource type="Texture2D" uid="uid://djwwy1eb7uf25" path="res://assets/bg.png" id="2_jx4gy"]
 [ext_resource type="PackedScene" uid="uid://ygpasvck8iev" path="res://scenes/player.tscn" id="3_lq7cv"]
 [ext_resource type="PackedScene" uid="uid://ctph8joortxmw" path="res://test-scenes/slow_area.tscn" id="4_tpcng"]
 [ext_resource type="PackedScene" uid="uid://08jybrruisy" path="res://scenes/SquareEnemy.tscn" id="4_vpkfg"]
+[ext_resource type="PackedScene" uid="uid://ctit67uv7vkeq" path="res://scenes/SquareEnemyRigid.tscn" id="5_swxey"]
 [ext_resource type="PackedScene" uid="uid://8bkc5iqcovta" path="res://scenes/enemy.tscn" id="5_ncu25"]
 [ext_resource type="Script" path="res://scripts/bullets_killzone.gd" id="7_qjbmy"]
 
