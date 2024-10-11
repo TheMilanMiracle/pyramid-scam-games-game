@@ -1,0 +1,88 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctph8joortxmw"]
+
+[ext_resource type="Script" path="res://scripts/slow_area.gd" id="1_drs0c"]
+[ext_resource type="Texture2D" uid="uid://bgjovafntp5uc" path="res://assets/circle.png" id="2_36yh5"]
+[ext_resource type="Texture2D" uid="uid://dfb8g1hgqmkpx" path="res://assets/cd_icon.png" id="3_a1itt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_epgcd"]
+radius = 200.0
+
+[node name="SlowArea" type="Area2D"]
+script = ExtResource("1_drs0c")
+
+[node name="SlowAreaSprite" type="Sprite2D" parent="."]
+modulate = Color(0.0901961, 1, 1, 0.156863)
+position = Vector2(1.5, -5.00001)
+scale = Vector2(3.5, 3.54)
+texture = ExtResource("2_36yh5")
+
+[node name="SlowAreaShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_epgcd")
+debug_color = Color(0.141176, 0.356863, 0.756863, 0.419608)
+
+[node name="CyanParticles" type="CPUParticles2D" parent="."]
+scale = Vector2(2, 2)
+emitting = false
+amount = 150
+lifetime = 0.5
+fixed_fps = 60
+emission_shape = 1
+emission_sphere_radius = 110.0
+gravity = Vector2(0, 0)
+color = Color(0.215686, 1, 1, 0.705882)
+
+[node name="BlueParticles" type="CPUParticles2D" parent="."]
+scale = Vector2(2, 2)
+emitting = false
+amount = 50
+lifetime = 0.5
+fixed_fps = 60
+emission_shape = 1
+emission_sphere_radius = 110.0
+gravity = Vector2(0, 0)
+color = Color(0.0784314, 0.423529, 1, 0.705882)
+
+[node name="CooldownTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+process_callback = 0
+wait_time = 5.0
+one_shot = true
+
+[node name="ActionTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+process_callback = 0
+wait_time = 4.0
+one_shot = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="CooldownProgress" type="TextureProgressBar" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -128.0
+offset_right = 128.0
+grow_vertical = 0
+value = 100.0
+fill_mode = 5
+texture_under = ExtResource("3_a1itt")
+texture_progress = ExtResource("3_a1itt")
+tint_under = Color(0.2542, 0.2542, 0.41, 1)
+tint_progress = Color(0.0336, 0.0336, 0.24, 1)
+
+[node name="AreaProgress" type="TextureProgressBar" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -256.0
+offset_right = 128.0
+offset_bottom = -128.0
+grow_vertical = 0
+value = 100.0
+fill_mode = 5
+texture_under = ExtResource("2_36yh5")
+texture_progress = ExtResource("2_36yh5")
+tint_under = Color(0.4224, 0.589227, 0.64, 1)
+tint_progress = Color(0.0896, 0.511573, 0.64, 1)
