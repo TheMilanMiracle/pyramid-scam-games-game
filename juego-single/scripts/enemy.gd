@@ -11,9 +11,6 @@ const bulletPath = preload("res://scenes/enemy_bullet.tscn")
 @onready var shoot_cooldown: Timer = $ShootCooldown
 @onready var marker_2d_2: Marker2D = $Path2D/PathFollow2D2/Marker2D
 @onready var hurtbox = $Hurtbox
-@onready var rigid_body: RigidBody2D = $"."
-
-
 
 
 func _ready() -> void:
@@ -48,5 +45,5 @@ func _on_hurtbox_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 func apply_my_impulse() -> void:
 	print("toy en apply")
 	impulse_direction = get_global_mouse_position() - position  # Calculate direction vector
-	rigid_body.apply_central_impulse(impulse_direction * 4)  # Apply a scaled impulse
+	apply_central_impulse(impulse_direction * 4)  # Apply a scaled impulse
 	selected = false  # Unselect after applying impulse
