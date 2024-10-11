@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://8bkc5iqcovta"]
+[gd_scene load_steps=8 format=3 uid="uid://cectao5n4kuy1"]
 
 [ext_resource type="Texture2D" uid="uid://c4ng4jwrbt8j8" path="res://icon.svg" id="1_2nxlp"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_j2uv2"]
 [ext_resource type="Script" path="res://scripts/path_follow.gd" id="3_as5i7"]
+[ext_resource type="Script" path="res://scripts/hurtbox.gd" id="4_8nahn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f3la2"]
 size = Vector2(128, 128)
@@ -13,8 +14,12 @@ _data = {
 }
 point_count = 5
 
-[node name="Enemy" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4wh3"]
+size = Vector2(132, 132)
+
+[node name="Enemy" type="RigidBody2D"]
 position = Vector2(534, 153)
+gravity_scale = 0.0
 script = ExtResource("1_j2uv2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -57,3 +62,11 @@ texture = ExtResource("1_2nxlp")
 [node name="ShootCooldown" type="Timer" parent="."]
 wait_time = 0.25
 autostart = true
+
+[node name="Hurtbox" type="Area2D" parent="."]
+script = ExtResource("4_8nahn")
+
+[node name="HurtboxShape" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_i4wh3")
+
+[connection signal="input_event" from="Hurtbox" to="." method="_on_hurtbox_input_event"]

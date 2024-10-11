@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ctit67uv7vkeq"]
+[gd_scene load_steps=8 format=3 uid="uid://dvbj1ytnseqbh"]
 
 [ext_resource type="Script" path="res://scripts/square_enemy_rigid.gd" id="1_0q4ye"]
 [ext_resource type="Texture2D" uid="uid://d2xv2f4q1s5bj" path="res://assets/square.png" id="2_5ag1r"]
