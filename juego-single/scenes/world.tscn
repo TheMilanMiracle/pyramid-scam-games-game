@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://djwwy1eb7uf25" path="res://assets/bg.png" id="2_jx4gy"]
 [ext_resource type="PackedScene" uid="uid://ygpasvck8iev" path="res://scenes/player.tscn" id="3_lq7cv"]
 [ext_resource type="PackedScene" uid="uid://ctph8joortxmw" path="res://test-scenes/slow_area.tscn" id="4_tpcng"]
-[ext_resource type="PackedScene" uid="uid://dlswnlkpdm6dq" path="res://scenes/SquareEnemy.tscn" id="4_vpkfg"]
 [ext_resource type="PackedScene" uid="uid://cectao5n4kuy1" path="res://scenes/enemy.tscn" id="5_ncu25"]
+[ext_resource type="PackedScene" uid="uid://dvbj1ytnseqbh" path="res://scenes/SquareEnemyRigid.tscn" id="6_m8h3h"]
 [ext_resource type="Script" path="res://scripts/bullets_killzone.gd" id="7_qjbmy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_waefd"]
@@ -29,18 +29,6 @@ position = Vector2(615, 307)
 [node name="SlowArea" parent="." instance=ExtResource("4_tpcng")]
 scale = Vector2(2, 2)
 
-[node name="SquareEnemy" parent="." instance=ExtResource("4_vpkfg")]
-position = Vector2(-328, 293)
-scale = Vector2(0.7, 0.7)
-
-[node name="SquareEnemy2" parent="." instance=ExtResource("4_vpkfg")]
-position = Vector2(-328, 31)
-scale = Vector2(0.7, 0.7)
-
-[node name="SquareEnemy3" parent="." instance=ExtResource("4_vpkfg")]
-position = Vector2(-325, 539)
-scale = Vector2(0.7, 0.7)
-
 [node name="Enemy" parent="." instance=ExtResource("5_ncu25")]
 position = Vector2(1526, -243)
 
@@ -51,6 +39,15 @@ rotation = 5.93412
 [node name="Enemy4" parent="." instance=ExtResource("5_ncu25")]
 position = Vector2(3746, 271)
 rotation = 0.349066
+
+[node name="SquareEnemy" parent="." instance=ExtResource("6_m8h3h")]
+position = Vector2(290, 119)
+
+[node name="SquareEnemy2" parent="." instance=ExtResource("6_m8h3h")]
+position = Vector2(289, 345)
+
+[node name="SquareEnemy3" parent="." instance=ExtResource("6_m8h3h")]
+position = Vector2(286, 622)
 
 [node name="BulletsKillzone" type="Area2D" parent="."]
 position = Vector2(1995, 1984)
