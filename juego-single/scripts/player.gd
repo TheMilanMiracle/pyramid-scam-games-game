@@ -36,17 +36,16 @@ func _physics_process(delta) -> void:
 	else:
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 	
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("mouse1"):
 		attack_pivot.look_at(get_global_mouse_position())
 		animation_player.play("attack")
 	
 	move_and_slide()
 	
 func _on_damage_dealt() -> void:
-	print("damage dealt")
+	pass
 
 func take_damage() -> void:
-	print("damage taken")
 	on_damage_timer.start()
 	
 	sprite.modulate = damageColor
