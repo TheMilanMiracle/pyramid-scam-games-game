@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://djwwy1eb7uf25" path="res://assets/bg.png" id="2_jx4gy"]
 [ext_resource type="PackedScene" uid="uid://ygpasvck8iev" path="res://scenes/player.tscn" id="3_lq7cv"]
 [ext_resource type="PackedScene" uid="uid://ctph8joortxmw" path="res://test-scenes/slow_area.tscn" id="4_tpcng"]
-[ext_resource type="PackedScene" uid="uid://cectao5n4kuy1" path="res://scenes/enemy.tscn" id="5_ncu25"]
-[ext_resource type="PackedScene" uid="uid://dvbj1ytnseqbh" path="res://scenes/SquareEnemyRigid.tscn" id="6_m8h3h"]
+[ext_resource type="PackedScene" uid="uid://8bkc5iqcovta" path="res://scenes/enemy.tscn" id="5_ncu25"]
+[ext_resource type="PackedScene" path="res://scenes/SquareEnemyRigid.tscn" id="6_m8h3h"]
 [ext_resource type="Script" path="res://scripts/bullets_killzone.gd" id="7_qjbmy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_waefd"]
