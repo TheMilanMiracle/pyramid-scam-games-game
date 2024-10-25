@@ -9,19 +9,6 @@
 [node name="Player" parent="." instance=ExtResource("1_rc70i")]
 position = Vector2(351, 260)
 
-[node name="SquareEnemy" parent="."]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-position = Vector2(1598, -177)
-script = null
-
 [node name="SlowArea" parent="." instance=ExtResource("3_c1okv")]
 scale = Vector2(2, 2)
 
