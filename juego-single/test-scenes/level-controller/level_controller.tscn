@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccclgqxeduueu"]
+
+[ext_resource type="Script" path="res://test-scenes/level-controller/level_controller.gd" id="1_un6yq"]
+[ext_resource type="PackedScene" uid="uid://lyd8gdncw547" path="res://test-scenes/level-controller/base_room_1.tscn" id="2_3fuc3"]
+[ext_resource type="Script" path="res://test-scenes/level-controller/test_camera.gd" id="3_8kntr"]
+
+[node name="LevelController" type="Node"]
+script = ExtResource("1_un6yq")
+
+[node name="BaseRoom1" parent="." instance=ExtResource("2_3fuc3")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("3_8kntr")

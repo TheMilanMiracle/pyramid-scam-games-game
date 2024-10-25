@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=4 uid="uid://divvxuqeamoyp"]
+
+[ext_resource type="TileSet" uid="uid://dkyl7fxpus8tw" path="res://resources/tile_set.tres" id="1_umkrs"]
+
+[node name="Chunk" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAAAAQAFAAAAAAABAAAAAQAFAAAAAAACAAAAAQAFAAAAAAADAAAAAQAFAAAAAAAAAAEAAQAFAAIAAAABAAEAAQAFAAIAAAACAAEAAQAFAAIAAAADAAEAAQAFAAIAAAA=")
+tile_set = ExtResource("1_umkrs")
