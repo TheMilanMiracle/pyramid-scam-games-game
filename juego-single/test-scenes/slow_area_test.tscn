@@ -1,26 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://u2hqvm8sxiys"]
 
 [ext_resource type="PackedScene" uid="uid://ygpasvck8iev" path="res://scenes/player.tscn" id="1_rc70i"]
-[ext_resource type="PackedScene" uid="uid://ctph8joortxmw" path="res://test-scenes/slow_area.tscn" id="3_c1okv"]
+[ext_resource type="PackedScene" uid="uid://ctph8joortxmw" path="res://scenes/slow_area.tscn" id="3_c1okv"]
 [ext_resource type="PackedScene" uid="uid://8bkc5iqcovta" path="res://scenes/enemy.tscn" id="4_j70xu"]
 
 [node name="slow-area-test" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_rc70i")]
 position = Vector2(351, 260)
-
-[node name="SquareEnemy" parent="."]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-position = Vector2(1598, -177)
-script = null
 
 [node name="SlowArea" parent="." instance=ExtResource("3_c1okv")]
 scale = Vector2(2, 2)

@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=7 format=3 uid="uid://dkyl7fxpus8tw"]
 
-[ext_resource type="Texture2D" uid="uid://c86irhlyd3s8g" path="res://assets/Pixel Crawler - FREE - 1.8/Pixel Crawler - FREE - 1.8/Environment/Dungeon Prison/Assets/Tiles_final.png" id="1_cewmv"]
+[ext_resource type="Texture2D" uid="uid://dibuw2v8qpfb7" path="res://assets/Pixel Crawler - FREE - 1.8/Pixel Crawler - FREE - 1.8/Environment/Dungeon Prison/Assets/Tiles_final.png" id="1_cewmv"]
 [ext_resource type="Texture2D" uid="uid://g4gccmvgw4a8" path="res://assets/Pixel Crawler - FREE - 1.8/Pixel Crawler - FREE - 1.8/Environment/Dungeon Prison/Assets/Tiles.png" id="1_rcyvh"]
 [ext_resource type="Texture2D" uid="uid://dstaw6c2vfp4s" path="res://assets/Pixel Crawler - FREE - 1.8/Pixel Crawler - FREE - 1.8/Environment/Dungeon Prison/Assets/Props.png" id="3_5hb0l"]
 
