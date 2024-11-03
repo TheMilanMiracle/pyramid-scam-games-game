@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/square_enemy_rigid.gd" id="1_0q4ye"]
 [ext_resource type="Texture2D" uid="uid://d2xv2f4q1s5bj" path="res://assets/square.png" id="2_5ag1r"]
-[ext_resource type="Script" path="res://scripts/hurtbox.gd" id="3_52722"]
-[ext_resource type="Script" path="res://scripts/hitbox.gd" id="4_aacrl"]
+[ext_resource type="Script" path="res://components/hurtbox.gd" id="3_52722"]
+[ext_resource type="Script" path="res://components/hitbox.gd" id="4_aacrl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i76rp"]
 size = Vector2(105, 101)

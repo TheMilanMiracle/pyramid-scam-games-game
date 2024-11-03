@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://c4ng4jwrbt8j8" path="res://icon.svg" id="1_2nxlp"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_j2uv2"]
 [ext_resource type="Script" path="res://scripts/path_follow.gd" id="3_as5i7"]
-[ext_resource type="Script" path="res://scripts/hurtbox.gd" id="4_8nahn"]
+[ext_resource type="Script" path="res://components/hurtbox.gd" id="4_8nahn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f3la2"]
 size = Vector2(128, 128)
