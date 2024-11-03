@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1ovwb5ersi2u"]
+[gd_scene load_steps=10 format=3 uid="uid://d1ovwb5ersi2u"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_i52eo"]
+[ext_resource type="PackedScene" uid="uid://cgwaw01x5qcir" path="res://test-scenes/basic_level.tscn" id="2_6to18"]
 [ext_resource type="Texture2D" uid="uid://djwwy1eb7uf25" path="res://assets/bg.png" id="2_jx4gy"]
 [ext_resource type="PackedScene" uid="uid://ygpasvck8iev" path="res://scenes/player.tscn" id="3_lq7cv"]
 [ext_resource type="PackedScene" uid="uid://ctph8joortxmw" path="res://scenes/slow_area.tscn" id="4_tpcng"]
@@ -14,7 +15,12 @@ size = Vector2(3964, 318)
 [node name="world" type="Node2D"]
 script = ExtResource("1_i52eo")
 
+[node name="Tutorial" parent="." instance=ExtResource("2_6to18")]
+position = Vector2(-937, -2298)
+scale = Vector2(3, 3)
+
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.682353)
 offset_left = -10000.0
 offset_top = -10000.0
@@ -25,6 +31,9 @@ metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("3_lq7cv")]
 position = Vector2(615, 307)
+
+[node name="Camera" parent="Player" index="2"]
+zoom = Vector2(0.2, 0.2)
 
 [node name="SlowArea" parent="." instance=ExtResource("4_tpcng")]
 scale = Vector2(2, 2)
@@ -56,3 +65,5 @@ script = ExtResource("7_qjbmy")
 [node name="BulletKillzoneShape" type="CollisionShape2D" parent="BulletsKillzone"]
 position = Vector2(538, -121)
 shape = SubResource("RectangleShape2D_waefd")
+
+[editable path="Player"]
