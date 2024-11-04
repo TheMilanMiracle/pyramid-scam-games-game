@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://ygpasvck8iev"]
+[gd_scene load_steps=15 format=3 uid="uid://ygpasvck8iev"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_mos1g"]
 [ext_resource type="Texture2D" uid="uid://bgjovafntp5uc" path="res://assets/circle.png" id="2_0yfqf"]
 [ext_resource type="Texture2D" uid="uid://dqc7fr2e5rltf" path="res://assets/attack_anim.png" id="3_fmobb"]
 [ext_resource type="Script" path="res://components/hitbox.gd" id="4_0t2rx"]
 [ext_resource type="Script" path="res://components/hurtbox.gd" id="5_imgmi"]
+[ext_resource type="PackedScene" uid="uid://2j43t3jfkguc" path="res://scenes/UI/death_menu.tscn" id="6_6f0eq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4i42i"]
 radius = 44.0
@@ -69,6 +70,25 @@ size = Vector2(59, 85)
 [sub_resource type="CircleShape2D" id="CircleShape2D_bqv7i"]
 radius = 41.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h5mxd"]
+bg_color = Color(1, 0.312295, 0.248026, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gkhjb"]
+bg_color = Color(0.6, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.313726, 0.247059, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_mos1g")
 
@@ -120,3 +140,26 @@ shape = SubResource("CircleShape2D_bqv7i")
 [node name="OnDamageTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="UI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.5
+offset_top = -30.5
+offset_right = 31.5
+offset_bottom = -17.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_h5mxd")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gkhjb")
+max_value = 3.0
+step = 1.0
+value = 3.0
+show_percentage = false
+
+[node name="death_menu" parent="UI" instance=ExtResource("6_6f0eq")]

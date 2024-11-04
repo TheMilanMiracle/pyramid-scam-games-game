@@ -8,7 +8,12 @@ extends CharacterBody2D
 @onready var hitbox_shape: CollisionShape2D = $AttackPivot/Hitbox/HitboxShape
 @onready var on_damage_timer: Timer = $OnDamageTimer
 
+@onready var ui: CanvasLayer = $UI
+@onready var health_bar: ProgressBar = $UI/HealthBar
+@onready var death_menu: Control = $UI/death_menu
+
 const SPEED = 1000.0
+@export var HEALTH: int = 10
 
 var defaultColor: Color = Color(0.17, 0.63, 1., 1.)
 var damageColor: Color = Color(0.8, 0.2, 0.4, 1.)
@@ -18,6 +23,11 @@ func _ready() -> void:
 	hitbox.damage_dealt.connect(_on_damage_dealt)
 	hitbox_shape.set_deferred("disabled", true)
 	
+	health_bar.max_value = HEALTH
+	health_bar.value = HEALTH
+	
+	#death_menu.set_deferred("disabled", true)
+	death_menu.hide()
 
 func _physics_process(delta) -> void:
 	var Xdirection = Input.get_axis("left", "right")
@@ -49,3 +59,12 @@ func take_damage() -> void:
 	on_damage_timer.start()
 	
 	sprite.modulate = damageColor
+	
+	HEALTH -= 1
+	health_bar.value = HEALTH
+	
+	if HEALTH == 0:
+		health_bar.hide()
+		#death_menu.set_deferred("disabled", false)
+		death_menu.show()
+		get_tree().paused = true
