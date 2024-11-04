@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn01xrmve8asx"]
+
+[ext_resource type="Script" path="res://scripts/UI/pause_menu.gd" id="1_7a2nd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3735w"]
+font_size = 96
+
+[node name="pause_menu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_7a2nd")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -284.0
+offset_top = -66.0
+offset_right = 284.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Pause"
+label_settings = SubResource("LabelSettings_3735w")
+horizontal_alignment = 1
+
+[node name="ButtonContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = 57.0
+offset_right = 48.0
+offset_bottom = 193.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Resume" type="Button" parent="ButtonContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Resume"
+
+[node name="Restart" type="Button" parent="ButtonContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Restart"
+
+[node name="Main Menu" type="Button" parent="ButtonContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Main Menu"
+
+[node name="Quit game" type="Button" parent="ButtonContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit game"
