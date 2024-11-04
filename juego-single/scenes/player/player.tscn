@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ygpasvck8iev"]
+[gd_scene load_steps=22 format=3 uid="uid://ygpasvck8iev"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_mos1g"]
 [ext_resource type="Texture2D" uid="uid://bgjovafntp5uc" path="res://assets/circle.png" id="2_0yfqf"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" path="res://components/hitbox.gd" id="4_0t2rx"]
 [ext_resource type="Script" path="res://components/hurtbox.gd" id="5_imgmi"]
 [ext_resource type="PackedScene" uid="uid://2j43t3jfkguc" path="res://scenes/UI/death_menu.tscn" id="6_6f0eq"]
+[ext_resource type="Texture2D" uid="uid://cm1gac5suw1ta" path="res://assets/tmm/heart-64x64.png" id="7_uejyh"]
+[ext_resource type="Texture2D" uid="uid://oscfu8ild8rc" path="res://assets/tmm/HUD.png" id="7_xy54c"]
+[ext_resource type="Texture2D" uid="uid://rqt0daxxjo83" path="res://assets/tmm/shield-64x64.png" id="9_rsaqb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4i42i"]
 radius = 44.0
@@ -71,29 +74,59 @@ size = Vector2(59, 85)
 radius = 41.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h5mxd"]
-bg_color = Color(1, 0.312295, 0.248026, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
+bg_color = Color(0.18, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.31, 0, 0, 1)
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gkhjb"]
 bg_color = Color(0.6, 0, 0, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 0.313726, 0.247059, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.309804, 0, 0, 1)
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8cok5"]
+bg_color = Color(0.1968, 0.24, 0.23784, 1)
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0901961, 0.34902, 0.337255, 1)
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vwh6k"]
+bg_color = Color(0.0728, 0.28, 0.26964, 0.584314)
+border_width_left = 2
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(0.0901961, 0.34902, 0.337255, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bl2lp"]
+bg_color = Color(0.3078, 0.38, 0.37639, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_srhuc"]
+bg_color = Color(0.1352, 0.52, 0.50076, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.091, 0.35, 0.33705, 1)
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_mos1g")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-modulate = Color(0.172549, 0.631373, 1, 1)
+modulate = Color(0.4422, 0.56749, 0.67, 1)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_0yfqf")
 
@@ -141,25 +174,69 @@ shape = SubResource("CircleShape2D_bqv7i")
 wait_time = 0.2
 one_shot = true
 
+[node name="DamagedTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
 [node name="UI" type="CanvasLayer" parent="."]
 
+[node name="HUDBackGround" type="TextureRect" parent="UI"]
+offset_right = 463.0
+offset_bottom = 215.0
+texture = ExtResource("7_xy54c")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="HearthIcon" type="TextureRect" parent="UI"]
+offset_left = 12.0
+offset_top = 20.0
+offset_right = 58.0
+offset_bottom = 66.0
+texture = ExtResource("7_uejyh")
+expand_mode = 1
+stretch_mode = 4
+
 [node name="HealthBar" type="ProgressBar" parent="UI"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -31.5
-offset_top = -30.5
-offset_right = 31.5
-offset_bottom = -17.5
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = 70.0
+offset_top = 21.0
+offset_right = 319.0
+offset_bottom = 67.0
 theme_override_styles/background = SubResource("StyleBoxFlat_h5mxd")
 theme_override_styles/fill = SubResource("StyleBoxFlat_gkhjb")
-max_value = 3.0
+max_value = 10.0
 step = 1.0
-value = 3.0
+value = 5.0
+show_percentage = false
+
+[node name="ShieldIcon" type="TextureRect" parent="UI"]
+offset_left = 12.0
+offset_top = 91.0
+offset_right = 60.0
+offset_bottom = 138.0
+texture = ExtResource("9_rsaqb")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="ShieldCDBar" type="ProgressBar" parent="UI"]
+offset_left = 70.0
+offset_top = 100.0
+offset_right = 263.0
+offset_bottom = 132.0
+theme_override_styles/background = SubResource("StyleBoxFlat_8cok5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vwh6k")
+step = 1.0
+value = 75.0
+show_percentage = false
+
+[node name="ShieldBar" type="ProgressBar" parent="UI"]
+offset_left = 70.0
+offset_top = 100.0
+offset_right = 263.0
+offset_bottom = 132.0
+theme_override_styles/background = SubResource("StyleBoxFlat_bl2lp")
+theme_override_styles/fill = SubResource("StyleBoxFlat_srhuc")
+value = 50.0
 show_percentage = false
 
 [node name="death_menu" parent="UI" instance=ExtResource("6_6f0eq")]
+visible = false

@@ -7,13 +7,18 @@ extends CharacterBody2D
 @onready var hitbox: Hitbox = $AttackPivot/Hitbox
 @onready var hitbox_shape: CollisionShape2D = $AttackPivot/Hitbox/HitboxShape
 @onready var on_damage_timer: Timer = $OnDamageTimer
+@onready var damaged_timer: Timer = $DamagedTimer
 
 @onready var ui: CanvasLayer = $UI
 @onready var health_bar: ProgressBar = $UI/HealthBar
 @onready var death_menu: Control = $UI/death_menu
+@onready var shield_cd_bar: ProgressBar = $UI/ShieldCDBar
+@onready var shield_bar: ProgressBar = $UI/ShieldBar
 
 const SPEED = 1000.0
 @export var HEALTH: int = 10
+@export var SHIELD: int = 5
+@export var MAX_SHIELD: int = 5
 
 var defaultColor: Color = Color(0.17, 0.63, 1., 1.)
 var damageColor: Color = Color(0.8, 0.2, 0.4, 1.)
@@ -23,18 +28,24 @@ func _ready() -> void:
 	hitbox.damage_dealt.connect(_on_damage_dealt)
 	hitbox_shape.set_deferred("disabled", true)
 	
+	on_damage_timer.timeout.connect(func():sprite.modulate = defaultColor)
+	damaged_timer.timeout.connect(func():SHIELD=MAX_SHIELD; shield_bar.value = SHIELD)
+	
 	health_bar.max_value = HEALTH
 	health_bar.value = HEALTH
 	
-	#death_menu.set_deferred("disabled", true)
-	death_menu.hide()
+	shield_bar.max_value = SHIELD
+	shield_bar.value = SHIELD
+
 
 func _physics_process(delta) -> void:
+	#HUD
+	if damaged_timer.time_left:
+		shield_cd_bar.value = (damaged_timer.wait_time - damaged_timer.time_left) / damaged_timer.wait_time * 100
+	
+	#MOVEMENT
 	var Xdirection = Input.get_axis("left", "right")
 	var Ydirection = Input.get_axis("up", "down")
-	
-	if on_damage_timer.time_left == 0:
-		sprite.modulate = defaultColor
 	
 	if Xdirection:
 		velocity.x = Xdirection * SPEED
@@ -57,14 +68,18 @@ func _on_damage_dealt() -> void:
 
 func take_damage() -> void:
 	on_damage_timer.start()
+	damaged_timer.start()
 	
 	sprite.modulate = damageColor
 	
+	if SHIELD:
+		SHIELD -= 1
+		shield_bar.value = SHIELD
+		return
+	
 	HEALTH -= 1
 	health_bar.value = HEALTH
-	
 	if HEALTH == 0:
 		health_bar.hide()
-		#death_menu.set_deferred("disabled", false)
 		death_menu.show()
 		get_tree().paused = true

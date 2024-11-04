@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://scripts/entities/bullets_killzone.gd" id="7_qjbmy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_waefd"]
-size = Vector2(3964, 318)
+size = Vector2(4702, 318)
 
 [node name="world" type="Node2D"]
 script = ExtResource("1_i52eo")
@@ -49,7 +49,7 @@ position = Vector2(1995, 1984)
 script = ExtResource("7_qjbmy")
 
 [node name="BulletKillzoneShape" type="CollisionShape2D" parent="BulletsKillzone"]
-position = Vector2(538, -121)
+position = Vector2(-714, -632)
 shape = SubResource("RectangleShape2D_waefd")
 
 [editable path="Player"]
