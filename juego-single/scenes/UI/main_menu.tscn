@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=3 uid="uid://fp6ini66mu50"]
+
+[ext_resource type="Script" path="res://scripts/UI/main_menu.gd" id="1_uhgpg"]
+[ext_resource type="PackedScene" uid="uid://d1ovwb5ersi2u" path="res://scenes/world.tscn" id="2_3jndr"]
+[ext_resource type="Texture2D" uid="uid://4wnpsm05uoma" path="res://assets/cover.png" id="3_vlbcc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_e1v05"]
+font_size = 96
+font_color = Color(0.784314, 0.784314, 0.784314, 1)
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uhgpg")
+main = ExtResource("2_3jndr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(682.5, 383.5)
+scale = Vector2(1.33301, 0.749023)
+texture = ExtResource("3_vlbcc")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -263.0
+offset_top = -327.0
+offset_right = 305.0
+offset_bottom = -195.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Main Menu"
+label_settings = SubResource("LabelSettings_e1v05")
+horizontal_alignment = 1
+
+[node name="ButtonContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -193.0
+offset_top = -5.00003
+offset_right = -17.0
+offset_bottom = 131.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.04921, 2.89448)
+
+[node name="Start" type="Button" parent="ButtonContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Start"
+
+[node name="Credits" type="Button" parent="ButtonContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Credits (coming soon)"
+
+[node name="Quit game" type="Button" parent="ButtonContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit game"
