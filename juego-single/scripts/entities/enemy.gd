@@ -6,7 +6,7 @@ var mouse_offset = Vector2(0, 0)
 var new_pos = Vector2(0, 0)
 var impulse_direction = Vector2.ZERO
 
-const bulletPath = preload("res://scenes/enemy_bullet.tscn")
+const bulletPath = preload("res://scenes/entities/enemy_bullet.tscn")
 @onready var marker_2d: Marker2D = $Path2D/PathFollow2D/Marker2D
 @onready var shoot_cooldown: Timer = $ShootCooldown
 @onready var marker_2d_2: Marker2D = $Path2D/PathFollow2D2/Marker2D

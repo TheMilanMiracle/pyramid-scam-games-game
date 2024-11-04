@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://ygpasvck8iev"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_mos1g"]
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_mos1g"]
 [ext_resource type="Texture2D" uid="uid://bgjovafntp5uc" path="res://assets/circle.png" id="2_0yfqf"]
 [ext_resource type="Texture2D" uid="uid://dqc7fr2e5rltf" path="res://assets/attack_anim.png" id="3_fmobb"]
 [ext_resource type="Script" path="res://components/hitbox.gd" id="4_0t2rx"]

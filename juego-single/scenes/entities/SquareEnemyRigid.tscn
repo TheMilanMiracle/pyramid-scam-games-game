@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dvbj1ytnseqbh"]
 
-[ext_resource type="Script" path="res://scripts/square_enemy_rigid.gd" id="1_0q4ye"]
+[ext_resource type="Script" path="res://scripts/entities/square_enemy_rigid.gd" id="1_0q4ye"]
 [ext_resource type="Texture2D" uid="uid://d2xv2f4q1s5bj" path="res://assets/square.png" id="2_5ag1r"]
 [ext_resource type="Script" path="res://components/hurtbox.gd" id="3_52722"]
 [ext_resource type="Script" path="res://components/hitbox.gd" id="4_aacrl"]
