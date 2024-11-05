@@ -17,6 +17,9 @@ position = Vector2(-261, -929)
 
 [node name="Player" parent="." instance=ExtResource("3_lq7cv")]
 position = Vector2(615, 307)
+HEALTH = 10
+SHIELD = 5
+MAX_SHIELD = 5
 
 [node name="SlowArea" parent="." instance=ExtResource("4_tpcng")]
 scale = Vector2(2, 2)

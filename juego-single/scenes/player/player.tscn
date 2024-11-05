@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ygpasvck8iev"]
+[gd_scene load_steps=24 format=3 uid="uid://ygpasvck8iev"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_mos1g"]
 [ext_resource type="Texture2D" uid="uid://bgjovafntp5uc" path="res://assets/circle.png" id="2_0yfqf"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://2j43t3jfkguc" path="res://scenes/UI/death_menu.tscn" id="6_6f0eq"]
 [ext_resource type="Texture2D" uid="uid://cm1gac5suw1ta" path="res://assets/tmm/heart-64x64.png" id="7_uejyh"]
 [ext_resource type="Texture2D" uid="uid://oscfu8ild8rc" path="res://assets/tmm/HUD.png" id="7_xy54c"]
+[ext_resource type="PackedScene" uid="uid://dnptqfl7lstdf" path="res://scenes/UI/victory_menu.tscn" id="9_lcn1h"]
 [ext_resource type="Texture2D" uid="uid://rqt0daxxjo83" path="res://assets/tmm/shield-64x64.png" id="9_rsaqb"]
 [ext_resource type="PackedScene" uid="uid://bn01xrmve8asx" path="res://scenes/UI/pause_menu.tscn" id="10_hsun1"]
 
@@ -238,6 +239,9 @@ theme_override_styles/background = SubResource("StyleBoxFlat_bl2lp")
 theme_override_styles/fill = SubResource("StyleBoxFlat_srhuc")
 value = 50.0
 show_percentage = false
+
+[node name="victory_menu" parent="UI" instance=ExtResource("9_lcn1h")]
+visible = false
 
 [node name="death_menu" parent="UI" instance=ExtResource("6_6f0eq")]
 visible = false

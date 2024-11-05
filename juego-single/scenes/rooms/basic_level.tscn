@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://cgwaw01x5qcir"]
+[gd_scene load_steps=11 format=4 uid="uid://cgwaw01x5qcir"]
 
 [ext_resource type="Texture2D" uid="uid://g4gccmvgw4a8" path="res://assets/Pixel Crawler - FREE - 1.8/Pixel Crawler - FREE - 1.8/Environment/Dungeon Prison/Assets/Tiles.png" id="1_8jkdo"]
 [ext_resource type="Script" path="res://scenes/rooms/basic_level.gd" id="1_ma6bm"]
 [ext_resource type="Texture2D" uid="uid://dstaw6c2vfp4s" path="res://assets/Pixel Crawler - FREE - 1.8/Pixel Crawler - FREE - 1.8/Environment/Dungeon Prison/Assets/Props.png" id="2_md2kn"]
 [ext_resource type="PackedScene" uid="uid://8bkc5iqcovta" path="res://scenes/entities/enemy.tscn" id="3_b78qf"]
+[ext_resource type="Script" path="res://scripts/entities/victory_goal.gd" id="5_0x4ko"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a8hee"]
 texture = ExtResource("1_8jkdo")
@@ -905,6 +906,9 @@ sources/0 = SubResource("TileSetAtlasSource_a8hee")
 sources/1 = SubResource("TileSetAtlasSource_d6hey")
 sources/2 = SubResource("TileSetAtlasSource_pb0ui")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0vf26"]
+size = Vector2(83, 143)
+
 [node name="Tutorial" type="Node2D"]
 position = Vector2(-543, -246)
 script = ExtResource("1_ma6bm")
@@ -935,3 +939,12 @@ position = Vector2(713, 422)
 
 [node name="Enemy2" parent="." instance=ExtResource("3_b78qf")]
 position = Vector2(1350, 426)
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("5_0x4ko")
+
+[node name="Goal" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1007.5, -70.5)
+shape = SubResource("RectangleShape2D_0vf26")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

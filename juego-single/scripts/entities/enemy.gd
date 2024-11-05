@@ -29,6 +29,7 @@ func take_damage_en():
 	HEALTH -= 1
 	print("ouch")
 	if HEALTH == 0:
+		get_parent().enemyDead()
 		queue_free()
 
 func shoot():
