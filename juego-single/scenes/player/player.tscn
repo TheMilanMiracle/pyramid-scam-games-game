@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ygpasvck8iev"]
+[gd_scene load_steps=26 format=3 uid="uid://ygpasvck8iev"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_mos1g"]
 [ext_resource type="Texture2D" uid="uid://bgjovafntp5uc" path="res://assets/circle.png" id="2_0yfqf"]
@@ -6,10 +6,13 @@
 [ext_resource type="Script" path="res://components/hitbox.gd" id="4_0t2rx"]
 [ext_resource type="Script" path="res://components/hurtbox.gd" id="5_imgmi"]
 [ext_resource type="PackedScene" uid="uid://2j43t3jfkguc" path="res://scenes/UI/death_menu.tscn" id="6_6f0eq"]
+[ext_resource type="Texture2D" uid="uid://c7wtjwpghix42" path="res://assets/tmm/topleft-496x256.png" id="6_si82i"]
+[ext_resource type="Texture2D" uid="uid://dctjrspqis1yy" path="res://assets/tmm/bottomleft-224x336.png" id="7_736c4"]
 [ext_resource type="Texture2D" uid="uid://cm1gac5suw1ta" path="res://assets/tmm/heart-64x64.png" id="7_uejyh"]
-[ext_resource type="Texture2D" uid="uid://oscfu8ild8rc" path="res://assets/tmm/HUD.png" id="7_xy54c"]
 [ext_resource type="Texture2D" uid="uid://rqt0daxxjo83" path="res://assets/tmm/shield-64x64.png" id="9_rsaqb"]
 [ext_resource type="PackedScene" uid="uid://bn01xrmve8asx" path="res://scenes/UI/pause_menu.tscn" id="10_hsun1"]
+[ext_resource type="Texture2D" uid="uid://dfb8g1hgqmkpx" path="res://assets/cd_icon.png" id="12_1a3og"]
+[ext_resource type="PackedScene" uid="uid://ctph8joortxmw" path="res://scenes/player/slow_area.tscn" id="13_sucj5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4i42i"]
 radius = 44.0
@@ -180,11 +183,25 @@ wait_time = 10.0
 one_shot = true
 
 [node name="UI" type="CanvasLayer" parent="."]
+layer = 2
 
-[node name="HUDBackGround" type="TextureRect" parent="UI"]
+[node name="TopLeftHUD" type="TextureRect" parent="UI"]
+z_index = -1
 offset_right = 463.0
 offset_bottom = 215.0
-texture = ExtResource("7_xy54c")
+texture = ExtResource("6_si82i")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="BottomLeftHUD" type="TextureRect" parent="UI"]
+z_index = -1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -286.0
+offset_right = 306.0
+grow_vertical = 0
+texture = ExtResource("7_736c4")
 expand_mode = 1
 stretch_mode = 4
 
@@ -243,3 +260,41 @@ show_percentage = false
 visible = false
 
 [node name="pause_menu" parent="UI" instance=ExtResource("10_hsun1")]
+
+[node name="CooldownProgress" type="TextureProgressBar" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -128.0
+offset_right = 128.0
+grow_vertical = 0
+value = 100.0
+fill_mode = 5
+texture_under = ExtResource("12_1a3og")
+texture_progress = ExtResource("12_1a3og")
+tint_under = Color(0.401538, 0.403403, 0.60788, 1)
+tint_progress = Color(0.25272, 0.1134, 0.81, 1)
+
+[node name="AreaProgress" type="TextureProgressBar" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -256.0
+offset_right = 128.0
+offset_bottom = -128.0
+grow_vertical = 0
+value = 100.0
+fill_mode = 5
+texture_under = ExtResource("2_0yfqf")
+texture_progress = ExtResource("2_0yfqf")
+tint_under = Color(0.4224, 0.589227, 0.64, 1)
+tint_progress = Color(0.0896, 0.511573, 0.64, 1)
+
+[node name="SlowArea" parent="." instance=ExtResource("13_sucj5")]
+
+[node name="UI" parent="SlowArea" index="6"]
+visible = false
+
+[editable path="SlowArea"]
