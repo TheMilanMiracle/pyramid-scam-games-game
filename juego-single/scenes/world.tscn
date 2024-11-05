@@ -21,6 +21,9 @@ scale = Vector2(3, 3)
 [node name="Player" parent="." instance=ExtResource("3_lq7cv")]
 position = Vector2(615, 307)
 
+[node name="Sprite" parent="Player" index="0"]
+frame = 2
+
 [node name="SlowArea" parent="." instance=ExtResource("4_tpcng")]
 scale = Vector2(2, 2)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://ygpasvck8iev"]
+[gd_scene load_steps=44 format=3 uid="uid://ygpasvck8iev"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_mos1g"]
 [ext_resource type="Texture2D" uid="uid://c5xcooq23gdr2" path="res://assets/base_character.png" id="2_037ye"]
@@ -19,7 +19,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("AttackPivot/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -82,7 +82,7 @@ step = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("AttackPivot/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -100,7 +100,7 @@ step = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("AttackPivot/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -118,7 +118,7 @@ step = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("AttackPivot/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -136,7 +136,7 @@ step = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("AttackPivot/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -154,7 +154,7 @@ step = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("AttackPivot/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -172,7 +172,7 @@ step = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("AttackPivot/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -190,7 +190,7 @@ step = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("AttackPivot/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -288,8 +288,11 @@ animation = &"idle rigtht_up"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7630s"]
 animation = &"idle right_bottom"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hcjgs"]
-animation = &"idle left_bottom"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_boo0h"]
+animation = &"idle right_bottom"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_37pek"]
+animation = &"idle rigtht_up"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_ra65o"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_l7h8o")
@@ -304,8 +307,10 @@ blend_point_4/node = SubResource("AnimationNodeAnimation_jsic3")
 blend_point_4/pos = Vector2(1, -1)
 blend_point_5/node = SubResource("AnimationNodeAnimation_7630s")
 blend_point_5/pos = Vector2(1, 1)
-blend_point_6/node = SubResource("AnimationNodeAnimation_hcjgs")
+blend_point_6/node = SubResource("AnimationNodeAnimation_boo0h")
 blend_point_6/pos = Vector2(-1, 1)
+blend_point_7/node = SubResource("AnimationNodeAnimation_37pek")
+blend_point_7/pos = Vector2(-1, -1)
 blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1yi5g"]
@@ -332,12 +337,6 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_mos1g")
 
-[node name="Sprite" type="Sprite2D" parent="."]
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("2_037ye")
-hframes = 9
-vframes = 7
-
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_4i42i")
@@ -352,6 +351,12 @@ libraries = {
 }
 
 [node name="AttackPivot" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="AttackPivot"]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_037ye")
+hframes = 9
+vframes = 7
 
 [node name="AttackSprite" type="Sprite2D" parent="AttackPivot"]
 visible = false

@@ -62,6 +62,8 @@ func _physics_process(delta) -> void:
 	else:
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 	
+	if Xdirection != 0:
+		attack_pivot.scale.x = sign(Xdirection)
 	direction = Input.get_vector("left","right","up","down").normalized()
 	
 	update_animation_parameters()
