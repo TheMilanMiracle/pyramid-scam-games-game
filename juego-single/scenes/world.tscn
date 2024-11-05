@@ -29,27 +29,27 @@ position = Vector2(1526, -243)
 
 [node name="ShootingEnemys" type="Node2D" parent="Enemys"]
 
-[node name="Enemy" parent="Enemys/ShootingEnemys" instance=ExtResource("5_ncu25")]
-position = Vector2(0, 0)
-
-[node name="Enemy3" parent="Enemys/ShootingEnemys" instance=ExtResource("5_ncu25")]
-position = Vector2(1542, 516)
-rotation = -0.349065
-
-[node name="Enemy4" parent="Enemys/ShootingEnemys" instance=ExtResource("5_ncu25")]
-position = Vector2(2220, 514)
-rotation = 0.349066
-
 [node name="SquareEnemys" type="Node2D" parent="Enemys"]
 position = Vector2(-1526, 243)
 
-[node name="SquareEnemy" parent="Enemys/SquareEnemys" instance=ExtResource("6_m8h3h")]
+[node name="Enemy" parent="." instance=ExtResource("5_ncu25")]
+position = Vector2(1526, -243)
+
+[node name="Enemy3" parent="." instance=ExtResource("5_ncu25")]
+position = Vector2(3068, 273)
+rotation = -0.349065
+
+[node name="Enemy4" parent="." instance=ExtResource("5_ncu25")]
+position = Vector2(3746, 271)
+rotation = 0.349066
+
+[node name="SquareEnemy" parent="." instance=ExtResource("6_m8h3h")]
 position = Vector2(290, 119)
 
-[node name="SquareEnemy2" parent="Enemys/SquareEnemys" instance=ExtResource("6_m8h3h")]
+[node name="SquareEnemy2" parent="." instance=ExtResource("6_m8h3h")]
 position = Vector2(289, 345)
 
-[node name="SquareEnemy3" parent="Enemys/SquareEnemys" instance=ExtResource("6_m8h3h")]
+[node name="SquareEnemy3" parent="." instance=ExtResource("6_m8h3h")]
 position = Vector2(286, 622)
 
 [node name="BulletsKillzone" type="Area2D" parent="."]
