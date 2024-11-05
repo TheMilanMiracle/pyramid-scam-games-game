@@ -24,6 +24,7 @@ var defaultColor: Color = Color(0.17, 0.63, 1., 1.)
 var damageColor: Color = Color(0.8, 0.2, 0.4, 1.)
 
 func _ready() -> void:
+	animation_player.play("idle")
 	attack_sprite.visible = false
 	hitbox.damage_dealt.connect(_on_damage_dealt)
 	hitbox_shape.set_deferred("disabled", true)

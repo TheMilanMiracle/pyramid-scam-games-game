@@ -24,14 +24,6 @@ position = Vector2(615, 307)
 [node name="SlowArea" parent="." instance=ExtResource("4_tpcng")]
 scale = Vector2(2, 2)
 
-[node name="Enemys" type="Node2D" parent="."]
-position = Vector2(1526, -243)
-
-[node name="ShootingEnemys" type="Node2D" parent="Enemys"]
-
-[node name="SquareEnemys" type="Node2D" parent="Enemys"]
-position = Vector2(-1526, 243)
-
 [node name="Enemy" parent="." instance=ExtResource("5_ncu25")]
 position = Vector2(1526, -243)
 
