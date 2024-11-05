@@ -27,6 +27,7 @@ func _physics_process(delta: float) -> void:
 
 func take_damage_en():
 	HEALTH -= 1
+	print("ouch")
 	if HEALTH == 0:
 		queue_free()
 
