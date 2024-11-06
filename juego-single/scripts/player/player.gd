@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@onready var sprite: Sprite2D = $Sprite
+@onready var sprite: Sprite2D = $AttackPivot/Sprite
 @onready var attack_sprite: Sprite2D = $AttackPivot/AttackSprite
 @onready var attack_pivot: Node2D = $AttackPivot
 @onready var hitbox: Hitbox = $AttackPivot/Hitbox
