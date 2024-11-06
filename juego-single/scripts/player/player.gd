@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
-@onready var sprite: Sprite2D = $AttackPivot/Sprite
-@onready var attack_sprite: Sprite2D = $AttackPivot/AttackSprite
-@onready var attack_pivot: Node2D = $AttackPivot
-@onready var hitbox: Hitbox = $AttackPivot/Hitbox
-@onready var hitbox_shape: CollisionShape2D = $AttackPivot/Hitbox/HitboxShape
+@onready var sprite: Sprite2D = $Pivot/Sprite
+@onready var attack_sprite: Sprite2D = $Pivot/AttackSprite
+@onready var attack_pivot: Node2D = $Pivot
+@onready var hitbox: Hitbox = $Pivot/Hitbox
+@onready var hitbox_shape: CollisionShape2D = $Pivot/Hitbox/HitboxShape
 @onready var on_damage_timer: Timer = $OnDamageTimer
 @onready var damaged_timer: Timer = $DamagedTimer
 
@@ -24,12 +24,13 @@ var direction: Vector2 = Vector2.ZERO
 @export var SHIELD: int = 5
 @export var MAX_SHIELD: int = 5
 
-var defaultColor: Color = Color(0.17, 0.63, 1., 1.)
+var defaultColor: Color
 var damageColor: Color = Color(0.8, 0.2, 0.4, 1.)
 
 func _ready() -> void:
+	defaultColor = sprite.modulate
+	
 	animation_tree.active = true
-	attack_sprite.visible = false
 	hitbox.damage_dealt.connect(_on_damage_dealt)
 	hitbox_shape.set_deferred("disabled", true)
 	
@@ -67,10 +68,6 @@ func _physics_process(delta) -> void:
 	direction = Input.get_vector("left","right","up","down").normalized()
 	
 	update_animation_parameters()
-	#if Input.is_action_just_pressed("mouse1"):
-	#	attack_pivot.look_at(get_global_mouse_position())
-	#	animation_player.play("attack")
-	
 	move_and_slide()
 	
 func _on_damage_dealt() -> void:
@@ -94,18 +91,9 @@ func take_damage() -> void:
 		death_menu.show()
 		get_tree().paused = true
 
+
 func update_animation_parameters() -> void:
 	animation_tree["parameters/conditions/idle_or_moving"] = true
-	
-	if(Input.is_action_just_pressed("mouse1")):
-		animation_tree["parameters/conditions/attack"] = true
-		attack_pivot.look_at(get_global_mouse_position())
-		attack_sprite.visible = true
-		animation_player.play("attack")
-		
-	else:
-		attack_sprite.visible = false
-		animation_tree["parameters/conditions/attack"] = false
 	
 	if(direction != Vector2.ZERO):
 		animation_tree["parameters/idle/blend_position"] = direction

@@ -1,8 +1,7 @@
-[gd_scene load_steps=44 format=3 uid="uid://ygpasvck8iev"]
+[gd_scene load_steps=43 format=3 uid="uid://ygpasvck8iev"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_mos1g"]
-[ext_resource type="Texture2D" uid="uid://c5xcooq23gdr2" path="res://assets/base_character.png" id="2_037ye"]
-[ext_resource type="Texture2D" uid="uid://dqc7fr2e5rltf" path="res://assets/attack_anim.png" id="3_fmobb"]
+[ext_resource type="Texture2D" uid="uid://b03urp0y7yjxn" path="res://assets/skins/base_character.png" id="2_cebw6"]
 [ext_resource type="Script" path="res://components/hitbox.gd" id="4_0t2rx"]
 [ext_resource type="Script" path="res://components/hurtbox.gd" id="5_imgmi"]
 [ext_resource type="PackedScene" uid="uid://2j43t3jfkguc" path="res://scenes/UI/death_menu.tscn" id="6_6f0eq"]
@@ -19,7 +18,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AttackPivot/Sprite:frame")
+tracks/0/path = NodePath("Pivot/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -32,37 +31,13 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_ucpo6"]
 resource_name = "attack"
 length = 0.25
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AttackPivot/AttackSprite:frame_coords")
+tracks/0/path = NodePath("Pivot/Hitbox/HitboxShape")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AttackPivot/AttackSprite:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AttackPivot/Hitbox/HitboxShape")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -82,7 +57,7 @@ step = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AttackPivot/Sprite:frame")
+tracks/0/path = NodePath("Pivot/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -100,7 +75,7 @@ step = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AttackPivot/Sprite:frame")
+tracks/0/path = NodePath("Pivot/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -118,7 +93,7 @@ step = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AttackPivot/Sprite:frame")
+tracks/0/path = NodePath("Pivot/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -136,7 +111,7 @@ step = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AttackPivot/Sprite:frame")
+tracks/0/path = NodePath("Pivot/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -154,7 +129,7 @@ step = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AttackPivot/Sprite:frame")
+tracks/0/path = NodePath("Pivot/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -172,7 +147,7 @@ step = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AttackPivot/Sprite:frame")
+tracks/0/path = NodePath("Pivot/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -190,7 +165,7 @@ step = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AttackPivot/Sprite:frame")
+tracks/0/path = NodePath("Pivot/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -343,34 +318,27 @@ shape = SubResource("CircleShape2D_4i42i")
 debug_color = Color(0.917647, 0.21824, 0.470979, 0.42)
 
 [node name="Camera" type="Camera2D" parent="."]
-zoom = Vector2(0.4, 0.4)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_rd48s")
 }
 
-[node name="AttackPivot" type="Node2D" parent="."]
+[node name="Pivot" type="Node2D" parent="."]
 
-[node name="Sprite" type="Sprite2D" parent="AttackPivot"]
+[node name="Sprite" type="Sprite2D" parent="Pivot"]
+modulate = Color(0.7552, 0.736, 0.8, 1)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("2_037ye")
+texture = ExtResource("2_cebw6")
 hframes = 9
 vframes = 7
 
-[node name="AttackSprite" type="Sprite2D" parent="AttackPivot"]
-visible = false
-modulate = Color(1, 0.56, 0.56, 1)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("3_fmobb")
-hframes = 3
-
-[node name="Hitbox" type="Area2D" parent="AttackPivot"]
+[node name="Hitbox" type="Area2D" parent="Pivot"]
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("4_0t2rx")
 
-[node name="HitboxShape" type="CollisionShape2D" parent="AttackPivot/Hitbox"]
+[node name="HitboxShape" type="CollisionShape2D" parent="Pivot/Hitbox"]
 position = Vector2(69, -5)
 shape = SubResource("RectangleShape2D_0uv5o")
 debug_color = Color(0.961971, 0, 0.507286, 0.42)
