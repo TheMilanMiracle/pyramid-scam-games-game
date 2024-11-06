@@ -14,9 +14,11 @@ const bulletPath = preload("res://scenes/entities/enemy_bullet.tscn")
 @onready var shoot_cooldown: Timer = $ShootCooldown
 @onready var marker_2d_2: Marker2D = $Path2D/PathFollow2D2/Marker2D
 @onready var hurtbox = $Hurtbox
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 func _ready() -> void:
+	animation_player.play("idle")
 	HEALTH = MAX_HEALTH
 	shoot_cooldown.timeout.connect(shoot)
 	
