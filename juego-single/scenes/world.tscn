@@ -15,15 +15,12 @@ script = ExtResource("1_i52eo")
 [node name="Tutorial" parent="." instance=ExtResource("2_6to18")]
 position = Vector2(0, 0)
 
-
-[node name="Player" parent="." instance=ExtResource("3_lq7cv")]
-position = Vector2(924, 1187)
-
-[node name="Camera" parent="Player" index="1"]
-zoom = Vector2(0.5, 0.5)
-
 [node name="SlowArea" parent="." instance=ExtResource("4_tpcng")]
 scale = Vector2(2, 2)
+
+[node name="Player" parent="." node_paths=PackedStringArray("slow_area") instance=ExtResource("3_lq7cv")]
+position = Vector2(924, 1187)
+slow_area = NodePath("../SlowArea")
 
 [node name="BulletsKillzone" type="Area2D" parent="."]
 position = Vector2(1995, 1984)
@@ -33,7 +30,16 @@ script = ExtResource("7_qjbmy")
 position = Vector2(-903, 397)
 shape = SubResource("RectangleShape2D_waefd")
 
-[node name="SlowArea" parent="." instance=ExtResource("4_tpcng")]
+[node name="BulletKillzoneShape2" type="CollisionShape2D" parent="BulletsKillzone"]
+position = Vector2(-1005, -2764)
+shape = SubResource("RectangleShape2D_waefd")
 
-[node name="Player" parent="." node_paths=PackedStringArray("slow_area") instance=ExtResource("3_lq7cv")]
-slow_area = NodePath("../SlowArea")
+[node name="BulletKillzoneShape3" type="CollisionShape2D" parent="BulletsKillzone"]
+position = Vector2(-3293, -1374)
+rotation = -1.57079
+shape = SubResource("RectangleShape2D_waefd")
+
+[node name="BulletKillzoneShape4" type="CollisionShape2D" parent="BulletsKillzone"]
+position = Vector2(1385, -1256)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_waefd")

@@ -1,10 +1,7 @@
 extends CharacterBody2D
 
 @onready var sprite: Sprite2D = $Pivot/Sprite
-@onready var attack_sprite: Sprite2D = $Pivot/AttackSprite
-@onready var attack_pivot: Node2D = $Pivot
-@onready var hitbox: Hitbox = $Pivot/Hitbox
-@onready var hitbox_shape: CollisionShape2D = $Pivot/Hitbox/HitboxShape
+@onready var pivot: Node2D = $Pivot
 @onready var on_damage_timer: Timer = $OnDamageTimer
 @onready var damaged_timer: Timer = $DamagedTimer
 
@@ -35,8 +32,6 @@ func _ready() -> void:
 	defaultColor = sprite.modulate
 	
 	animation_tree.active = true
-	hitbox.damage_dealt.connect(_on_damage_dealt)
-	hitbox_shape.set_deferred("disabled", true)
 	
 	on_damage_timer.timeout.connect(func():sprite.modulate = defaultColor)
 	damaged_timer.timeout.connect(func():SHIELD=MAX_SHIELD; shield_bar.value = SHIELD)
@@ -75,7 +70,7 @@ func _physics_process(delta) -> void:
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 	
 	if Xdirection != 0:
-		attack_pivot.scale.x = sign(Xdirection)
+		pivot.scale.x = sign(Xdirection)
 	direction = Input.get_vector("left","right","up","down").normalized()
 	
 	update_animation_parameters()
