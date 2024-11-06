@@ -15,6 +15,7 @@ script = ExtResource("1_i52eo")
 [node name="Tutorial" parent="." instance=ExtResource("2_6to18")]
 position = Vector2(0, 0)
 
+
 [node name="Player" parent="." instance=ExtResource("3_lq7cv")]
 position = Vector2(924, 1187)
 
@@ -32,4 +33,7 @@ script = ExtResource("7_qjbmy")
 position = Vector2(-903, 397)
 shape = SubResource("RectangleShape2D_waefd")
 
-[editable path="Player"]
+[node name="SlowArea" parent="." instance=ExtResource("4_tpcng")]
+
+[node name="Player" parent="." node_paths=PackedStringArray("slow_area") instance=ExtResource("3_lq7cv")]
+slow_area = NodePath("../SlowArea")

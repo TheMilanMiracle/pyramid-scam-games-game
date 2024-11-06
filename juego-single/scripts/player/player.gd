@@ -11,12 +11,12 @@ extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
 
-
 @onready var ui: CanvasLayer = $UI
 @onready var health_bar: ProgressBar = $UI/HealthBar
 @onready var death_menu: Control = $UI/death_menu
 @onready var shield_cd_bar: ProgressBar = $UI/ShieldCDBar
 @onready var shield_bar: ProgressBar = $UI/ShieldBar
+@onready var cooldown_progress: ProgressBar = %CooldownProgress
 @onready var victory_menu: Control = $UI/victory_menu
 
 const SPEED = 1000.0
@@ -27,6 +27,9 @@ var direction: Vector2 = Vector2.ZERO
 
 var defaultColor: Color
 var damageColor: Color = Color(0.8, 0.2, 0.4, 1.)
+
+@export var slow_area: Area2D
+var slow_area_cooldown_timer: Timer
 
 func _ready() -> void:
 	defaultColor = sprite.modulate
@@ -43,12 +46,19 @@ func _ready() -> void:
 	
 	shield_bar.max_value = SHIELD
 	shield_bar.value = SHIELD
+	
+	slow_area_cooldown_timer = slow_area.cooldown_timer
+	cooldown_progress.value = 100
 
 
 func _physics_process(delta) -> void:
 	#HUD
 	if damaged_timer.time_left:
 		shield_cd_bar.value = (damaged_timer.wait_time - damaged_timer.time_left) / damaged_timer.wait_time * 100
+	
+	if slow_area_cooldown_timer.time_left:
+		cooldown_progress.value = (slow_area_cooldown_timer.wait_time - slow_area_cooldown_timer.time_left)\
+								/ slow_area_cooldown_timer.wait_time * 100
 	
 	#MOVEMENT
 	var Xdirection = Input.get_axis("left", "right")

@@ -5,11 +5,14 @@
 [ext_resource type="Script" path="res://components/hitbox.gd" id="4_0t2rx"]
 [ext_resource type="Script" path="res://components/hurtbox.gd" id="5_imgmi"]
 [ext_resource type="PackedScene" uid="uid://2j43t3jfkguc" path="res://scenes/UI/death_menu.tscn" id="6_6f0eq"]
+[ext_resource type="Texture2D" uid="uid://c7wtjwpghix42" path="res://assets/tmm/topleft-496x256.png" id="6_si82i"]
+[ext_resource type="Texture2D" uid="uid://dctjrspqis1yy" path="res://assets/tmm/bottomleft-224x336.png" id="7_736c4"]
 [ext_resource type="Texture2D" uid="uid://cm1gac5suw1ta" path="res://assets/tmm/heart-64x64.png" id="7_uejyh"]
 [ext_resource type="Texture2D" uid="uid://oscfu8ild8rc" path="res://assets/tmm/HUD.png" id="7_xy54c"]
 [ext_resource type="PackedScene" uid="uid://dnptqfl7lstdf" path="res://scenes/UI/victory_menu.tscn" id="9_lcn1h"]
 [ext_resource type="Texture2D" uid="uid://rqt0daxxjo83" path="res://assets/tmm/shield-64x64.png" id="9_rsaqb"]
 [ext_resource type="PackedScene" uid="uid://bn01xrmve8asx" path="res://scenes/UI/pause_menu.tscn" id="10_hsun1"]
+[ext_resource type="Texture2D" uid="uid://dfb8g1hgqmkpx" path="res://assets/cd_icon.png" id="12_1a3og"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4i42i"]
 radius = 44.0
@@ -244,6 +247,27 @@ border_color = Color(0.091, 0.35, 0.33705, 1)
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ulmc"]
+bg_color = Color(0.08, 0.0104, 0.08, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.352941, 0.176471, 0.568627, 1)
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1lq0n"]
+bg_color = Color(0.615686, 0.309804, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.353685, 0.1767, 0.57, 1)
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_b8l85"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l7h8o"]
@@ -310,6 +334,7 @@ states/idle/node = SubResource("AnimationNodeBlendSpace2D_ra65o")
 states/idle/position = Vector2(669, 137)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_1yi5g"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_mw1cd"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_qkddy")]
 
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_mos1g")
 
@@ -362,14 +387,32 @@ wait_time = 10.0
 one_shot = true
 
 [node name="UI" type="CanvasLayer" parent="."]
+
+layer = 2
 process_mode = 3
 
-[node name="HUDBackGround" type="TextureRect" parent="UI"]
+
+[node name="TopLeftHUD" type="TextureRect" parent="UI"]
+z_index = -1
 offset_right = 463.0
 offset_bottom = 215.0
-texture = ExtResource("7_xy54c")
+texture = ExtResource("6_si82i")
 expand_mode = 1
 stretch_mode = 4
+
+[node name="BottomLeftHUD" type="TextureRect" parent="UI"]
+z_index = -1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_right = 306.0
+offset_bottom = 286.0
+grow_vertical = 0
+rotation = -1.5708
+texture = ExtResource("7_736c4")
+expand_mode = 1
+stretch_mode = 4
+flip_v = true
 
 [node name="HearthIcon" type="TextureRect" parent="UI"]
 offset_left = 12.0
@@ -422,8 +465,52 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_srhuc")
 value = 50.0
 show_percentage = false
 
+
+[node name="CooldownIcon" type="TextureRect" parent="UI"]
+modulate = Color(0.615686, 0.309804, 1, 1)
+offset_left = 9.0
+offset_top = 650.0
+offset_right = 70.0
+offset_bottom = 702.0
+texture = ExtResource("12_1a3og")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="CooldownProgress" type="ProgressBar" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 61.0
+offset_top = -110.0
+offset_right = 181.0
+offset_bottom = -74.0
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_0ulmc")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1lq0n")
+value = 50.0
+show_percentage = false
+
+[node name="AreaProgress" type="TextureProgressBar" parent="UI"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -256.0
+offset_right = 128.0
+offset_bottom = -128.0
+grow_vertical = 0
+value = 100.0
+fill_mode = 5
+texture_under = ExtResource("2_0yfqf")
+texture_progress = ExtResource("2_0yfqf")
+tint_under = Color(0.4224, 0.589227, 0.64, 1)
+tint_progress = Color(0.0896, 0.511573, 0.64, 1)
+
 [node name="victory_menu" parent="UI" instance=ExtResource("9_lcn1h")]
 visible = false
+
 
 [node name="death_menu" parent="UI" instance=ExtResource("6_6f0eq")]
 visible = false
