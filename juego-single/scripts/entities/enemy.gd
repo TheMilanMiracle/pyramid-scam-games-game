@@ -52,6 +52,12 @@ func _on_hurtbox_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 
 func apply_my_impulse() -> void:
 	print("toy en apply")
-	impulse_direction = get_global_mouse_position() - position  # Calculate direction vector
-	apply_central_impulse(impulse_direction * 4)  # Apply a scaled impulse
-	selected = false  # Unselect after applying impulse
+	impulse_direction = get_global_mouse_position() - position  # Calcula el vector de dirección
+
+	var max_impulse = 1000
+
+	if impulse_direction.length() > max_impulse:
+		impulse_direction = impulse_direction.normalized() * max_impulse
+
+	apply_central_impulse(impulse_direction)  # Aplica el impulso
+	selected = false  # Deselecciona después de aplicar el impulso

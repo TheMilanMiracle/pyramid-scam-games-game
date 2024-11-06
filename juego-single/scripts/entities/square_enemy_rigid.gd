@@ -30,7 +30,13 @@ func take_damage() -> void:
 
 func apply_my_impulse() -> void:
 	print("toy en apply")
+	
+	var max_impulse = 500
 	impulse_direction = get_global_mouse_position() - position  # Calculate direction vector
+	
+	if impulse_direction.length() > max_impulse:
+		impulse_direction = impulse_direction.normalized() * max_impulse
+	
 	apply_central_impulse(impulse_direction * 4)  # Apply a scaled impulse
 	selected = false  # Unselect after applying impulse
 
