@@ -66,7 +66,6 @@ func _physics_process(delta) -> void:
 	
 
 func victory() -> void:
-		health_bar.hide()
 		victory_menu.show()
 		get_tree().paused = true
 

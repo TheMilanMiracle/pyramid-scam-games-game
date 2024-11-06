@@ -181,6 +181,7 @@ wait_time = 10.0
 one_shot = true
 
 [node name="UI" type="CanvasLayer" parent="."]
+process_mode = 3
 
 [node name="HUDBackGround" type="TextureRect" parent="UI"]
 offset_right = 463.0
