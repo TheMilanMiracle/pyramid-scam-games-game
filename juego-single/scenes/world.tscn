@@ -56,4 +56,5 @@ shape = SubResource("RectangleShape2D_waefd")
 
 [node name="SlowArea" parent="." instance=ExtResource("4_tpcng")]
 
-[node name="Player" parent="." instance=ExtResource("3_lq7cv")]
+[node name="Player" parent="." node_paths=PackedStringArray("slow_area") instance=ExtResource("3_lq7cv")]
+slow_area = NodePath("../SlowArea")
