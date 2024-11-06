@@ -1,13 +1,15 @@
 extends CharacterBody2D
 
-@onready var sprite: Sprite2D = $Sprite
-@onready var attack_sprite: Sprite2D = $AttackPivot/AttackSprite
-@onready var attack_pivot: Node2D = $AttackPivot
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var hitbox: Hitbox = $AttackPivot/Hitbox
-@onready var hitbox_shape: CollisionShape2D = $AttackPivot/Hitbox/HitboxShape
+@onready var sprite: Sprite2D = $Pivot/Sprite
+@onready var attack_sprite: Sprite2D = $Pivot/AttackSprite
+@onready var attack_pivot: Node2D = $Pivot
+@onready var hitbox: Hitbox = $Pivot/Hitbox
+@onready var hitbox_shape: CollisionShape2D = $Pivot/Hitbox/HitboxShape
 @onready var on_damage_timer: Timer = $OnDamageTimer
 @onready var damaged_timer: Timer = $DamagedTimer
+
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animation_tree: AnimationTree = $AnimationTree
 
 @onready var ui: CanvasLayer = $UI
 @onready var health_bar: ProgressBar = $UI/HealthBar
@@ -15,20 +17,24 @@ extends CharacterBody2D
 @onready var shield_cd_bar: ProgressBar = $UI/ShieldCDBar
 @onready var shield_bar: ProgressBar = $UI/ShieldBar
 @onready var cooldown_progress: ProgressBar = %CooldownProgress
+@onready var victory_menu: Control = $UI/victory_menu
 
 const SPEED = 1000.0
+var direction: Vector2 = Vector2.ZERO
 @export var HEALTH: int = 10
 @export var SHIELD: int = 5
 @export var MAX_SHIELD: int = 5
 
-var defaultColor: Color = Color(0.17, 0.63, 1., 1.)
+var defaultColor: Color
 var damageColor: Color = Color(0.8, 0.2, 0.4, 1.)
 
 @export var slow_area: Area2D
 var slow_area_cooldown_timer: Timer
 
 func _ready() -> void:
-	attack_sprite.visible = false
+	defaultColor = sprite.modulate
+	
+	animation_tree.active = true
 	hitbox.damage_dealt.connect(_on_damage_dealt)
 	hitbox_shape.set_deferred("disabled", true)
 	
@@ -68,12 +74,18 @@ func _physics_process(delta) -> void:
 	else:
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 	
-	if Input.is_action_just_pressed("mouse1"):
-		attack_pivot.look_at(get_global_mouse_position())
-		animation_player.play("attack")
+	if Xdirection != 0:
+		attack_pivot.scale.x = sign(Xdirection)
+	direction = Input.get_vector("left","right","up","down").normalized()
 	
+	update_animation_parameters()
 	move_and_slide()
 	
+
+func victory() -> void:
+		victory_menu.show()
+		get_tree().paused = true
+
 func _on_damage_dealt() -> void:
 	pass
 
@@ -94,3 +106,11 @@ func take_damage() -> void:
 		health_bar.hide()
 		death_menu.show()
 		get_tree().paused = true
+
+
+func update_animation_parameters() -> void:
+	animation_tree["parameters/conditions/idle_or_moving"] = true
+	
+	if(direction != Vector2.ZERO):
+		animation_tree["parameters/idle/blend_position"] = direction
+		animation_tree["parameters/attack/blend_position"] = direction
