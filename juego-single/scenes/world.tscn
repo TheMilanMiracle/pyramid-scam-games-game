@@ -1,11 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1ovwb5ersi2u"]
+[gd_scene load_steps=7 format=3 uid="uid://d1ovwb5ersi2u"]
 
 [ext_resource type="Script" path="res://scripts/tutorial_world.gd" id="1_i52eo"]
 [ext_resource type="PackedScene" uid="uid://cgwaw01x5qcir" path="res://scenes/rooms/basic_level.tscn" id="2_6to18"]
 [ext_resource type="PackedScene" uid="uid://ygpasvck8iev" path="res://scenes/player/player.tscn" id="3_lq7cv"]
 [ext_resource type="PackedScene" uid="uid://ctph8joortxmw" path="res://scenes/player/slow_area.tscn" id="4_tpcng"]
-[ext_resource type="PackedScene" uid="uid://8bkc5iqcovta" path="res://scenes/entities/enemy.tscn" id="5_ncu25"]
-[ext_resource type="PackedScene" uid="uid://dvbj1ytnseqbh" path="res://scenes/entities/SquareEnemyRigid.tscn" id="6_m8h3h"]
 [ext_resource type="Script" path="res://scripts/entities/bullets_killzone.gd" id="7_qjbmy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_waefd"]
@@ -15,42 +13,13 @@ size = Vector2(4702, 318)
 script = ExtResource("1_i52eo")
 
 [node name="Tutorial" parent="." instance=ExtResource("2_6to18")]
-position = Vector2(-937, -2298)
-scale = Vector2(3, 3)
+position = Vector2(-261, -929)
 
 [node name="Player" parent="." instance=ExtResource("3_lq7cv")]
 position = Vector2(615, 307)
 
 [node name="SlowArea" parent="." instance=ExtResource("4_tpcng")]
 scale = Vector2(2, 2)
-
-[node name="Enemys" type="Node2D" parent="."]
-position = Vector2(1526, -243)
-
-[node name="ShootingEnemys" type="Node2D" parent="Enemys"]
-
-[node name="SquareEnemys" type="Node2D" parent="Enemys"]
-position = Vector2(-1526, 243)
-
-[node name="Enemy" parent="." instance=ExtResource("5_ncu25")]
-position = Vector2(1526, -243)
-
-[node name="Enemy3" parent="." instance=ExtResource("5_ncu25")]
-position = Vector2(3068, 273)
-rotation = -0.349065
-
-[node name="Enemy4" parent="." instance=ExtResource("5_ncu25")]
-position = Vector2(3746, 271)
-rotation = 0.349066
-
-[node name="SquareEnemy" parent="." instance=ExtResource("6_m8h3h")]
-position = Vector2(290, 119)
-
-[node name="SquareEnemy2" parent="." instance=ExtResource("6_m8h3h")]
-position = Vector2(289, 345)
-
-[node name="SquareEnemy3" parent="." instance=ExtResource("6_m8h3h")]
-position = Vector2(286, 622)
 
 [node name="BulletsKillzone" type="Area2D" parent="."]
 position = Vector2(1995, 1984)
