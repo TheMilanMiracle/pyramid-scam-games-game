@@ -13,13 +13,13 @@ size = Vector2(4702, 318)
 script = ExtResource("1_i52eo")
 
 [node name="Tutorial" parent="." instance=ExtResource("2_6to18")]
-position = Vector2(-261, -929)
+position = Vector2(0, 0)
 
 [node name="Player" parent="." instance=ExtResource("3_lq7cv")]
-position = Vector2(615, 307)
+position = Vector2(924, 1187)
 
 [node name="Camera" parent="Player" index="1"]
-zoom = Vector2(0.4, 0.4)
+zoom = Vector2(0.5, 0.5)
 
 [node name="SlowArea" parent="." instance=ExtResource("4_tpcng")]
 scale = Vector2(2, 2)
@@ -29,7 +29,7 @@ position = Vector2(1995, 1984)
 script = ExtResource("7_qjbmy")
 
 [node name="BulletKillzoneShape" type="CollisionShape2D" parent="BulletsKillzone"]
-position = Vector2(-714, -632)
+position = Vector2(-903, 397)
 shape = SubResource("RectangleShape2D_waefd")
 
 [editable path="Player"]
