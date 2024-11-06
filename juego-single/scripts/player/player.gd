@@ -17,6 +17,7 @@ extends CharacterBody2D
 @onready var death_menu: Control = $UI/death_menu
 @onready var shield_cd_bar: ProgressBar = $UI/ShieldCDBar
 @onready var shield_bar: ProgressBar = $UI/ShieldBar
+@onready var victory_menu: Control = $UI/victory_menu
 
 const SPEED = 1000.0
 var direction: Vector2 = Vector2.ZERO
@@ -70,6 +71,11 @@ func _physics_process(delta) -> void:
 	update_animation_parameters()
 	move_and_slide()
 	
+
+func victory() -> void:
+		victory_menu.show()
+		get_tree().paused = true
+
 func _on_damage_dealt() -> void:
 	pass
 
