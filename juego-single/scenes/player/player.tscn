@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://ygpasvck8iev"]
+[gd_scene load_steps=48 format=3 uid="uid://ygpasvck8iev"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_mos1g"]
 [ext_resource type="Texture2D" uid="uid://b03urp0y7yjxn" path="res://assets/skins/base_character.png" id="2_cebw6"]
@@ -245,6 +245,23 @@ border_color = Color(0.353685, 0.1767, 0.57, 1)
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_34dlb"]
+bg_color = Color(0.18, 0.1149, 0.054, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.568627, 0.364706, 0.172549, 1)
+shadow_size = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8qe2y"]
+bg_color = Color(0.788235, 0.501961, 0.235294, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.57, 0.36385, 0.171, 1)
+
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_b8l85"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l7h8o"]
@@ -312,6 +329,7 @@ states/idle/position = Vector2(669, 137)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_1yi5g"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_mw1cd"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_qkddy")]
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 6
 script = ExtResource("1_mos1g")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
@@ -326,6 +344,11 @@ zoom = Vector2(0.7, 0.7)
 libraries = {
 "": SubResource("AnimationLibrary_rd48s")
 }
+
+[node name="BulletPivot" type="Node2D" parent="."]
+
+[node name="BulletMarker" type="Marker2D" parent="BulletPivot"]
+position = Vector2(57, 0)
 
 [node name="Pivot" type="Node2D" parent="."]
 
@@ -353,6 +376,13 @@ one_shot = true
 wait_time = 10.0
 one_shot = true
 
+[node name="OverheatTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="DecreaseHeatTimer" type="Timer" parent="."]
+wait_time = 0.8
+
 [node name="UI" type="CanvasLayer" parent="."]
 process_mode = 3
 layer = 2
@@ -370,14 +400,12 @@ z_index = -1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
+offset_top = -336.0
 offset_right = 306.0
-offset_bottom = 286.0
 grow_vertical = 0
-rotation = -1.5708
+scale = Vector2(0.84, 1)
 texture = ExtResource("7_736c4")
 expand_mode = 1
-stretch_mode = 4
-flip_v = true
 
 [node name="HearthIcon" type="TextureRect" parent="UI"]
 offset_left = 12.0
@@ -432,10 +460,10 @@ show_percentage = false
 
 [node name="CooldownIcon" type="TextureRect" parent="UI"]
 modulate = Color(0.615686, 0.309804, 1, 1)
-offset_left = 9.0
-offset_top = 650.0
-offset_right = 70.0
-offset_bottom = 702.0
+offset_left = -2.0
+offset_top = 692.0
+offset_right = 59.0
+offset_bottom = 744.0
 texture = ExtResource("12_1a3og")
 expand_mode = 1
 stretch_mode = 4
@@ -445,13 +473,28 @@ unique_name_in_owner = true
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 61.0
-offset_top = -110.0
-offset_right = 181.0
-offset_bottom = -74.0
+offset_left = 53.0
+offset_top = -63.0
+offset_right = 182.0
+offset_bottom = -35.0
 grow_vertical = 0
 theme_override_styles/background = SubResource("StyleBoxFlat_0ulmc")
 theme_override_styles/fill = SubResource("StyleBoxFlat_1lq0n")
+value = 50.0
+show_percentage = false
+
+[node name="HeatBar" type="ProgressBar" parent="UI"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 53.0
+offset_top = 180.0
+offset_right = 182.0
+offset_bottom = 207.0
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_34dlb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8qe2y")
+step = 1.0
 value = 50.0
 show_percentage = false
 

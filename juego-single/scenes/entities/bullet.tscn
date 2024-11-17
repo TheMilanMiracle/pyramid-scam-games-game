@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://s810pb4e6asq"]
+
+[ext_resource type="Script" path="res://scripts/entities/bullet.gd" id="1_063qn"]
+[ext_resource type="Texture2D" uid="uid://bqqnlamsq74sk" path="res://assets/tmm/orb-32x32.png" id="2_dcpt2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_03ydt"]
+radius = 7.0
+
+[node name="bullet" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_063qn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_03ydt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_dcpt2")

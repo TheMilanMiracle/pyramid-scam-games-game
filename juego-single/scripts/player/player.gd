@@ -4,6 +4,8 @@ extends CharacterBody2D
 @onready var pivot: Node2D = $Pivot
 @onready var on_damage_timer: Timer = $OnDamageTimer
 @onready var damaged_timer: Timer = $DamagedTimer
+@onready var overheat_timer: Timer = $OverheatTimer
+@onready var decrease_heat_timer: Timer = $DecreaseHeatTimer
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -13,6 +15,7 @@ extends CharacterBody2D
 @onready var death_menu: Control = $UI/death_menu
 @onready var shield_cd_bar: ProgressBar = $UI/ShieldCDBar
 @onready var shield_bar: ProgressBar = $UI/ShieldBar
+@onready var heat_bar: ProgressBar = $UI/HeatBar
 @onready var cooldown_progress: ProgressBar = %CooldownProgress
 @onready var victory_menu: Control = $UI/victory_menu
 
@@ -21,6 +24,9 @@ var direction: Vector2 = Vector2.ZERO
 @export var HEALTH: int = 10
 @export var SHIELD: int = 5
 @export var MAX_SHIELD: int = 5
+var HEAT: int = 0
+const MAX_HEAT: int = 10
+var overheated: bool = false
 
 var defaultColor: Color
 var damageColor: Color = Color(0.8, 0.2, 0.4, 1.)
@@ -35,12 +41,17 @@ func _ready() -> void:
 	
 	on_damage_timer.timeout.connect(func():sprite.modulate = defaultColor)
 	damaged_timer.timeout.connect(func():SHIELD=MAX_SHIELD; shield_bar.value = SHIELD)
+	overheat_timer.timeout.connect(_on_heat_reset)
+	decrease_heat_timer.timeout.connect(_on_heat_decrease)
 	
 	health_bar.max_value = HEALTH
 	health_bar.value = HEALTH
 	
 	shield_bar.max_value = SHIELD
 	shield_bar.value = SHIELD
+	
+	heat_bar.max_value = 100
+	heat_bar.value = 0
 	
 	slow_area_cooldown_timer = slow_area.cooldown_timer
 	cooldown_progress.value = 100
@@ -54,6 +65,15 @@ func _physics_process(delta) -> void:
 	if slow_area_cooldown_timer.time_left:
 		cooldown_progress.value = (slow_area_cooldown_timer.wait_time - slow_area_cooldown_timer.time_left)\
 								/ slow_area_cooldown_timer.wait_time * 100
+	
+	if overheated:
+		heat_bar.value = overheat_timer.time_left / overheat_timer.wait_time * 100
+	else:
+		heat_bar.value = float(HEAT) / float(MAX_HEAT) * 100
+	
+	print("value %d" % heat_bar.value)
+	if not overheated: print("calc %f" % (HEAT / MAX_HEAT * 100))
+	print("HEAT %d" % HEAT)
 	
 	#MOVEMENT
 	var Xdirection = Input.get_axis("left", "right")
@@ -75,7 +95,14 @@ func _physics_process(delta) -> void:
 	
 	update_animation_parameters()
 	move_and_slide()
-	
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.is_pressed():
+		match event.button_index:
+			MOUSE_BUTTON_LEFT:
+				_shoot()
+
 
 func victory() -> void:
 		victory_menu.show()
@@ -101,6 +128,49 @@ func take_damage() -> void:
 		health_bar.hide()
 		death_menu.show()
 		get_tree().paused = true
+
+
+func _shoot() -> void:
+	if not overheated:
+		var pivot = $"BulletPivot"
+		var marker = $"BulletPivot/BulletMarker"
+		var bullet_color = Color(0.6, 0.7, 0.8)
+		var bullet = load("res://scenes/entities/bullet.tscn")
+		
+		pivot.look_at(get_global_mouse_position())
+		
+		bullet = bullet.instantiate()
+		bullet.modulate = bullet_color
+		get_parent().add_child(bullet)
+		
+		bullet.global_position = marker.global_position
+		bullet.rotation = pivot.rotation - PI/2
+		
+		HEAT = min(HEAT + 1, MAX_HEAT)
+		decrease_heat_timer.start()
+		
+		if HEAT == MAX_HEAT:
+			_overheat()
+
+func _on_heat_decrease() -> void:
+	if overheated:
+		return
+	
+	HEAT = max(HEAT - 1, 0)
+
+
+func _overheat() -> void:
+	overheated = true
+	overheat_timer.start()
+	
+	heat_bar.get_theme_stylebox("fill").bg_color = Color("c9283c")
+
+
+func _on_heat_reset() -> void:
+	overheated = false
+	HEAT = 0
+	
+	heat_bar.get_theme_stylebox("fill").bg_color = Color("c9803c")
 
 
 func update_animation_parameters() -> void:
