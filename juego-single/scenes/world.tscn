@@ -24,6 +24,8 @@ slow_area = NodePath("../SlowArea")
 
 [node name="BulletsKillzone" type="Area2D" parent="."]
 position = Vector2(1995, 1984)
+collision_layer = 4
+collision_mask = 6
 script = ExtResource("7_qjbmy")
 
 [node name="BulletKillzoneShape" type="CollisionShape2D" parent="BulletsKillzone"]
