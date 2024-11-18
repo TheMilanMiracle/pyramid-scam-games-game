@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://s810pb4e6asq"]
+[gd_scene load_steps=4 format=3 uid="uid://clb2wghr4h2ye"]
 
 [ext_resource type="Script" path="res://scripts/entities/bullet.gd" id="1_063qn"]
 [ext_resource type="Texture2D" uid="uid://bqqnlamsq74sk" path="res://assets/tmm/orb-32x32.png" id="2_dcpt2"]
@@ -7,7 +7,8 @@
 radius = 7.0
 
 [node name="bullet" type="Area2D"]
-collision_mask = 2
+collision_layer = 17
+collision_mask = 7
 script = ExtResource("1_063qn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
