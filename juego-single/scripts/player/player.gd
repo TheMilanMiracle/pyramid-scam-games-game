@@ -1,7 +1,8 @@
 extends CharacterBody2D
 
-@onready var sprite: Sprite2D = $Pivot/Sprite
 @onready var pivot: Node2D = $Pivot
+@onready var sprite: Sprite2D = $Pivot/MainSprite
+@onready var death_sprite: Sprite2D = $Pivot/DeathSprite
 @onready var on_damage_timer: Timer = $OnDamageTimer
 @onready var damaged_timer: Timer = $DamagedTimer
 @onready var overheat_timer: Timer = $OverheatTimer
@@ -125,7 +126,10 @@ func take_damage() -> void:
 	HEALTH -= 1
 	health_bar.value = HEALTH
 	if HEALTH == 0:
-		health_bar.hide()
+		sprite.hide()
+		death_sprite.show()
+		animation_tree["parameters/conditions/death"] = true
+		await get_tree().create_timer(0.5).timeout
 		death_menu.show()
 		get_tree().paused = true
 
