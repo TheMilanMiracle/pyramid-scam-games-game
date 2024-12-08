@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://dca2bh7553sjp"]
+
+[ext_resource type="Script" path="res://components/hurtbox.gd" id="1_bhst3"]
+[ext_resource type="Script" path="res://scripts/entities/boss/boss.gd" id="1_qwjmg"]
+[ext_resource type="Texture2D" uid="uid://bfr42cfonoyrg" path="res://assets/skins/monster.png" id="2_2eb68"]
+[ext_resource type="Script" path="res://scripts/entities/boss/state_machine.gd" id="3_g3et1"]
+[ext_resource type="Script" path="res://scripts/entities/boss/following_state.gd" id="4_etjhg"]
+[ext_resource type="Script" path="res://scripts/entities/boss/attack_state.gd" id="6_4adej"]
+[ext_resource type="Script" path="res://scripts/entities/boss/idle_state.gd" id="7_2sg3r"]
+[ext_resource type="Script" path="res://scripts/entities/boss/charged_attack_state.gd" id="8_7l3du"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_si4gy"]
+size = Vector2(21.5, 23.1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_khkak"]
+size = Vector2(294, 132)
+
+[node name="Boss" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 15
+script = ExtResource("1_qwjmg")
+
+[node name="Pivot" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="Pivot"]
+modulate = Color(0.529412, 0.12549, 1, 1)
+scale = Vector2(5, 5)
+texture = ExtResource("2_2eb68")
+hframes = 9
+vframes = 7
+
+[node name="Bullet Pivot" type="Node2D" parent="."]
+
+[node name="Marker" type="Marker2D" parent="Bullet Pivot"]
+position = Vector2(200, 0)
+
+[node name="Hurtbox" type="Area2D" parent="."]
+script = ExtResource("1_bhst3")
+
+[node name="StateMachine" type="Node2D" parent="."]
+script = ExtResource("3_g3et1")
+
+[node name="FollowingState" type="Node2D" parent="StateMachine"]
+script = ExtResource("4_etjhg")
+
+[node name="AttackState" type="Node2D" parent="StateMachine"]
+script = ExtResource("6_4adej")
+
+[node name="AttackStateTimer" type="Timer" parent="StateMachine/AttackState"]
+wait_time = 0.8
+one_shot = true
+
+[node name="IdleState" type="Node2D" parent="StateMachine"]
+script = ExtResource("7_2sg3r")
+
+[node name="ChargedAttackState" type="Node2D" parent="StateMachine"]
+script = ExtResource("8_7l3du")
+
+[node name="StateTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Square" type="CollisionShape2D" parent="."]
+position = Vector2(0.499997, 9.5)
+scale = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_si4gy")
+
+[node name="Rect" type="CollisionShape2D" parent="."]
+position = Vector2(0, -39)
+shape = SubResource("RectangleShape2D_khkak")

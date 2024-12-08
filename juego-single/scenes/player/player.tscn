@@ -1,5 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://ygpasvck8iev"]
-
+[gd_scene load_steps=52 format=3 uid="uid://ygpasvck8iev"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_mos1g"]
 [ext_resource type="Texture2D" uid="uid://b03urp0y7yjxn" path="res://assets/skins/base_character.png" id="2_cebw6"]
@@ -47,6 +46,23 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_ucpo6"]
 resource_name = "attack"
 length = 0.25
+
+[sub_resource type="Animation" id="Animation_jd3hd"]
+resource_name = "death"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/DeathSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
 
 [sub_resource type="Animation" id="Animation_tesbp"]
 resource_name = "idle"
@@ -172,23 +188,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [12, 13, 14, 15]
-}
-
-[sub_resource type="Animation" id="Animation_jd3hd"]
-resource_name = "death"
-length = 0.5
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/DeathSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rd48s"]

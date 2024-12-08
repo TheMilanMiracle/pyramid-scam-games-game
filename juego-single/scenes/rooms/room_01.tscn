@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=4 uid="uid://dmrhw4ipjhos1"]
+[gd_scene load_steps=4 format=4 uid="uid://dmrhw4ipjhos1"]
 
 [ext_resource type="TileSet" uid="uid://dkyl7fxpus8tw" path="res://resources/tile_set.tres" id="1_l6ays"]
+[ext_resource type="PackedScene" uid="uid://ctph8joortxmw" path="res://scenes/player/slow_area.tscn" id="2_3bb08"]
+[ext_resource type="PackedScene" uid="uid://ygpasvck8iev" path="res://scenes/player/player.tscn" id="3_1fjhr"]
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(-5, -585)
@@ -16,3 +18,8 @@ tile_set = ExtResource("1_l6ays")
 [node name="TileMapLayer3" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAHADMAAgAEAAUAAAAHADQAAgAEAAYAAAAIADMAAgAFAAUAAAAIADQAAgAFAAYAAAAxACsAAgADAAAAAAAxACwAAgADAAEAAAAmACUAAgADAAAAAAAmACYAAgADAAEAAAAnACUAAgADAAAAAAAnACYAAgADAAEAAAAjAEgAAAAEAAgAAAAjAEcAAAAEAAcAAAAjAEUAAAAEAAcAAAAjAEYAAAAEAAgAAAAjAEQAAAAEAAgAAAAjAEIAAAAEAAgAAAAjAEMAAAAEAAcAAAAjAEEAAAAEAAcAAAAjAD8AAAAEAAcAAAAjAEAAAAAEAAgAAAAjAD0AAAAEAAcAAAAjAD4AAAAEAAgAAAAjADsAAAAEAAcAAAAjADwAAAAEAAgAAAAjADkAAAAEAAcAAAAjADoAAAAEAAgAAAAjADcAAAAEAAcAAAAjADgAAAAEAAgAAAAjADUAAAAEAAcAAAAjADYAAAAEAAgAAAAjADMAAAAEAAcAAAAjADQAAAAEAAgAAAAjADEAAAAEAAcAAAAjADIAAAAEAAgAAAA=")
 tile_set = ExtResource("1_l6ays")
+
+[node name="SlowArea" parent="." instance=ExtResource("2_3bb08")]
+
+[node name="Player" parent="." node_paths=PackedStringArray("slow_area") instance=ExtResource("3_1fjhr")]
+slow_area = NodePath("../SlowArea")

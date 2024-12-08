@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @onready var pivot: Node2D = $Pivot
 @onready var sprite: Sprite2D = $Pivot/MainSprite
@@ -34,6 +35,7 @@ var damageColor: Color = Color(0.8, 0.2, 0.4, 1.)
 
 @export var slow_area: Area2D
 var slow_area_cooldown_timer: Timer
+
 
 func _ready() -> void:
 	defaultColor = sprite.modulate
@@ -72,9 +74,9 @@ func _physics_process(delta) -> void:
 	else:
 		heat_bar.value = float(HEAT) / float(MAX_HEAT) * 100
 	
-	print("value %d" % heat_bar.value)
-	if not overheated: print("calc %f" % (HEAT / MAX_HEAT * 100))
-	print("HEAT %d" % HEAT)
+	#print("value %d" % heat_bar.value)
+	#if not overheated: print("calc %f" % (HEAT / MAX_HEAT * 100))
+	#print("HEAT %d" % HEAT)
 	
 	#MOVEMENT
 	var Xdirection = Input.get_axis("left", "right")
@@ -109,21 +111,23 @@ func victory() -> void:
 		victory_menu.show()
 		get_tree().paused = true
 
+
 func _on_damage_dealt() -> void:
 	pass
 
-func take_damage() -> void:
+
+func take_damage(damage: int) -> void:
 	on_damage_timer.start()
 	damaged_timer.start()
 	
 	sprite.modulate = damageColor
 	
 	if SHIELD:
-		SHIELD -= 1
+		SHIELD = max(SHIELD - damage, 0)
 		shield_bar.value = SHIELD
 		return
 	
-	HEALTH -= 1
+	HEALTH = max(HEALTH - damage, 0)
 	health_bar.value = HEALTH
 	if HEALTH == 0:
 		sprite.hide()
@@ -148,13 +152,14 @@ func _shoot() -> void:
 		get_parent().add_child(bullet)
 		
 		bullet.global_position = marker.global_position
-		bullet.rotation = pivot.rotation - PI/2
+		bullet.rotation = pivot.rotation
 		
 		HEAT = min(HEAT + 1, MAX_HEAT)
 		decrease_heat_timer.start()
 		
 		if HEAT == MAX_HEAT:
 			_overheat()
+
 
 func _on_heat_decrease() -> void:
 	if overheated:

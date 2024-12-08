@@ -27,10 +27,10 @@ func _physics_process(delta: float) -> void:
 		print("force")
 		apply_my_impulse()
 
-func take_damage_en():
-	HEALTH -= 1
-	print("ouch")
-	if HEALTH == 0:
+func take_damage(damage: int) -> void:
+	HEALTH -= damage
+
+	if HEALTH <= 0:
 		get_parent().enemyDead()
 		queue_free()
 
