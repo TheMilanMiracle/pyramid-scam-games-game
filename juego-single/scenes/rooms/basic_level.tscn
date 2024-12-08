@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=4 uid="uid://cgwaw01x5qcir"]
 
 [ext_resource type="Texture2D" uid="uid://g4gccmvgw4a8" path="res://assets/Pixel Crawler - FREE - 1.8/Pixel Crawler - FREE - 1.8/Environment/Dungeon Prison/Assets/Tiles.png" id="1_8jkdo"]
-[ext_resource type="Script" path="res://scenes/rooms/basic_level.gd" id="1_ma6bm"]
+[ext_resource type="Script" path="res://scripts/rooms/basic_level.gd" id="1_ma6bm"]
 [ext_resource type="Texture2D" uid="uid://dstaw6c2vfp4s" path="res://assets/Pixel Crawler - FREE - 1.8/Pixel Crawler - FREE - 1.8/Environment/Dungeon Prison/Assets/Props.png" id="2_md2kn"]
 [ext_resource type="PackedScene" uid="uid://8bkc5iqcovta" path="res://scenes/entities/enemy.tscn" id="3_b78qf"]
 [ext_resource type="Script" path="res://scripts/entities/bullets_killzone.gd" id="4_gbh2k"]
