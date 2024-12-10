@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://8bkc5iqcovta" path="res://scenes/entities/enemy.tscn" id="3_jesi2"]
 
 [node name="Node2D" type="Node2D"]
-position = Vector2(-5, -585)
 script = ExtResource("1_yfm2u")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
