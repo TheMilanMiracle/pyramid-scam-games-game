@@ -9,3 +9,5 @@ func _ready() -> void:
 func updateRoomState() -> void:
 	if enemy_count == 4:
 		tile_map_layer_2.queue_free()
+	elif enemy_count == 0:
+		tile_map_layer_3.queue_free()
