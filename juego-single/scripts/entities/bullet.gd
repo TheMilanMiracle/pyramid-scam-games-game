@@ -38,6 +38,9 @@ func _on_body_entered(body: Node2D):
 func _on_area_entered(body: Area2D):
 	if body.has_method("take_damage"):
 		body.take_damage(DAMAGE)
-		
+	
+	body = body as SlowArea
+	if not body:
+		queue_free()
 	
 	bullet_died.emit()

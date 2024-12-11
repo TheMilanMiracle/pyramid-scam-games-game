@@ -165,13 +165,16 @@ func _shoot() -> void:
 		
 		pivot.look_at(get_global_mouse_position())
 		
-		var bullet_i: Bullet = bullet.instantiate()
-		bullet_i.modulate = bullet_color
-		get_parent().add_child(bullet_i)
+		var _bullet: Bullet = bullet.instantiate()
+		_bullet.modulate = bullet_color
+		get_parent().add_child(_bullet)
 		
-		bullet_i.global_position = marker.global_position
-		bullet_i.rotation = pivot.rotation
-		bullet_i.SPEED_MULTIPLIER = 2.
+		_bullet.global_position = marker.global_position
+		_bullet.rotation = pivot.rotation
+		_bullet.SPEED_MULTIPLIER = 2.
+		
+		_bullet.set_collision_layer_value(5, false)
+		_bullet.set_collision_layer_value(2, true)
 		
 		HEAT = min(HEAT + 1, MAX_HEAT)
 		decrease_heat_timer.start()

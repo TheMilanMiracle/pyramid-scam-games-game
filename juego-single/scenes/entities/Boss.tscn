@@ -249,8 +249,8 @@ bg_color = Color(0.27451, 0.141176, 0.164706, 1)
 bg_color = Color(0.670588, 0.141176, 0.164706, 1)
 
 [node name="Boss" type="CharacterBody2D"]
-collision_layer = 4
-collision_mask = 15
+collision_layer = 32
+collision_mask = 31
 script = ExtResource("1_qwjmg")
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
@@ -270,10 +270,10 @@ vframes = 7
 [node name="Bullet Pivot" type="Node2D" parent="."]
 
 [node name="NormalBulletMarker" type="Marker2D" parent="Bullet Pivot"]
-position = Vector2(250, 0)
+position = Vector2(180, 0)
 
 [node name="ChargedBulletMarker" type="Marker2D" parent="Bullet Pivot"]
-position = Vector2(350, 0)
+position = Vector2(220, 0)
 
 [node name="StateMachine" type="Node2D" parent="."]
 script = ExtResource("3_g3et1")

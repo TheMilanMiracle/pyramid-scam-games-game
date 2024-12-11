@@ -35,15 +35,19 @@ func _on_timer_timeout() -> void:
 	
 	boss.direction = (boss.player.global_position - boss.global_position).normalized()
 	
-	for i in range(-7, 8):
+	for i in range(-9, 10):
 		var bullet: Bullet = pkd_bullet.instantiate()
 		get_parent().get_parent().add_child(bullet)
-			
+		
 		bullet.global_position = boss.normal_bullet_marker.global_position
 		bullet.rotation = boss.bullet_pivot.rotation  + (0.2 * i)
 		
 		bullet.scale = Vector2(2.5, 2.5)
 		bullet.modulate = Color(0.9, 0.4, 0.8)
-		bullet.SPEED_MULTIPLIER = 0.4
+		bullet.SPEED_MULTIPLIER = 0.5
 		
+		bullet.set_collision_layer_value(5, false)
+		bullet.set_collision_layer_value(6, true)
+		bullet.set_collision_mask_value(6, false)
+	
 	timer.start()

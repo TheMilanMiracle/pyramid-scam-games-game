@@ -20,12 +20,17 @@ func state_ready(_timer: Timer, _boss: Boss) -> void:
 		get_parent().get_parent().add_child(bullet)
 		
 		bullet.global_position = boss.charged_bullet_marker.global_position
-		bullet.rotation = boss.bullet_pivot.rotation + (0.3 * i)
-		bullet.SPEED_MULTIPLIER = 0.15
+		bullet.rotation = boss.bullet_pivot.rotation + (0.35 * i)
+		bullet.SPEED_MULTIPLIER = 0.2
 		bullet.DAMAGE = 3
 		
 		bullet.scale = Vector2(10, 10)
 		bullet.modulate = Color(0.95, 0.45, 0.9)
+		
+		bullet.set_collision_layer_value(5, false)
+		bullet.set_collision_mask_value(5, false)
+		bullet.set_collision_layer_value(6, true)
+		bullet.set_collision_mask_value(6, false)
 
 
 func state_transition(machine: StateMachine) -> void:
