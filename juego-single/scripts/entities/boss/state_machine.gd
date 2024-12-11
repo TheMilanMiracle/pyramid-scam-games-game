@@ -8,7 +8,7 @@ class_name StateMachine
 
 @onready var state_timer: Timer = $"../StateTimer"
 
-@onready var boss_state: BossState = idle_state
+@onready var boss_state: BossState = following_state
 
 var boss: Boss
 var player: Player

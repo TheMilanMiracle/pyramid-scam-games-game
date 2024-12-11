@@ -7,5 +7,4 @@ func _ready() -> void:
 	enemy_count = 2
 
 func updateRoomState() -> void:
-	tile_map_layer_2.queue_free()
-	tile_map_layer_3.queue_free()
+	pass

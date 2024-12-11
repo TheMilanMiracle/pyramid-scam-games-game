@@ -1,7 +1,7 @@
 extends Node2D
 class_name BossState
 
-var timer_val: float
+var timer_val: float = 2.
 var boss: Boss
 
 func state_ready(_timer: Timer, _boss: Boss) -> void:
