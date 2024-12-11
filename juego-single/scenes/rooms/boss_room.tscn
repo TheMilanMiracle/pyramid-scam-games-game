@@ -1,18 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcxodme56yiib"]
+[gd_scene load_steps=3 format=3 uid="uid://bcxodme56yiib"]
 
 [ext_resource type="PackedScene" uid="uid://dca2bh7553sjp" path="res://scenes/entities/Boss.tscn" id="1_5v7bm"]
-[ext_resource type="PackedScene" uid="uid://ctph8joortxmw" path="res://scenes/player/slow_area.tscn" id="2_layed"]
 [ext_resource type="PackedScene" uid="uid://ygpasvck8iev" path="res://scenes/player/player.tscn" id="3_fvh5i"]
 
 [node name="BossRoom" type="Node2D"]
 
-[node name="SlowArea" parent="." instance=ExtResource("2_layed")]
-scale = Vector2(3, 3)
-
-[node name="Player" parent="." node_paths=PackedStringArray("slow_area") instance=ExtResource("3_fvh5i")]
+[node name="Player" parent="." instance=ExtResource("3_fvh5i")]
 position = Vector2(0, 500)
 scale = Vector2(1.5, 1.5)
-slow_area = NodePath("../SlowArea")
 
 [node name="Boss" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_5v7bm")]
+collision_layer = 4
+collision_mask = 15
 player = NodePath("../Player")

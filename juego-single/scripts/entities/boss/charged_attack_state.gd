@@ -28,7 +28,7 @@ func state_ready(_timer: Timer, _boss: Boss) -> void:
 		bullet.modulate = Color(0.95, 0.45, 0.9)
 		
 		bullet.set_collision_layer_value(5, false)
-		bullet.set_collision_mask_value(5, false)
+		bullet.set_collision_mask_value(2, false)
 		bullet.set_collision_layer_value(6, true)
 		bullet.set_collision_mask_value(6, false)
 

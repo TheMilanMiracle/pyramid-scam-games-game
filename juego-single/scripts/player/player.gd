@@ -28,7 +28,8 @@ var camera_toggle: bool = false
 
 const SPEED = 1000.0
 var direction: Vector2 = Vector2.ZERO
-@export var HEALTH: int = 10
+@export var HEALTH: int
+const MAX_HEALTH: int = 10
 @export var SHIELD: int = 5
 @export var MAX_SHIELD: int = 5
 var HEAT: int = 0
@@ -43,6 +44,8 @@ var slow_area_cooldown_timer: Timer
 
 
 func _ready() -> void:
+	HEALTH = LevelController.current_player_hp
+	
 	default_color = sprite.modulate
 	
 	animation_tree.active = true
@@ -52,7 +55,7 @@ func _ready() -> void:
 	overheat_timer.timeout.connect(_on_heat_reset)
 	decrease_heat_timer.timeout.connect(_on_heat_decrease)
 	
-	health_bar.max_value = HEALTH
+	health_bar.max_value = MAX_HEALTH
 	health_bar.value = HEALTH
 	
 	shield_bar.max_value = SHIELD
@@ -123,11 +126,6 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_released("space"):
 		camera_toggle = not camera_toggle
-
-
-func victory() -> void:
-		victory_menu.show()
-		get_tree().paused = true
 
 
 func _on_damage_dealt() -> void:

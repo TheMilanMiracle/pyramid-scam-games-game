@@ -1,7 +1,8 @@
-[gd_scene load_steps=52 format=3 uid="uid://ygpasvck8iev"]
+[gd_scene load_steps=53 format=3 uid="uid://ygpasvck8iev"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_mos1g"]
 [ext_resource type="Texture2D" uid="uid://b03urp0y7yjxn" path="res://assets/skins/base_character.png" id="2_cebw6"]
+[ext_resource type="PackedScene" uid="uid://ctph8joortxmw" path="res://scenes/player/slow_area.tscn" id="2_urpoo"]
 [ext_resource type="Texture2D" uid="uid://bba0nudf4vdqs" path="res://assets/skins/deathFX.png" id="3_anpvp"]
 [ext_resource type="Script" path="res://components/hurtbox.gd" id="5_imgmi"]
 [ext_resource type="PackedScene" uid="uid://2j43t3jfkguc" path="res://scenes/UI/death_menu.tscn" id="6_6f0eq"]
@@ -369,9 +370,12 @@ border_color = Color(0.353685, 0.1767, 0.57, 1)
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("slow_area")]
 collision_mask = 14
 script = ExtResource("1_mos1g")
+slow_area = NodePath("SlowArea")
+
+[node name="SlowArea" parent="." instance=ExtResource("2_urpoo")]
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)

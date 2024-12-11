@@ -15,6 +15,10 @@ run/main_scene="res://scenes/UI/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+LevelController="*res://autoload/level_controller.tscn"
+
 [display]
 
 window/size/viewport_width=1366

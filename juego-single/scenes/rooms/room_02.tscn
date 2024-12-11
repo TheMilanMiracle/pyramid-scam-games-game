@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=4 uid="uid://b4u2iqu2m2gax"]
+[gd_scene load_steps=8 format=4 uid="uid://b4u2iqu2m2gax"]
 
 [ext_resource type="Script" path="res://scripts/rooms/room_02.gd" id="1_4iw3m"]
 [ext_resource type="TileSet" uid="uid://dkyl7fxpus8tw" path="res://resources/tile_set.tres" id="1_jo0uh"]
 [ext_resource type="PackedScene" uid="uid://ctph8joortxmw" path="res://scenes/player/slow_area.tscn" id="2_ji7up"]
 [ext_resource type="PackedScene" uid="uid://ygpasvck8iev" path="res://scenes/player/player.tscn" id="3_x3jka"]
 [ext_resource type="PackedScene" uid="uid://7y8gym2iut3s" path="res://scenes/rooms/scenary/lever.tscn" id="5_2057c"]
+[ext_resource type="Script" path="res://scripts/entities/victory_goal.gd" id="6_dgh73"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_potfu"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_4iw3m")
@@ -47,3 +50,12 @@ scale = Vector2(3, 3)
 [node name="Player" parent="." node_paths=PackedStringArray("slow_area") instance=ExtResource("3_x3jka")]
 position = Vector2(5879, 5841)
 slow_area = NodePath("../SlowArea")
+
+[node name="VictoryGoal" type="Area2D" parent="."]
+position = Vector2(5942, 789)
+script = ExtResource("6_dgh73")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="VictoryGoal"]
+position = Vector2(-87, -206)
+scale = Vector2(4, 4)
+shape = SubResource("RectangleShape2D_potfu")

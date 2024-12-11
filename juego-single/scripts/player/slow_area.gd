@@ -11,6 +11,8 @@ class_name SlowArea
 @onready var cyan_particles: CPUParticles2D = $CyanParticles
 
 @export var SLOW: float = 0.2
+var action_position: Vector2i = Vector2i.ZERO
+
 
 func _ready() -> void:
 	area_entered.connect(_on_area_entered)
@@ -23,7 +25,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	pass
+	global_position = action_position
 
 
 func _input(event: InputEvent) -> void:
@@ -31,7 +33,7 @@ func _input(event: InputEvent) -> void:
 		match event.button_index:
 			MOUSE_BUTTON_RIGHT:
 				if cooldown_timer.time_left == 0.:
-					position = get_viewport().get_camera_2d().get_global_mouse_position()
+					action_position = get_global_mouse_position()
 					slow_area_shape.disabled = false
 					slow_area_sprite.visible = true
 					action_timer.start()

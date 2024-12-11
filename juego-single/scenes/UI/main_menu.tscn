@@ -1,8 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://fp6ini66mu50"]
+[gd_scene load_steps=9 format=3 uid="uid://fp6ini66mu50"]
 
 [ext_resource type="Script" path="res://scripts/UI/main_menu.gd" id="1_uhgpg"]
-[ext_resource type="PackedScene" uid="uid://d1ovwb5ersi2u" path="res://scenes/world.tscn" id="2_3jndr"]
+[ext_resource type="Script" path="res://scripts/tutorial_world.gd" id="2_u6rd1"]
+[ext_resource type="PackedScene" uid="uid://cgwaw01x5qcir" path="res://scenes/rooms/tutorial_room.tscn" id="3_vl665"]
 [ext_resource type="Texture2D" uid="uid://4wnpsm05uoma" path="res://assets/cover.png" id="3_vlbcc"]
+[ext_resource type="PackedScene" uid="uid://ctph8joortxmw" path="res://scenes/player/slow_area.tscn" id="4_udmx4"]
+[ext_resource type="PackedScene" uid="uid://ygpasvck8iev" path="res://scenes/player/player.tscn" id="5_m08x2"]
+
+[sub_resource type="PackedScene" id="PackedScene_bf4db"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("world", "script", "Node2D", "Tutorial", "position", "SlowArea", "scale", "Player", "slow_area"),
+"node_count": 4,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 2147483647, 3, 1, 1, 4, 2, 0, 0, 0, 2147483647, 5, 3, 1, 6, 4, 0, 0, 0, 2147483647, 7, 5, 2, 4, 6, 1073741832, 7, 0),
+"variants": [ExtResource("2_u6rd1"), ExtResource("3_vl665"), Vector2(0, 0), ExtResource("4_udmx4"), Vector2(2, 2), ExtResource("5_m08x2"), Vector2(365, 1399), NodePath("../SlowArea")],
+"version": 3
+}
 
 [sub_resource type="LabelSettings" id="LabelSettings_e1v05"]
 font_size = 96
@@ -18,7 +34,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_uhgpg")
-main = ExtResource("2_3jndr")
+main = SubResource("PackedScene_bf4db")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(682.5, 383.5)
