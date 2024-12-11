@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
+@onready var camera: Camera2D = $Camera
 @onready var pivot: Node2D = $Pivot
 @onready var sprite: Sprite2D = $Pivot/MainSprite
 @onready var death_sprite: Sprite2D = $Pivot/DeathSprite
@@ -21,13 +22,17 @@ class_name Player
 @onready var cooldown_progress: ProgressBar = %CooldownProgress
 @onready var victory_menu: Control = $UI/victory_menu
 
+@onready var qol_heat_bar: ProgressBar = $QolHeatBar
+
+var camera_toggle: bool = false
+
 const SPEED = 1000.0
 var direction: Vector2 = Vector2.ZERO
 @export var HEALTH: int = 10
 @export var SHIELD: int = 5
 @export var MAX_SHIELD: int = 5
 var HEAT: int = 0
-const MAX_HEAT: int = 10
+const MAX_HEAT: int = 25
 var overheated: bool = false
 
 var defaultColor: Color
@@ -54,6 +59,7 @@ func _ready() -> void:
 	shield_bar.value = SHIELD
 	
 	heat_bar.max_value = 100
+	qol_heat_bar.max_value = 100
 	heat_bar.value = 0
 	
 	slow_area_cooldown_timer = slow_area.cooldown_timer
@@ -61,6 +67,9 @@ func _ready() -> void:
 
 
 func _physics_process(delta) -> void:
+	#CAMERA
+	_point_camera()
+	
 	#HUD
 	if damaged_timer.time_left:
 		shield_cd_bar.value = (damaged_timer.wait_time - damaged_timer.time_left) / damaged_timer.wait_time * 100
@@ -74,9 +83,14 @@ func _physics_process(delta) -> void:
 	else:
 		heat_bar.value = float(HEAT) / float(MAX_HEAT) * 100
 	
-	#print("value %d" % heat_bar.value)
-	#if not overheated: print("calc %f" % (HEAT / MAX_HEAT * 100))
-	#print("HEAT %d" % HEAT)
+	if HEAT:
+		if overheated:
+			qol_heat_bar.value = overheat_timer.time_left / overheat_timer.wait_time * 100
+		else:
+			qol_heat_bar.show()
+			qol_heat_bar.value = float(HEAT) / float(MAX_HEAT) * 100
+	else:
+		qol_heat_bar.hide()
 	
 	#MOVEMENT
 	var Xdirection = Input.get_axis("left", "right")
@@ -105,6 +119,10 @@ func _input(event: InputEvent) -> void:
 		match event.button_index:
 			MOUSE_BUTTON_LEFT:
 				_shoot()
+				_point_camera()
+	
+	if event.is_action_released("space"):
+		camera_toggle = not camera_toggle
 
 
 func victory() -> void:
@@ -147,12 +165,13 @@ func _shoot() -> void:
 		
 		pivot.look_at(get_global_mouse_position())
 		
-		bullet = bullet.instantiate()
-		bullet.modulate = bullet_color
-		get_parent().add_child(bullet)
+		var bullet_i: Bullet = bullet.instantiate()
+		bullet_i.modulate = bullet_color
+		get_parent().add_child(bullet_i)
 		
-		bullet.global_position = marker.global_position
-		bullet.rotation = pivot.rotation
+		bullet_i.global_position = marker.global_position
+		bullet_i.rotation = pivot.rotation
+		bullet_i.SPEED_MULTIPLIER = 2.
 		
 		HEAT = min(HEAT + 1, MAX_HEAT)
 		decrease_heat_timer.start()
@@ -180,6 +199,24 @@ func _on_heat_reset() -> void:
 	HEAT = 0
 	
 	heat_bar.get_theme_stylebox("fill").bg_color = Color("c9803c")
+
+
+func _point_camera() -> void:
+	const max_move = 400
+	const move_speed = 25
+	var mouse_direction = (get_local_mouse_position() - camera.position).normalized()
+	
+	if not camera_toggle:
+		camera.position = Vector2(
+			move_toward(camera.position.x, 0, move_speed * 5),
+			move_toward(camera.position.y, 0, move_speed * 5),
+		)
+		return
+	
+	camera.position = Vector2(
+		move_toward(camera.position.x, max_move * mouse_direction[0], move_speed),
+		move_toward(camera.position.y, max_move * mouse_direction[1], move_speed),
+	)
 
 
 func update_animation_parameters() -> void:

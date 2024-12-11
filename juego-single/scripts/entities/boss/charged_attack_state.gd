@@ -15,16 +15,17 @@ func state_ready(_timer: Timer, _boss: Boss) -> void:
 	
 	boss.direction = (boss.player.global_position - boss.global_position).normalized()
 	
-	var bullet: Bullet = pkd_bullet.instantiate()
-	get_parent().get_parent().add_child(bullet)
-	
-	bullet.global_position = boss.charged_bullet_marker.global_position
-	bullet.rotation = boss.bullet_pivot.rotation
-	bullet.SPEED_MULTIPLIER = 0.15
-	bullet.DAMAGE = 3
-	
-	bullet.scale = Vector2(10, 10)
-	bullet.modulate = Color(0.95, 0.45, 0.9)
+	for i in range(-1, 2):
+		var bullet: Bullet = pkd_bullet.instantiate()
+		get_parent().get_parent().add_child(bullet)
+		
+		bullet.global_position = boss.charged_bullet_marker.global_position
+		bullet.rotation = boss.bullet_pivot.rotation + (0.3 * i)
+		bullet.SPEED_MULTIPLIER = 0.15
+		bullet.DAMAGE = 3
+		
+		bullet.scale = Vector2(10, 10)
+		bullet.modulate = Color(0.95, 0.45, 0.9)
 
 
 func state_transition(machine: StateMachine) -> void:

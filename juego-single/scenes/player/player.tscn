@@ -283,6 +283,23 @@ states/idle/position = Vector2(669, 137)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_1yi5g"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_mw1cd"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_qkddy"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_o6rqp")]
 graph_offset = Vector2(0, 38.7869)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_34dlb"]
+bg_color = Color(0.18, 0.1149, 0.054, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.568627, 0.364706, 0.172549, 1)
+shadow_size = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8qe2y"]
+bg_color = Color(0.788235, 0.501961, 0.235294, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.57, 0.36385, 0.171, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h5mxd"]
 bg_color = Color(0.18, 0, 0, 1)
 border_width_left = 3
@@ -352,26 +369,12 @@ border_color = Color(0.353685, 0.1767, 0.57, 1)
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_34dlb"]
-bg_color = Color(0.18, 0.1149, 0.054, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.568627, 0.364706, 0.172549, 1)
-shadow_size = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8qe2y"]
-bg_color = Color(0.788235, 0.501961, 0.235294, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.57, 0.36385, 0.171, 1)
-
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 6
 script = ExtResource("1_mos1g")
+HEALTH = null
+SHIELD = null
+MAX_SHIELD = null
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
@@ -438,6 +441,24 @@ parameters/conditions/death = false
 parameters/conditions/idle_or_moving = false
 parameters/attack/blend_position = Vector2(0, 0)
 parameters/idle/blend_position = Vector2(-0.600442, -0.684211)
+
+[node name="QolHeatBar" type="ProgressBar" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = 60.0
+offset_right = 48.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_34dlb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8qe2y")
+step = 1.0
+value = 50.0
+show_percentage = false
 
 [node name="UI" type="CanvasLayer" parent="."]
 process_mode = 3

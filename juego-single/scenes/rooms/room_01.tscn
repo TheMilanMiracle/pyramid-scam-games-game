@@ -43,4 +43,7 @@ position = Vector2(4431, 814)
 
 [node name="Player" parent="." node_paths=PackedStringArray("slow_area") instance=ExtResource("3_1fjhr")]
 position = Vector2(516, 4761)
+HEALTH = 10
+SHIELD = 5
+MAX_SHIELD = 5
 slow_area = NodePath("../SlowArea")
