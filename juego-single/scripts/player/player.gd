@@ -162,6 +162,8 @@ func _shoot() -> void:
 		var bullet = load("res://scenes/entities/bullet.tscn")
 		
 		pivot.look_at(get_global_mouse_position())
+		direction = (get_global_mouse_position() - global_position).normalized()
+		update_animation_parameters()
 		
 		var _bullet: Bullet = bullet.instantiate()
 		_bullet.modulate = bullet_color
