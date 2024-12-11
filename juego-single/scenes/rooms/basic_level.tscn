@@ -926,6 +926,7 @@ tile_map_data = PackedByteArray("AAD6//n/AgAVAAEAAAD6//r/AgAVAAEAAAD6//v/AgAVAAE
 tile_set = SubResource("TileSet_xsfen")
 
 [node name="Area2D" type="Area2D" parent="TileMapLayer"]
+visible = false
 script = ExtResource("4_gbh2k")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TileMapLayer/Area2D"]
