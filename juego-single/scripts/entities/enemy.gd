@@ -9,10 +9,12 @@ var impulse_direction = Vector2.ZERO
 const MAX_HEALTH: int = 3
 var HEALTH: int
 
-const bulletPath = preload("res://scenes/entities/enemy_bullet.tscn")
-@onready var marker_2d: Marker2D = $Path2D/PathFollow2D/Marker2D
+const bullet = preload("res://scenes/entities/bullet.tscn")
+@onready var left_marker: Marker2D = $Path2D/LPath/LMarker
+@onready var left_direction: Marker2D = $Path2D/LPath/LMarker/LEnemyDirection
+@onready var right_marker: Marker2D = $Path2D/RPath/RMarker
+@onready var right_direction: Marker2D = $Path2D/RPath/RMarker/REnemyDirection
 @onready var shoot_cooldown: Timer = $ShootCooldown
-@onready var marker_2d_2: Marker2D = $Path2D/PathFollow2D2/Marker2D
 @onready var hurtbox = $Hurtbox
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
@@ -35,14 +37,23 @@ func take_damage(damage: int) -> void:
 		queue_free()
 
 func shoot():
-	var bullet = bulletPath.instantiate()
-	var bullet_2 = bulletPath.instantiate()
-	get_parent().add_child(bullet)
-	get_parent().add_child(bullet_2)
-	bullet.global_position = marker_2d.global_position
-	bullet.global_rotation = marker_2d.global_rotation
-	bullet_2.global_position = marker_2d_2.global_position
-	bullet_2.global_rotation = marker_2d_2.global_rotation
+	var left_bullet: Bullet = bullet.instantiate()
+	var right_bullet: Bullet = bullet.instantiate()
+	
+	get_parent().add_child(left_bullet)
+	get_parent().add_child(right_bullet)
+	
+	left_bullet.global_position = left_marker.global_position
+	right_bullet.global_position = right_marker.global_position
+	
+	left_bullet.look_at(left_direction.global_position)
+	right_bullet.look_at(right_direction.global_position)
+	
+	left_bullet.SPEED_MULTIPLIER = 0.8
+	right_bullet.SPEED_MULTIPLIER = 0.8
+	
+	left_bullet.modulate = Color(0.5, 0.1, 0.1)
+	right_bullet.modulate = Color(0.5, 0.1, 0.1)
 
 
 func _on_hurtbox_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
