@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 func take_damage(damage: int) -> void:
 	HEALTH -= damage
 
-	if HEALTH <= 0:
+	if HEALTH == 0:
 		get_parent().enemyDead()
 		queue_free()
 
