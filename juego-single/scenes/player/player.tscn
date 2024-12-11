@@ -370,7 +370,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 6
+collision_mask = 14
 script = ExtResource("1_mos1g")
 HEALTH = null
 SHIELD = null

@@ -20,7 +20,6 @@ scale = Vector2(2, 2)
 
 [node name="Player" parent="." node_paths=PackedStringArray("slow_area") instance=ExtResource("3_lq7cv")]
 position = Vector2(365, 1399)
-collision_mask = 14
 slow_area = NodePath("../SlowArea")
 
 [node name="BulletsKillzone" type="Area2D" parent="."]
