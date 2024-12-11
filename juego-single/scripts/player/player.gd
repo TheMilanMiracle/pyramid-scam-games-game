@@ -32,22 +32,22 @@ var direction: Vector2 = Vector2.ZERO
 @export var SHIELD: int = 5
 @export var MAX_SHIELD: int = 5
 var HEAT: int = 0
-const MAX_HEAT: int = 25
+const MAX_HEAT: int = 20
 var overheated: bool = false
 
-var defaultColor: Color
-var damageColor: Color = Color(0.8, 0.2, 0.4, 1.)
+var default_color: Color
+var damage_color: Color = Color(0.8, 0.2, 0.4, 1.)
 
 @export var slow_area: Area2D
 var slow_area_cooldown_timer: Timer
 
 
 func _ready() -> void:
-	defaultColor = sprite.modulate
+	default_color = sprite.modulate
 	
 	animation_tree.active = true
 	
-	on_damage_timer.timeout.connect(func():sprite.modulate = defaultColor)
+	on_damage_timer.timeout.connect(func():sprite.modulate = default_color)
 	damaged_timer.timeout.connect(func():SHIELD=MAX_SHIELD; shield_bar.value = SHIELD)
 	overheat_timer.timeout.connect(_on_heat_reset)
 	decrease_heat_timer.timeout.connect(_on_heat_decrease)
@@ -138,7 +138,7 @@ func take_damage(damage: int) -> void:
 	on_damage_timer.start()
 	damaged_timer.start()
 	
-	sprite.modulate = damageColor
+	sprite.modulate = damage_color
 	
 	if SHIELD:
 		SHIELD = max(SHIELD - damage, 0)

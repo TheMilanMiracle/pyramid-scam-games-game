@@ -372,9 +372,6 @@ corner_radius_bottom_right = 5
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 14
 script = ExtResource("1_mos1g")
-HEALTH = null
-SHIELD = null
-MAX_SHIELD = null
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
