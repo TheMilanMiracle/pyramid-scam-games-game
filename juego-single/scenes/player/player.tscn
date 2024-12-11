@@ -371,7 +371,8 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("slow_area")]
-collision_mask = 14
+collision_layer = 2
+collision_mask = 61
 script = ExtResource("1_mos1g")
 slow_area = NodePath("SlowArea")
 

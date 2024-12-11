@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dca2bh7553sjp"]
+[gd_scene load_steps=34 format=3 uid="uid://dca2bh7553sjp"]
 
 [ext_resource type="Script" path="res://scripts/entities/boss/boss.gd" id="1_qwjmg"]
 [ext_resource type="Texture2D" uid="uid://cgmjoypkbfksu" path="res://assets/skins/skeleton.png" id="2_ifar3"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/entities/boss/attack_state.gd" id="6_4adej"]
 [ext_resource type="Script" path="res://scripts/entities/boss/idle_state.gd" id="7_2sg3r"]
 [ext_resource type="Script" path="res://scripts/entities/boss/charged_attack_state.gd" id="8_7l3du"]
+[ext_resource type="Script" path="res://scripts/entities/boss/run_state.gd" id="8_fm0pq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_si4gy"]
 size = Vector2(21.5, 23.1)
@@ -293,6 +294,9 @@ script = ExtResource("7_2sg3r")
 
 [node name="ChargedAttackState" type="Node2D" parent="StateMachine"]
 script = ExtResource("8_7l3du")
+
+[node name="RunState" type="Node2D" parent="StateMachine"]
+script = ExtResource("8_fm0pq")
 
 [node name="StateTimer" type="Timer" parent="."]
 one_shot = true

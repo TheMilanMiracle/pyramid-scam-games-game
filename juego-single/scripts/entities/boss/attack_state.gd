@@ -6,7 +6,7 @@ class_name AttackState
 
 
 func _ready() -> void:
-	timer_val = 3.0
+	timer_val = 1.5
 
 
 func state_ready(_timer: Timer, _boss: Boss) -> void:
@@ -22,7 +22,7 @@ func state_transition(machine: StateMachine) -> void:
 	
 	var state = RandomNumberGenerator.new().randi() % 100
 	
-	if state < 50:
+	if state < 30:
 		machine.boss_state = machine.charged_attack_state
 	else:
 		machine.boss_state = self
@@ -35,9 +35,9 @@ func _on_timer_timeout() -> void:
 	
 	boss.direction = (boss.player.global_position - boss.global_position).normalized()
 	
-	for i in range(-9, 10):
+	for i in range(-10, 11):
 		var bullet: Bullet = pkd_bullet.instantiate()
-		get_parent().get_parent().add_child(bullet)
+		boss.get_parent().add_child(bullet)
 		
 		bullet.global_position = boss.normal_bullet_marker.global_position
 		bullet.rotation = boss.bullet_pivot.rotation  + (0.2 * i)

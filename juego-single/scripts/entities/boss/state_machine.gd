@@ -5,6 +5,7 @@ class_name StateMachine
 @onready var following_state: FollowingState = $FollowingState
 @onready var attack_state: AttackState = $AttackState
 @onready var charged_attack_state: ChargedAttackState = $ChargedAttackState
+@onready var run_state: RunState = $RunState
 
 @onready var state_timer: Timer = $"../StateTimer"
 
