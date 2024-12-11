@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://dr4wpk3i4xaal"]
+[gd_scene load_steps=7 format=4 uid="uid://cwlxw5i35w8xb"]
 
 [ext_resource type="Script" path="res://scripts/rooms/room_03.gd" id="1_085l2"]
 [ext_resource type="TileSet" uid="uid://dkyl7fxpus8tw" path="res://resources/tile_set.tres" id="2_t4x8a"]
@@ -65,6 +65,7 @@ rotation = 2.34236
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(4848, 2932)
 scale = Vector2(3, 3)
+collision_mask = 3
 script = ExtResource("6_ibv1k")
 
 [node name="Goal" type="CollisionShape2D" parent="Area2D"]

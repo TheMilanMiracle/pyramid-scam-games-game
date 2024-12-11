@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://cgwaw01x5qcir"]
+[gd_scene load_steps=12 format=4 uid="uid://b21t0y63r8mqy"]
 
 [ext_resource type="Script" path="res://scripts/rooms/tutorial_room.gd" id="1_xo7gx"]
 [ext_resource type="Texture2D" uid="uid://g4gccmvgw4a8" path="res://assets/Pixel Crawler - FREE - 1.8/Pixel Crawler - FREE - 1.8/Environment/Dungeon Prison/Assets/Tiles.png" id="2_1dwof"]
@@ -942,6 +942,7 @@ position = Vector2(713, 422)
 position = Vector2(1350, 426)
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 3
 script = ExtResource("5_n3anb")
 
 [node name="Goal" type="CollisionShape2D" parent="Area2D"]
