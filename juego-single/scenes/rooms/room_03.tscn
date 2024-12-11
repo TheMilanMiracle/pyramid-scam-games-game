@@ -37,9 +37,6 @@ tile_set = ExtResource("2_t4x8a")
 
 [node name="Player" parent="." node_paths=PackedStringArray("slow_area") instance=ExtResource("4_cwwtv")]
 position = Vector2(539, 4117)
-HEALTH = 10
-SHIELD = 5
-MAX_SHIELD = 5
 slow_area = NodePath("../SlowArea")
 
 [node name="Enemy" parent="." instance=ExtResource("5_4pu1j")]

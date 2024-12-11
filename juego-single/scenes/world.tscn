@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://d1ovwb5ersi2u"]
 
 [ext_resource type="Script" path="res://scripts/tutorial_world.gd" id="1_i52eo"]
-[ext_resource type="PackedScene" uid="uid://cgwaw01x5qcir" path="res://scenes/rooms/basic_level.tscn" id="2_6to18"]
+[ext_resource type="PackedScene" uid="uid://cgwaw01x5qcir" path="res://scenes/rooms/tutorial_room.tscn" id="2_6to18"]
 [ext_resource type="PackedScene" uid="uid://ygpasvck8iev" path="res://scenes/player/player.tscn" id="3_lq7cv"]
 [ext_resource type="PackedScene" uid="uid://ctph8joortxmw" path="res://scenes/player/slow_area.tscn" id="4_tpcng"]
 [ext_resource type="Script" path="res://scripts/entities/bullets_killzone.gd" id="7_qjbmy"]

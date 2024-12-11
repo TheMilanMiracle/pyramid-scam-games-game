@@ -1,4 +1,4 @@
-extends room
+extends Room
 
 @onready var tile_map_layer_2: TileMapLayer = $TileMapLayer2
 @onready var tile_map_layer_3: TileMapLayer = $TileMapLayer3

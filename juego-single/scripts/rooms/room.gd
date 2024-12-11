@@ -1,4 +1,4 @@
-class_name room
+class_name Room
 extends Node
 
 var enemy_count: int = 0
