@@ -35,16 +35,20 @@ tile_set = ExtResource("2_t4x8a")
 [node name="Player" parent="." instance=ExtResource("4_cwwtv")]
 position = Vector2(3269, 635)
 
-[node name="Enemy" parent="." instance=ExtResource("5_4pu1j")]
-position = Vector2(3731, 729)
+[node name="ShootingEnemy" parent="." instance=ExtResource("5_4pu1j")]
+position = Vector2(3093, 1001)
+noIA = true
+direction = Vector2(1, 1)
 
-[node name="Enemy2" parent="." instance=ExtResource("5_4pu1j")]
-position = Vector2(3131, 988)
-rotation = -0.675589
+[node name="ShootingEnemy2" parent="." instance=ExtResource("5_4pu1j")]
+position = Vector2(3698, 863)
+noIA = true
+direction = Vector2(0, 1)
 
-[node name="Enemy3" parent="." instance=ExtResource("5_4pu1j")]
-position = Vector2(4349, 995)
-rotation = 0.659924
+[node name="ShootingEnemy3" parent="." instance=ExtResource("5_4pu1j")]
+position = Vector2(4381, 1001)
+noIA = true
+direction = Vector2(-1, 1)
 
 [node name="Enemy4" parent="." instance=ExtResource("5_4pu1j")]
 position = Vector2(7436, 1865)

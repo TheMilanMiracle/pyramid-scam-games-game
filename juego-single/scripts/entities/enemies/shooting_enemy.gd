@@ -12,6 +12,10 @@ const bullet = preload("res://scenes/entities/bullet.tscn")
 
 func _ready() -> void:
 	super._ready()
+	
+	if noIA:
+		path_pivot.process_mode = Node.PROCESS_MODE_INHERIT
+		path_pivot.look_at(global_position + direction)
 	shoot_cooldown.timeout.connect(shoot)
 
 
