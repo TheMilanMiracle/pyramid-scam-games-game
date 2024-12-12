@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=4 uid="uid://bcxodme56yiib"]
+[gd_scene load_steps=5 format=4 uid="uid://bcxodme56yiib"]
 
 [ext_resource type="PackedScene" uid="uid://dca2bh7553sjp" path="res://scenes/entities/Boss.tscn" id="1_5v7bm"]
 [ext_resource type="TileSet" uid="uid://dkyl7fxpus8tw" path="res://resources/tile_set.tres" id="1_qh5l5"]
 [ext_resource type="PackedScene" uid="uid://ygpasvck8iev" path="res://scenes/player/player.tscn" id="3_fvh5i"]
+[ext_resource type="AudioStream" uid="uid://t2mmhdkrsvvo" path="res://assets/music/07 - DavidKBD - Purgatory Pack - Hades.ogg" id="4_jhjne"]
 
 [node name="BossRoom" type="Node2D"]
 
@@ -17,3 +18,9 @@ scale = Vector2(1.5, 1.5)
 
 [node name="Boss" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_5v7bm")]
 player = NodePath("../Player")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_jhjne")
+volume_db = -20.0
+autoplay = true
+parameters/looping = true

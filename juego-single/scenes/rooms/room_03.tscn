@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=4 uid="uid://cwlxw5i35w8xb"]
+[gd_scene load_steps=8 format=4 uid="uid://cwlxw5i35w8xb"]
 
 [ext_resource type="Script" path="res://scripts/rooms/room_03.gd" id="1_085l2"]
 [ext_resource type="TileSet" uid="uid://dkyl7fxpus8tw" path="res://resources/tile_set.tres" id="2_t4x8a"]
 [ext_resource type="PackedScene" uid="uid://ygpasvck8iev" path="res://scenes/player/player.tscn" id="4_cwwtv"]
 [ext_resource type="PackedScene" uid="uid://8bkc5iqcovta" path="res://scenes/entities/enemy.tscn" id="5_4pu1j"]
 [ext_resource type="Script" path="res://scripts/entities/victory_goal.gd" id="6_ibv1k"]
+[ext_resource type="AudioStream" uid="uid://ed131mh4j8kb" path="res://assets/music/02 - DavidKBD - Purgatory Pack - Gateways.ogg" id="6_tvg5n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s8330"]
 size = Vector2(83, 143)
@@ -72,5 +73,11 @@ script = ExtResource("6_ibv1k")
 position = Vector2(1007.5, -70.5)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_s8330")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_tvg5n")
+volume_db = -20.0
+autoplay = true
+parameters/looping = true
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

@@ -1,11 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://fp6ini66mu50"]
+[gd_scene load_steps=10 format=3 uid="uid://fp6ini66mu50"]
 
 [ext_resource type="Script" path="res://scripts/UI/main_menu.gd" id="1_uhgpg"]
 [ext_resource type="Script" path="res://scripts/tutorial_world.gd" id="2_u6rd1"]
-[ext_resource type="PackedScene" uid="uid://cgwaw01x5qcir" path="res://scenes/rooms/tutorial_room.tscn" id="3_vl665"]
+[ext_resource type="PackedScene" uid="uid://b21t0y63r8mqy" path="res://scenes/rooms/tutorial_room.tscn" id="3_vl665"]
 [ext_resource type="Texture2D" uid="uid://4wnpsm05uoma" path="res://assets/cover.png" id="3_vlbcc"]
 [ext_resource type="PackedScene" uid="uid://ctph8joortxmw" path="res://scenes/player/slow_area.tscn" id="4_udmx4"]
 [ext_resource type="PackedScene" uid="uid://ygpasvck8iev" path="res://scenes/player/player.tscn" id="5_m08x2"]
+[ext_resource type="AudioStream" uid="uid://vlb0u4hx37v7" path="res://assets/music/01 - DavidKBD - Purgatory Pack - Purgatory.ogg" id="7_e1wxd"]
 
 [sub_resource type="PackedScene" id="PackedScene_bf4db"]
 _bundled = {
@@ -87,3 +88,9 @@ text = "Credits (coming soon)"
 unique_name_in_owner = true
 layout_mode = 2
 text = "Quit game"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_e1wxd")
+volume_db = -20.0
+autoplay = true
+parameters/looping = true

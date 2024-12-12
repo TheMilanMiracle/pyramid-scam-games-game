@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://b4u2iqu2m2gax"]
+[gd_scene load_steps=10 format=4 uid="uid://b4u2iqu2m2gax"]
 
 [ext_resource type="Script" path="res://scripts/rooms/room_02.gd" id="1_4iw3m"]
 [ext_resource type="TileSet" uid="uid://dkyl7fxpus8tw" path="res://resources/tile_set.tres" id="1_jo0uh"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://7y8gym2iut3s" path="res://scenes/rooms/scenary/lever.tscn" id="5_2057c"]
 [ext_resource type="Script" path="res://scripts/entities/victory_goal.gd" id="6_dgh73"]
 [ext_resource type="PackedScene" uid="uid://8bkc5iqcovta" path="res://scenes/entities/enemy.tscn" id="7_bnp5d"]
+[ext_resource type="AudioStream" uid="uid://bbpsvsi2g54xx" path="res://assets/music/04 - DavidKBD - Purgatory Pack - Life Eternal.ogg" id="8_4r2fn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_potfu"]
 size = Vector2(63.5, 48.75)
@@ -115,3 +116,9 @@ position = Vector2(10474, 3957)
 [node name="Enemy13" parent="." instance=ExtResource("7_bnp5d")]
 position = Vector2(10814, 7758)
 rotation = -3.14159
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_4r2fn")
+volume_db = -20.0
+autoplay = true
+parameters/looping = true

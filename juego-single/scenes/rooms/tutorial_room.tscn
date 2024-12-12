@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=4 uid="uid://b21t0y63r8mqy"]
+[gd_scene load_steps=13 format=4 uid="uid://b21t0y63r8mqy"]
 
 [ext_resource type="Script" path="res://scripts/rooms/tutorial_room.gd" id="1_xo7gx"]
 [ext_resource type="Texture2D" uid="uid://g4gccmvgw4a8" path="res://assets/Pixel Crawler - FREE - 1.8/Pixel Crawler - FREE - 1.8/Environment/Dungeon Prison/Assets/Tiles.png" id="2_1dwof"]
 [ext_resource type="Texture2D" uid="uid://dstaw6c2vfp4s" path="res://assets/Pixel Crawler - FREE - 1.8/Pixel Crawler - FREE - 1.8/Environment/Dungeon Prison/Assets/Props.png" id="3_cxkpx"]
 [ext_resource type="PackedScene" uid="uid://8bkc5iqcovta" path="res://scenes/entities/enemy.tscn" id="4_qa741"]
 [ext_resource type="Script" path="res://scripts/entities/victory_goal.gd" id="5_n3anb"]
+[ext_resource type="AudioStream" uid="uid://ed131mh4j8kb" path="res://assets/music/02 - DavidKBD - Purgatory Pack - Gateways.ogg" id="7_5trna"]
 [ext_resource type="PackedScene" uid="uid://ygpasvck8iev" path="res://scenes/player/player.tscn" id="7_ssfdq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a8hee"]
@@ -950,6 +951,12 @@ position = Vector2(1007.5, -70.5)
 shape = SubResource("RectangleShape2D_0vf26")
 
 [node name="Player" parent="." instance=ExtResource("7_ssfdq")]
-position = Vector2(1054, 413)
+position = Vector2(236, 1435)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_5trna")
+volume_db = -20.0
+autoplay = true
+parameters/looping = true
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

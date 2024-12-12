@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://dmrhw4ipjhos1"]
+[gd_scene load_steps=9 format=4 uid="uid://dmrhw4ipjhos1"]
 
 [ext_resource type="TileSet" uid="uid://dkyl7fxpus8tw" path="res://resources/tile_set.tres" id="1_l6ays"]
 [ext_resource type="Script" path="res://scripts/rooms/room_01.gd" id="1_yfm2u"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ygpasvck8iev" path="res://scenes/player/player.tscn" id="3_1fjhr"]
 [ext_resource type="PackedScene" uid="uid://8bkc5iqcovta" path="res://scenes/entities/enemy.tscn" id="3_jesi2"]
 [ext_resource type="Script" path="res://scripts/entities/victory_goal.gd" id="6_wfjxe"]
+[ext_resource type="AudioStream" uid="uid://c3c71w18vnrum" path="res://assets/music/06 - DavidKBD - Purgatory Pack - On Fire.ogg" id="7_drmsv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xihkt"]
 size = Vector2(21.75, 35.3125)
@@ -66,3 +67,9 @@ script = ExtResource("6_wfjxe")
 position = Vector2(-49.5, 130.625)
 scale = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_xihkt")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_drmsv")
+volume_db = -20.0
+autoplay = true
+parameters/looping = true
