@@ -6,6 +6,7 @@ extends Node2D
 @onready var room_02: PackedScene = preload("res://scenes/rooms/room_02.tscn")
 @onready var room_03: PackedScene = preload("res://scenes/rooms/room_03.tscn")
 @onready var boss_room: PackedScene = preload("res://scenes/rooms/boss_room.tscn")
+@onready var credits: PackedScene = preload("res://scenes/UI/credits_menu.tscn")
 
 @onready var levels: = [
 	tutorial,
@@ -42,7 +43,7 @@ func _on_main_menu_start_press() -> void:
 
 
 func _on_main_menu_credits_press() -> void:
-	pass
+	tree.change_scene_to_packed(credits)
 
 
 func player_victory(player: Player) -> void:
