@@ -17,7 +17,7 @@ grow_vertical = 2
 theme = ExtResource("1_4yx7v")
 script = ExtResource("1_alcyq")
 
-[node name="You lost!" type="Label" parent="."]
+[node name="You win!" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
