@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ed131mh4j8kb"
+path="res://.godot/imported/02 - DavidKBD - Purgatory Pack - Gateways.ogg-9ef701c49c9d4a17bf46f0fd075a97aa.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/02 - DavidKBD - Purgatory Pack - Gateways.ogg"
+dest_files=["res://.godot/imported/02 - DavidKBD - Purgatory Pack - Gateways.ogg-9ef701c49c9d4a17bf46f0fd075a97aa.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

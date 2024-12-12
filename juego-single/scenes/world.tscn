@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://co2s51yi0diht"]
 
 [ext_resource type="Script" path="res://scripts/tutorial_world.gd" id="1_i52eo"]
-[ext_resource type="PackedScene" uid="uid://cgwaw01x5qcir" path="res://scenes/rooms/tutorial_room.tscn" id="2_6to18"]
+[ext_resource type="PackedScene" uid="uid://b21t0y63r8mqy" path="res://scenes/rooms/tutorial_room.tscn" id="2_6to18"]
 [ext_resource type="PackedScene" uid="uid://ygpasvck8iev" path="res://scenes/player/player.tscn" id="3_lq7cv"]
 [ext_resource type="PackedScene" uid="uid://ctph8joortxmw" path="res://scenes/player/slow_area.tscn" id="4_tpcng"]
 
@@ -9,7 +9,6 @@
 script = ExtResource("1_i52eo")
 
 [node name="Tutorial" parent="." instance=ExtResource("2_6to18")]
-position = Vector2(0, 0)
 
 [node name="SlowArea" parent="." instance=ExtResource("4_tpcng")]
 scale = Vector2(2, 2)
