@@ -32,11 +32,11 @@ tile_map_data = PackedByteArray("AAAGAAsAAQAIAAwAAAAGAAwAAQAIAA0AAAAHAAsAAQAJAAw
 tile_set = ExtResource("1_qh5l5")
 
 [node name="Player" parent="." instance=ExtResource("3_fvh5i")]
-position = Vector2(-3068, 5.00003)
+position = Vector2(-5, 2407)
 scale = Vector2(1.5, 1.5)
 
 [node name="Boss" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_5v7bm")]
-position = Vector2(29, -56)
+position = Vector2(19, -33)
 player = NodePath("../Player")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

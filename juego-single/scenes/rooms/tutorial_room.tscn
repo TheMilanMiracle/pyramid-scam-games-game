@@ -11,6 +11,7 @@
 size = Vector2(83, 143)
 
 [node name="Tutorial" type="Node2D"]
+position = Vector2(0, -3)
 script = ExtResource("1_xo7gx")
 
 [node name="World" type="TileMapLayer" parent="."]
@@ -43,13 +44,27 @@ position = Vector2(1007.5, -70.5)
 shape = SubResource("RectangleShape2D_0vf26")
 
 [node name="Player" parent="." instance=ExtResource("7_ssfdq")]
-position = Vector2(236, 1435)
+position = Vector2(160, 1605)
+
+[node name="UI" parent="Player" index="13"]
+visible = false
+
+[node name="pause_menu" parent="Player/UI" index="12"]
+visible = false
 
 [node name="Enemy" parent="." instance=ExtResource("4_qa741")]
 position = Vector2(713, 422)
+noIA = true
+direction = Vector2(1, 1)
+
+[node name="Enemy3" parent="." instance=ExtResource("4_qa741")]
+position = Vector2(1043, 398)
+direction = Vector2(1, 1)
 
 [node name="Enemy2" parent="." instance=ExtResource("4_qa741")]
 position = Vector2(1350, 426)
+noIA = true
+direction = Vector2(-1, 1)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_5trna")
@@ -58,3 +73,5 @@ autoplay = true
 parameters/looping = true
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+
+[editable path="Player"]
