@@ -16,7 +16,7 @@ func state_ready(_timer: Timer, _enemy: Enemy) -> void:
 
 func state_transition(machine: EnemyStateMachine) -> void:
 	if machine.enemy.global_position.distance_to(machine.player.global_position) <= VISION_RANGE:
-		machine.enemy_state = machine.enemy_following_state
+		machine.enemy_state = machine.enemy_shooting_state
 	else:
 		machine.enemy_state = self
 	super.state_transition(machine)

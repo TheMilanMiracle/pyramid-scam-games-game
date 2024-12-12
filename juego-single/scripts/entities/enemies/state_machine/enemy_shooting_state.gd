@@ -17,7 +17,7 @@ func state_ready(_timer: Timer, _enemy: Enemy) -> void:
 func state_process(delta:float, player: Player, enemy: Enemy) -> void:
 	var direction = (player.global_position - enemy.global_position).normalized()
 	
-	enemy.position += SPEED * direction * delta
+	#enemy.position += SPEED * direction * delta
 	
 	enemy.direction = direction
 	enemy.path_pivot.look_at(LevelController.player.global_position)
@@ -27,11 +27,6 @@ func state_transition(machine: EnemyStateMachine) -> void:
 	if enemy.global_position.distance_to(machine.player.global_position) > VISION_RANGE:
 		machine.enemy_state = machine.enemy_idle_state
 	else:
-		var state = RandomNumberGenerator.new().randi() % 100
-		
-		if state < 30:
-			machine.enemy_state = machine.enemy_following_state
-		else:
-			machine.enemy_state = self
+		machine.enemy_state = self
 	
 	super.state_transition(machine)

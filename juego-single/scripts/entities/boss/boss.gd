@@ -17,7 +17,7 @@ var default_color: Color
 var damage_color: Color = Color(0.8, 0.2, 0.4, 1.)
 
 var direction: Vector2 = Vector2.ZERO
-var HEALTH: int = 5
+var HEALTH: int = 20
 
 
 func _ready() -> void:

@@ -315,3 +315,7 @@ hframes = 9
 vframes = 7
 
 [node name="EnemyStateMachine" parent="." instance=ExtResource("5_du8px")]
+
+[node name="BackingTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true

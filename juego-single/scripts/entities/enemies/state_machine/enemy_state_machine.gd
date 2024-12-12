@@ -5,7 +5,6 @@ class_name EnemyStateMachine
 @onready var enemy_shooting_state: EnemyShootingState = $EnemyShootingState
 @onready var enemy_following_state: EnemyFollowingState = $EnemyFollowingState
 
-
 @onready var state_timer: Timer = $StateTimer
 @onready var enemy_state: EnemyState = enemy_idle_state
 

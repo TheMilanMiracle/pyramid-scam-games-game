@@ -9,6 +9,8 @@ const bullet = preload("res://scenes/entities/bullet.tscn")
 @onready var shoot_cooldown: Timer = $PathPivot/ShootCooldown
 @onready var path_pivot: Node2D = $PathPivot
 
+@onready var backing_timer: Timer = $BackingTimer
+var backing: bool = false
 
 func _ready() -> void:
 	super._ready()
@@ -16,7 +18,9 @@ func _ready() -> void:
 	if noIA:
 		path_pivot.process_mode = Node.PROCESS_MODE_INHERIT
 		path_pivot.look_at(global_position + direction)
+	
 	shoot_cooldown.timeout.connect(shoot)
+	backing_timer.timeout.connect(func(): backing = false)
 
 
 func shoot():
@@ -40,11 +44,11 @@ func shoot():
 	
 	left_bullet.set_collision_layer_value(5, false)
 	left_bullet.set_collision_layer_value(3, true)
-	left_bullet.set_collision_mask_value(3, false)
+	#left_bullet.set_collision_mask_value(3, false)
 	
 	right_bullet.set_collision_layer_value(5, false)
 	right_bullet.set_collision_layer_value(3, true)
-	right_bullet.set_collision_mask_value(3, false)
+	#right_bullet.set_collision_mask_value(3, false)
 	
 	left_bullet.SPEED_MULTIPLIER = 1.8
 	right_bullet.SPEED_MULTIPLIER = 1.8

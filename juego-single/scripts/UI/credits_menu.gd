@@ -16,4 +16,4 @@ func _on_song_finished() -> void:
 
 
 func _on_return_pressed() -> void:
-	pass # Replace with function body.
+	LevelController.tree.change_scene_to_packed(LevelController.pkd_main_menu)

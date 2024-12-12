@@ -24,6 +24,7 @@ func state_process(delta:float, player: Player, boss: CharacterBody2D) -> void:
 	if collision:
 		boss.velocity = Vector2.ZERO
 
+
 func state_transition(machine: BossStateMachine) -> void:
 	var state = RandomNumberGenerator.new().randi() % 100
 	

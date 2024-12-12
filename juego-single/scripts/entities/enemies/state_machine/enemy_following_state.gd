@@ -1,10 +1,11 @@
 extends EnemyState
 class_name EnemyFollowingState
 
-const SPEED: int = 300
+const SPEED: int = 100
 
 
 func state_ready(_timer: Timer, _enemy: Enemy) -> void:
+	timer_val = 0.5
 	super.state_ready(_timer, _enemy)
 	
 	_enemy = _enemy as ShootingEnemy
@@ -13,11 +14,21 @@ func state_ready(_timer: Timer, _enemy: Enemy) -> void:
 
 
 func state_process(delta: float, player: Player, enemy: Enemy) -> void:
+	var shooting_enemy: ShootingEnemy = enemy as ShootingEnemy
 	var direction = (player.global_position - enemy.global_position).normalized()
+	var velocity = direction * SPEED * delta
 	
-	enemy.apply_central_force(direction * SPEED)
-	enemy.direction = direction
+	if shooting_enemy.global_position.distance_to(player.global_position) > RANGE:
+		shooting_enemy.velocity = velocity
+		shooting_enemy.direction = direction
+	else:
+		shooting_enemy.velocity = -velocity
+		shooting_enemy.direction = -1 * direction
 
+	var collision = shooting_enemy.move_and_collide(shooting_enemy.velocity)
+	if collision:
+		shooting_enemy.velocity = - velocity * 5
+		shooting_enemy.direction = -1 * direction
 
 
 func state_transition(machine: EnemyStateMachine) -> void:
