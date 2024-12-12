@@ -1,10 +1,49 @@
-[gd_scene load_steps=4 format=3 uid="uid://clb2wghr4h2ye"]
+[gd_scene load_steps=8 format=3 uid="uid://clb2wghr4h2ye"]
 
 [ext_resource type="Script" path="res://scripts/entities/bullet.gd" id="1_063qn"]
 [ext_resource type="Texture2D" uid="uid://bqqnlamsq74sk" path="res://assets/tmm/orb-32x32.png" id="2_dcpt2"]
+[ext_resource type="Texture2D" uid="uid://bba0nudf4vdqs" path="res://assets/skins/deathFX.png" id="3_t7rka"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_03ydt"]
 radius = 7.0
+
+[sub_resource type="Animation" id="Animation_pwdpm"]
+resource_name = "death"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DeathSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_c6hlg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DeathSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6qq4q"]
+_data = {
+"RESET": SubResource("Animation_c6hlg"),
+"death": SubResource("Animation_pwdpm")
+}
 
 [node name="bullet" type="Area2D"]
 collision_layer = 16
@@ -14,5 +53,17 @@ script = ExtResource("1_063qn")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_03ydt")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="MainSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_dcpt2")
+
+[node name="DeathSprite" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_t7rka")
+hframes = 3
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6qq4q")
+}
