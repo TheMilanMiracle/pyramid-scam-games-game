@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/rooms/room_03.gd" id="1_085l2"]
 [ext_resource type="TileSet" uid="uid://dkyl7fxpus8tw" path="res://resources/tile_set.tres" id="2_t4x8a"]
 [ext_resource type="PackedScene" uid="uid://ygpasvck8iev" path="res://scenes/player/player.tscn" id="4_cwwtv"]
-[ext_resource type="PackedScene" uid="uid://8bkc5iqcovta" path="res://scenes/entities/enemy.tscn" id="5_4pu1j"]
+[ext_resource type="PackedScene" uid="uid://8bkc5iqcovta" path="res://scenes/entities/enemies/shooting_enemy.tscn" id="5_4pu1j"]
 [ext_resource type="Script" path="res://scripts/entities/victory_goal.gd" id="6_ibv1k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s8330"]

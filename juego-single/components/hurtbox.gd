@@ -11,7 +11,7 @@ func _on_area_entered(area: Area2D) -> void:
 	var hitbox = area as Hitbox
 	
 	if hitbox:
-		owner.take_damage()
+		owner.take_damage(hitbox.damage)
 		hitbox.damage_dealt.emit()
 	
 	

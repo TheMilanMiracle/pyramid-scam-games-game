@@ -17,7 +17,7 @@ func state_process(delta:float, player: Player, boss: CharacterBody2D) -> void:
 	DISTANCE = boss.global_position.distance_to(player.global_position)
 
 
-func state_transition(machine: StateMachine) -> void:
+func state_transition(machine: BossStateMachine) -> void:
 	if DISTANCE <= MAX_DISTANCE:
 		machine.boss_state = machine.run_state
 	

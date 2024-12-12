@@ -1,13 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://bcxodme56yiib"]
+[gd_scene load_steps=4 format=3 uid="uid://bcxodme56yiib"]
 
 [ext_resource type="PackedScene" uid="uid://dca2bh7553sjp" path="res://scenes/entities/boss.tscn" id="1_5v7bm"]
 [ext_resource type="PackedScene" uid="uid://ygpasvck8iev" path="res://scenes/player/player.tscn" id="3_fvh5i"]
+[ext_resource type="PackedScene" uid="uid://8bkc5iqcovta" path="res://scenes/entities/enemies/shooting_enemy.tscn" id="3_oxgde"]
 
 [node name="BossRoom" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("3_fvh5i")]
-position = Vector2(0, 500)
+position = Vector2(-913, 682)
 scale = Vector2(1.5, 1.5)
 
 [node name="Boss" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_5v7bm")]
 player = NodePath("../Player")
+
+[node name="ShootingEnemy" parent="." instance=ExtResource("3_oxgde")]
+visible = false
+position = Vector2(-2280, -34)
+direction = Vector2(-1, 1)

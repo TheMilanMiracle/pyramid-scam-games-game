@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/rooms/room_01.gd" id="1_yfm2u"]
 [ext_resource type="PackedScene" uid="uid://ctph8joortxmw" path="res://scenes/player/slow_area.tscn" id="2_3bb08"]
 [ext_resource type="PackedScene" uid="uid://ygpasvck8iev" path="res://scenes/player/player.tscn" id="3_1fjhr"]
-[ext_resource type="PackedScene" uid="uid://8bkc5iqcovta" path="res://scenes/entities/enemy.tscn" id="3_jesi2"]
+[ext_resource type="PackedScene" uid="uid://8bkc5iqcovta" path="res://scenes/entities/enemies/shooting_enemy.tscn" id="3_jesi2"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_yfm2u")
