@@ -18,7 +18,7 @@ func _on_left_activated() -> void:
 	levers+=1
 	_check_levers()
 	for i in range(106, 109):
-		for j in range(39, 43):
+		for j in range(44, 48):
 			red_lights.erase_cell(Vector2(i, j))
 
 
@@ -26,15 +26,15 @@ func _on_down_activated() -> void:
 	levers+=1
 	_check_levers()
 	for i in range(121, 124):
-		for j in range(39, 43):
+		for j in range(44, 48):
 			red_lights.erase_cell(Vector2(i, j))
 
 
 func _on_right_activated() -> void:
 	levers+=1
 	_check_levers()
-	for i in range(135, 138):
-		for j in range(39, 43):
+	for i in range(136, 139):
+		for j in range(44, 48):
 			red_lights.erase_cell(Vector2(i, j))
 
 

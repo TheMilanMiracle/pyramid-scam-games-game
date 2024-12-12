@@ -7,7 +7,7 @@ signal bullet_died()
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
-const SPEED: int = 800
+const SPEED: int = 600
 var SPEED_MULTIPLIER: float = 1.
 var DELTA_MULTIPLIER: float = 1.
 var DAMAGE: int = 1

@@ -1,10 +1,10 @@
 extends Room
 
-@onready var tile_map_layer_2: TileMapLayer = $TileMapLayer2
-@onready var tile_map_layer_3: TileMapLayer = $TileMapLayer3
+@onready var door: TileMapLayer = $Door
 
 func _ready() -> void:
-	enemy_count = 2
+	enemy_count = 4
 
 func updateRoomState() -> void:
-	pass
+	if enemy_count == 0:
+		door.queue_free()
