@@ -44,6 +44,7 @@ func take_damage(damage: int) -> void:
 	HEALTH -= damage
 	
 	if HEALTH <= 0:
+		get_parent().enemyDead()
 		animation_tree["parameters/conditions/dead"] = true
 		await get_tree().create_timer(0.3).timeout
 		queue_free()
