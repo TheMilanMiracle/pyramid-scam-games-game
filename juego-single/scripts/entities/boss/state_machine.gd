@@ -1,5 +1,5 @@
 extends Node2D
-class_name StateMachine
+class_name BossStateMachine
 
 @onready var idle_state: IdleState = $IdleState
 @onready var following_state: FollowingState = $FollowingState

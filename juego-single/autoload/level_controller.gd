@@ -20,6 +20,7 @@ var current_player_hp: int = 10
 
 var tree: SceneTree
 var main_menu: MainMenu
+var player: Player
 
 
 func _ready() -> void:

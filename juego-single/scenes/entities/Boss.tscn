@@ -1,6 +1,7 @@
-[gd_scene load_steps=34 format=3 uid="uid://dca2bh7553sjp"]
+[gd_scene load_steps=36 format=3 uid="uid://dca2bh7553sjp"]
 
 [ext_resource type="Script" path="res://scripts/entities/boss/boss.gd" id="1_qwjmg"]
+[ext_resource type="Script" path="res://components/hitbox.gd" id="2_4wi41"]
 [ext_resource type="Texture2D" uid="uid://cgmjoypkbfksu" path="res://assets/skins/skeleton.png" id="2_ifar3"]
 [ext_resource type="Script" path="res://scripts/entities/boss/state_machine.gd" id="3_g3et1"]
 [ext_resource type="Script" path="res://scripts/entities/boss/following_state.gd" id="4_etjhg"]
@@ -10,7 +11,10 @@
 [ext_resource type="Script" path="res://scripts/entities/boss/run_state.gd" id="8_fm0pq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_si4gy"]
-size = Vector2(21.5, 23.1)
+size = Vector2(22.3167, 23.1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rf32w"]
+size = Vector2(15.7, 16.2)
 
 [sub_resource type="Animation" id="Animation_papc7"]
 length = 0.001
@@ -255,9 +259,20 @@ collision_mask = 31
 script = ExtResource("1_qwjmg")
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
-position = Vector2(0.499997, 9.5)
+position = Vector2(-5.625, 9.5)
 scale = Vector2(15, 15)
 shape = SubResource("RectangleShape2D_si4gy")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("2_4wi41")
+damage = 2
+
+[node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-6, 9)
+scale = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_rf32w")
 
 [node name="SpritePivot" type="Node2D" parent="."]
 
