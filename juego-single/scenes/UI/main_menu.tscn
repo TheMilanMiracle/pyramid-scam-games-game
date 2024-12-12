@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://fp6ini66mu50"]
+[gd_scene load_steps=11 format=3 uid="uid://fp6ini66mu50"]
 
+[ext_resource type="Theme" uid="uid://de47fgehqbvo3" path="res://resources/font.tres" id="1_83ebn"]
 [ext_resource type="Script" path="res://scripts/UI/main_menu.gd" id="1_uhgpg"]
 [ext_resource type="Script" path="res://scripts/tutorial_world.gd" id="2_u6rd1"]
 [ext_resource type="PackedScene" uid="uid://b21t0y63r8mqy" path="res://scenes/rooms/tutorial_room.tscn" id="3_vl665"]
@@ -28,12 +29,14 @@ outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
 [node name="Control" type="Control"]
+texture_filter = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_83ebn")
 script = ExtResource("1_uhgpg")
 main = SubResource("PackedScene_bf4db")
 
@@ -49,13 +52,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -263.0
-offset_top = -327.0
-offset_right = 305.0
-offset_bottom = -195.0
+offset_left = -280.0
+offset_top = -287.0
+offset_right = 288.0
+offset_bottom = -155.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Main Menu"
+text = "BulletInferno"
 label_settings = SubResource("LabelSettings_e1v05")
 horizontal_alignment = 1
 
@@ -66,13 +69,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -193.0
-offset_top = -5.00003
-offset_right = -17.0
-offset_bottom = 131.0
+offset_left = -286.0
+offset_top = -5.0
+offset_right = 1166.0
+offset_bottom = 669.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(2.04921, 2.89448)
+scale = Vector2(0.4, 0.4)
 
 [node name="Start" type="Button" parent="ButtonContainer"]
 unique_name_in_owner = true

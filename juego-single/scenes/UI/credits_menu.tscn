@@ -1,0 +1,104 @@
+[gd_scene load_steps=5 format=3 uid="uid://cisgcs31r0g3c"]
+
+[ext_resource type="Theme" uid="uid://de47fgehqbvo3" path="res://resources/font.tres" id="1_1rll1"]
+[ext_resource type="Script" path="res://scripts/UI/credits_menu.gd" id="2_xs0td"]
+[ext_resource type="AudioStream" uid="uid://t2mmhdkrsvvo" path="res://assets/music/07 - DavidKBD - Purgatory Pack - Hades.ogg" id="3_0k5ll"]
+[ext_resource type="AudioStream" uid="uid://vlb0u4hx37v7" path="res://assets/music/01 - DavidKBD - Purgatory Pack - Purgatory.ogg" id="3_pqrl0"]
+
+[node name="credits_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_1rll1")
+script = ExtResource("2_xs0td")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+offset_left = 531.0
+offset_top = 83.0
+offset_right = 1020.0
+offset_bottom = 297.0
+scale = Vector2(0.7, 0.7)
+text = "Credits"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 263.0
+offset_top = 288.0
+offset_right = 2584.0
+offset_bottom = 1164.0
+scale = Vector2(0.4, 0.4)
+
+[node name="Font" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Font: "
+
+[node name="LinkButton" type="LinkButton" parent="VBoxContainer/Font"]
+layout_mode = 0
+offset_left = 380.0
+offset_top = -5.00004
+offset_right = 2224.0
+offset_bottom = 209.0
+text = "solvstud (Creative Fabrica)"
+uri = "https://www.creativefabrica.com/designer/solvstud/ref/2524472/"
+
+[node name="Player" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "        Entities: "
+
+[node name="LinkButton" type="LinkButton" parent="VBoxContainer/Player"]
+layout_mode = 0
+offset_left = 947.5
+offset_top = -10.5
+offset_right = 1971.5
+offset_bottom = 203.5
+text = "rgsdev (itch.io)"
+uri = "https://rgsdev.itch.io/hand-drawn-square-characters-animated-8-directions-top-down-free-cc0"
+
+[node name="Tiles" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "       Tiles: "
+
+[node name="LinkButton" type="LinkButton" parent="VBoxContainer/Tiles"]
+modulate = Color(0.827426, 0.426506, 0.194455, 1)
+layout_mode = 0
+offset_left = 727.5
+offset_top = -6.00006
+offset_right = 1942.5
+offset_bottom = 208.0
+text = "anokolisa (itch.io)"
+uri = "https://anokolisa.itch.io/dungeon-crawler-pixel-art-asset-pack"
+
+[node name="Music" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = " Game Music by: "
+alignment = 0
+
+[node name="LinkButton" type="LinkButton" parent="VBoxContainer/Music"]
+modulate = Color(0.423185, 9.08468e-07, 3.1285e-07, 1)
+layout_mode = 0
+offset_left = 1105.0
+offset_top = 10.9999
+offset_right = 2265.0
+offset_bottom = 225.0
+text = "davidkbd (itch.io)"
+uri = "https://davidkbd.itch.io/purgatory-extreme-metal-music-pack"
+
+[node name="Song" type="AudioStreamPlayer" parent="VBoxContainer/Music"]
+stream = ExtResource("3_0k5ll")
+volume_db = -20.0
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_pqrl0")
+volume_db = -20.0
+autoplay = true
+parameters/looping = true
+
+[connection signal="pressed" from="VBoxContainer/Music" to="." method="_on_music_pressed"]
+[connection signal="finished" from="VBoxContainer/Music/Song" to="." method="_on_song_finished"]
