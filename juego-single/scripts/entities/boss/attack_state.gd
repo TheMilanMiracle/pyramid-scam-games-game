@@ -22,7 +22,9 @@ func state_transition(machine: BossStateMachine) -> void:
 	
 	var state = RandomNumberGenerator.new().randi() % 100
 	
-	if state < 30:
+	if machine.boss.global_position.distance_to(machine.player.global_position) < MAX_DISTANCE:
+		machine.boss_state = machine.following_state
+	elif state < 40:
 		machine.boss_state = machine.charged_attack_state
 	else:
 		machine.boss_state = self

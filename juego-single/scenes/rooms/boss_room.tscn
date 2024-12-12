@@ -1,7 +1,6 @@
 [gd_scene load_steps=6 format=4 uid="uid://bcxodme56yiib"]
-
-[ext_resource type="PackedScene" uid="uid://dca2bh7553sjp" path="res://scenes/entities/Boss.tscn" id="1_5v7bm"]
 [ext_resource type="Script" path="res://scripts/rooms/boss_room.gd" id="1_masfy"]
+[ext_resource type="PackedScene" uid="uid://dca2bh7553sjp" path="res://scenes/entities/boss.tscn" id="1_5v7bm"]
 [ext_resource type="TileSet" uid="uid://dkyl7fxpus8tw" path="res://resources/tile_set.tres" id="1_qh5l5"]
 [ext_resource type="PackedScene" uid="uid://ygpasvck8iev" path="res://scenes/player/player.tscn" id="3_fvh5i"]
 [ext_resource type="AudioStream" uid="uid://t2mmhdkrsvvo" path="res://assets/music/07 - DavidKBD - Purgatory Pack - Hades.ogg" id="4_jhjne"]
@@ -32,13 +31,14 @@ tile_map_data = PackedByteArray("AAAGAAsAAQAIAAwAAAAGAAwAAQAIAA0AAAAHAAsAAQAJAAw
 tile_set = ExtResource("1_qh5l5")
 
 [node name="Player" parent="." instance=ExtResource("3_fvh5i")]
-position = Vector2(-913, 682)
+position = Vector2(-5420, 4863)
 scale = Vector2(1.5, 1.5)
 
 [node name="Camera" parent="Player" index="2"]
 zoom = Vector2(0.3, 0.3)
 
 [node name="Boss" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_5v7bm")]
+position = Vector2(-4443, 4544)
 player = NodePath("../Player")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

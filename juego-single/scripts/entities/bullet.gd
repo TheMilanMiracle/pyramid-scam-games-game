@@ -38,12 +38,17 @@ func _on_body_entered(body: Node2D):
 	bullet_died.emit()
 
 
-func _on_area_entered(body: Area2D):
-	if body.has_method("take_damage"):
-		body.take_damage(DAMAGE)
+func _on_area_entered(area: Area2D):
+	if area.has_method("take_damage"):
+		area.take_damage(DAMAGE)
 	
-	body = body as SlowArea
-	if not body:
+	if get_collision_layer_value(6)\
+	and area.get_collision_layer_value(2)\
+	and DAMAGE == 4:
+		return
+	
+	area = area as SlowArea
+	if not area:
 		SPEED_MULTIPLIER = 0
 		collision_shape_2d.queue_free()
 		main_sprite.hide()

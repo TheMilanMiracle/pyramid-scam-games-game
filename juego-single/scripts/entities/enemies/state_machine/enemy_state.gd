@@ -6,7 +6,7 @@ var timer_val: float = 2.
 var enemy: Enemy
 
 @export var VISION_RANGE: int = 1000
-@export var RANGE: int = 1000
+@export var RANGE: int = 100
 
 
 func state_ready(_timer: Timer, _enemy: Enemy) -> void:

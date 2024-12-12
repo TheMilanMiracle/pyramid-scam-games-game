@@ -264,7 +264,7 @@ shape = SubResource("RectangleShape2D_f3la2")
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 4
-collision_mask = 2
+collision_mask = 11
 script = ExtResource("2_8nm0e")
 
 [node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]
