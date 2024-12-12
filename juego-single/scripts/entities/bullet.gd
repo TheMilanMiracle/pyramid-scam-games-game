@@ -4,7 +4,7 @@ class_name Bullet
 signal bullet_died()
 
 
-const SPEED: int = 800
+const SPEED: int = 600
 var SPEED_MULTIPLIER: float = 1.
 var DELTA_MULTIPLIER: float = 1.
 var DAMAGE: int = 1

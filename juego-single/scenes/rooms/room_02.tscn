@@ -79,7 +79,6 @@ rotation = -2.02377
 [node name="Enemy3" parent="." instance=ExtResource("7_bnp5d")]
 position = Vector2(1655, 6493)
 rotation = -1.85866
-scale = Vector2(1, 1)
 
 [node name="Enemy4" parent="." instance=ExtResource("7_bnp5d")]
 position = Vector2(1612, 5061)
