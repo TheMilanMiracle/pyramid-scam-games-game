@@ -21,7 +21,7 @@ func state_process(delta:float, player: Player, boss: CharacterBody2D) -> void:
 	boss.position -= direction * delta * SPEED
 
 
-func state_transition(machine: StateMachine) -> void:
+func state_transition(machine: BossStateMachine) -> void:
 	if DISTANCE > MAX_DISTANCE:
 		var state = RandomNumberGenerator.new().randi() % 100
 		

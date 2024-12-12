@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/rooms/room_03.gd" id="1_085l2"]
 [ext_resource type="TileSet" uid="uid://dkyl7fxpus8tw" path="res://resources/tile_set.tres" id="2_t4x8a"]
 [ext_resource type="PackedScene" uid="uid://ygpasvck8iev" path="res://scenes/player/player.tscn" id="4_cwwtv"]
-[ext_resource type="PackedScene" uid="uid://8bkc5iqcovta" path="res://scenes/entities/enemy.tscn" id="5_4pu1j"]
+[ext_resource type="PackedScene" uid="uid://8bkc5iqcovta" path="res://scenes/entities/enemies/shooting_enemy.tscn" id="5_4pu1j"]
 [ext_resource type="Script" path="res://scripts/entities/victory_goal.gd" id="6_ibv1k"]
 [ext_resource type="AudioStream" uid="uid://ed131mh4j8kb" path="res://assets/music/02 - DavidKBD - Purgatory Pack - Gateways.ogg" id="6_tvg5n"]
 
@@ -36,16 +36,20 @@ tile_set = ExtResource("2_t4x8a")
 [node name="Player" parent="." instance=ExtResource("4_cwwtv")]
 position = Vector2(3269, 635)
 
-[node name="Enemy" parent="." instance=ExtResource("5_4pu1j")]
-position = Vector2(3731, 729)
+[node name="ShootingEnemy" parent="." instance=ExtResource("5_4pu1j")]
+position = Vector2(3093, 1001)
+noIA = true
+direction = Vector2(1, 1)
 
-[node name="Enemy2" parent="." instance=ExtResource("5_4pu1j")]
-position = Vector2(3131, 988)
-rotation = -0.675589
+[node name="ShootingEnemy2" parent="." instance=ExtResource("5_4pu1j")]
+position = Vector2(3698, 863)
+noIA = true
+direction = Vector2(0, 1)
 
-[node name="Enemy3" parent="." instance=ExtResource("5_4pu1j")]
-position = Vector2(4349, 995)
-rotation = 0.659924
+[node name="ShootingEnemy3" parent="." instance=ExtResource("5_4pu1j")]
+position = Vector2(4381, 1001)
+noIA = true
+direction = Vector2(-1, 1)
 
 [node name="Enemy4" parent="." instance=ExtResource("5_4pu1j")]
 position = Vector2(7436, 1865)

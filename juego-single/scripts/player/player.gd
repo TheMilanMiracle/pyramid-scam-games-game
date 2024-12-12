@@ -45,6 +45,7 @@ var slow_area_cooldown_timer: Timer
 
 func _ready() -> void:
 	HEALTH = LevelController.current_player_hp
+	LevelController.player = self
 	
 	default_color = sprite.modulate
 	

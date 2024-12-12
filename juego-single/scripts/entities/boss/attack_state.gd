@@ -16,7 +16,7 @@ func state_ready(_timer: Timer, _boss: Boss) -> void:
 	_on_timer_timeout()
 
 
-func state_transition(machine: StateMachine) -> void:
+func state_transition(machine: BossStateMachine) -> void:
 	boss.sprite_pivot.rotation = 0
 	timer.stop()
 	

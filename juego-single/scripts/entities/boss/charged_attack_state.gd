@@ -33,7 +33,7 @@ func state_ready(_timer: Timer, _boss: Boss) -> void:
 		bullet.set_collision_mask_value(2, false)
 
 
-func state_transition(machine: StateMachine) -> void:
+func state_transition(machine: BossStateMachine) -> void:
 	var state = RandomNumberGenerator.new().randi() % 100
 	boss.sprite_pivot.rotation = 0
 	
