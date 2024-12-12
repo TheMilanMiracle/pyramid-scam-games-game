@@ -36,9 +36,11 @@ func _ready() -> void:
 	
 	on_damage_timer.timeout.connect(func(): sprite.modulate = default_color)
 	
-	enemy_state_machine.enemy = self
 	if noIA:
 		enemy_state_machine.queue_free()
+	
+	enemy_state_machine.enemy = self
+	enemy_state_machine.enemy_state.state_ready(enemy_state_machine.state_timer, self)
 
 
 func _physics_process(delta: float) -> void:

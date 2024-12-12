@@ -17,7 +17,7 @@ var default_color: Color
 var damage_color: Color = Color(0.8, 0.2, 0.4, 1.)
 
 var direction: Vector2 = Vector2.ZERO
-var HEALTH: int = 100
+var HEALTH: int = 5
 
 
 func _ready() -> void:
@@ -45,6 +45,7 @@ func take_damage(damage: int) -> void:
 	
 	if HEALTH <= 0:
 		animation_tree["parameters/conditions/dead"] = true
+		await get_tree().create_timer(0.3).timeout
 		queue_free()
  
 

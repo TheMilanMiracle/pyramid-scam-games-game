@@ -30,7 +30,6 @@ func state_ready(_timer: Timer, _boss: Boss) -> void:
 		bullet.set_collision_layer_value(5, false)
 		bullet.set_collision_layer_value(6, true)
 		bullet.set_collision_mask_value(6, false)
-		bullet.set_collision_mask_value(2, false)
 
 
 func state_transition(machine: BossStateMachine) -> void:

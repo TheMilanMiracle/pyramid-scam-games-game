@@ -1,9 +1,10 @@
-[gd_scene load_steps=36 format=3 uid="uid://dca2bh7553sjp"]
+[gd_scene load_steps=38 format=3 uid="uid://dca2bh7553sjp"]
 
 [ext_resource type="Script" path="res://scripts/entities/boss/boss.gd" id="1_qwjmg"]
 [ext_resource type="Script" path="res://components/hitbox.gd" id="2_4wi41"]
 [ext_resource type="Texture2D" uid="uid://cgmjoypkbfksu" path="res://assets/skins/skeleton.png" id="2_ifar3"]
 [ext_resource type="Script" path="res://scripts/entities/boss/state_machine.gd" id="3_g3et1"]
+[ext_resource type="Texture2D" uid="uid://bba0nudf4vdqs" path="res://assets/skins/deathFX.png" id="4_c5ukc"]
 [ext_resource type="Script" path="res://scripts/entities/boss/following_state.gd" id="4_etjhg"]
 [ext_resource type="Script" path="res://scripts/entities/boss/attack_state.gd" id="6_4adej"]
 [ext_resource type="Script" path="res://scripts/entities/boss/idle_state.gd" id="7_2sg3r"]
@@ -49,6 +50,42 @@ tracks/2/path = NodePath(".:flip_h")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../DeathSprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../DeathSprite:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -169,9 +206,50 @@ tracks/0/keys = {
 "values": [12, 13, 14, 15]
 }
 
+[sub_resource type="Animation" id="Animation_r6nvk"]
+resource_name = "death"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../DeathSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../DeathSprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yc06x"]
 _data = {
 "RESET": SubResource("Animation_papc7"),
+"death": SubResource("Animation_r6nvk"),
 "idle": SubResource("Animation_rkc4e"),
 "idle bottom_left": SubResource("Animation_nih6o"),
 "idle bottom_right": SubResource("Animation_5unvr"),
@@ -179,8 +257,6 @@ _data = {
 "idle top_left": SubResource("Animation_hrjmk"),
 "idle up": SubResource("Animation_68pxq")
 }
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_klx5p"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gdtw7"]
 animation = &"idle left"
@@ -231,20 +307,24 @@ blend_point_8/pos = Vector2(0.9, 0.9)
 x_label = "-x"
 blend_mode = 1
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i7us3"]
+animation = &"death"
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oe67i"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bddne"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hweir"]
+advance_mode = 2
 advance_condition = &"dead"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ccyhc"]
 allow_transition_to_self = true
-states/Death/node = SubResource("AnimationNodeBlendSpace2D_klx5p")
-states/Death/position = Vector2(666, 100)
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_2wsgb")
-states/Idle/position = Vector2(473, 100)
+states/Idle/position = Vector2(470, 100)
 states/Start/position = Vector2(291, 100)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_oe67i"), "Idle", "Death", SubResource("AnimationNodeStateMachineTransition_bddne")]
+states/death/node = SubResource("AnimationNodeAnimation_i7us3")
+states/death/position = Vector2(621, 100)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_oe67i"), "Idle", "death", SubResource("AnimationNodeStateMachineTransition_hweir")]
 graph_offset = Vector2(0, -115.124)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mu82k"]
@@ -282,6 +362,14 @@ scale = Vector2(7, 7)
 texture = ExtResource("2_ifar3")
 hframes = 9
 vframes = 7
+
+[node name="DeathSprite" type="Sprite2D" parent="SpritePivot"]
+visible = false
+modulate = Color(0.407843, 0.12549, 1, 1)
+scale = Vector2(5, 5)
+texture = ExtResource("4_c5ukc")
+hframes = 3
+vframes = 2
 
 [node name="Bullet Pivot" type="Node2D" parent="."]
 
@@ -331,7 +419,6 @@ root_node = NodePath("../SpritePivot/Sprite")
 tree_root = SubResource("AnimationNodeStateMachine_ccyhc")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/dead = false
-parameters/Death/blend_position = Vector2(0, 0)
 parameters/Idle/blend_position = Vector2(-0.905077, 0.910959)
 
 [node name="HealthBar" type="ProgressBar" parent="."]

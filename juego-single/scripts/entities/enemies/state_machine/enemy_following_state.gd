@@ -12,11 +12,12 @@ func state_ready(_timer: Timer, _enemy: Enemy) -> void:
 		enemy.path_pivot.process_mode = Node.PROCESS_MODE_DISABLED
 
 
-func state_process(delta:float, player: Player, enemy: Enemy) -> void:
+func state_process(delta: float, player: Player, enemy: Enemy) -> void:
 	var direction = (player.global_position - enemy.global_position).normalized()
 	
-	enemy.position += SPEED * direction * delta
+	enemy.apply_central_force(direction * SPEED)
 	enemy.direction = direction
+
 
 
 func state_transition(machine: EnemyStateMachine) -> void:

@@ -2,17 +2,27 @@ extends BossState
 class_name FollowingState
 
 
-const SPEED: int = 200
+const SPEED: int = 250
 
 func _ready() -> void:
-	#timer_val = 2.
+	timer_val = 0.75
 	pass
 
 
 func state_process(delta:float, player: Player, boss: CharacterBody2D) -> void:
 	var direction = (player.global_position - boss.global_position).normalized()
-	boss.position += SPEED * delta * direction
-	boss.direction = direction
+	var velocity = direction * SPEED * delta
+	
+	if boss.global_position.distance_to(player.global_position) > MAX_DISTANCE:
+		boss.velocity = velocity
+		boss.direction = direction
+	else:
+		boss.velocity = -velocity
+		boss.direction = -1 * direction
+	
+	var collision = boss.move_and_collide(boss.velocity)
+	if collision:
+		boss.velocity = Vector2.ZERO
 
 func state_transition(machine: BossStateMachine) -> void:
 	var state = RandomNumberGenerator.new().randi() % 100

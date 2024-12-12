@@ -16,8 +16,6 @@ func _ready() -> void:
 	state_timer.timeout.connect(_on_state_timer_timeout)
 	
 	player = LevelController.player
-	
-	enemy_state.state_ready(state_timer, enemy)
 
 
 func _process(delta: float) -> void:
