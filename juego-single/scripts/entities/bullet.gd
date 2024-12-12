@@ -2,7 +2,10 @@ extends Area2D
 class_name Bullet
 
 signal bullet_died()
-
+@onready var main_sprite: Sprite2D = $MainSprite
+@onready var death_sprite: Sprite2D = $DeathSprite
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 const SPEED: int = 800
 var SPEED_MULTIPLIER: float = 1.
@@ -41,6 +44,12 @@ func _on_area_entered(body: Area2D):
 	
 	body = body as SlowArea
 	if not body:
+		SPEED_MULTIPLIER = 0
+		collision_shape_2d.queue_free()
+		main_sprite.hide()
+		death_sprite.show()
+		animation_player.play("death")
+		await get_tree().create_timer(0.25).timeout
 		queue_free()
 	
 	bullet_died.emit()
