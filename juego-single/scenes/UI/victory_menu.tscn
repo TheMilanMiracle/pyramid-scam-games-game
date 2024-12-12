@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dnptqfl7lstdf"]
+[gd_scene load_steps=4 format=3 uid="uid://dnptqfl7lstdf"]
 
+[ext_resource type="Theme" uid="uid://de47fgehqbvo3" path="res://resources/font.tres" id="1_4yx7v"]
 [ext_resource type="Script" path="res://scripts/UI/victory_menu.gd" id="1_alcyq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_p5hey"]
@@ -13,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_4yx7v")
 script = ExtResource("1_alcyq")
 
 [node name="You lost!" type="Label" parent="."]
@@ -22,14 +24,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -245.0
-offset_top = -266.0
-offset_right = 245.0
-offset_bottom = -134.0
+offset_left = -233.0
+offset_top = -207.0
+offset_right = 257.0
+offset_bottom = -75.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "YOU WIN!"
 label_settings = SubResource("LabelSettings_p5hey")
+horizontal_alignment = 1
 
 [node name="ButtonContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -38,12 +41,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -172.0
-offset_top = -120.5
-offset_right = 172.0
-offset_bottom = 160.5
+offset_left = -124.0
+offset_top = 10.0
+offset_right = 565.0
+offset_bottom = 684.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.4, 0.4)
 
 [node name="Try again" type="Button" parent="ButtonContainer"]
 unique_name_in_owner = true

@@ -1,8 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bn01xrmve8asx"]
+[gd_scene load_steps=5 format=3 uid="uid://bn01xrmve8asx"]
 
 [ext_resource type="Script" path="res://scripts/UI/pause_menu.gd" id="1_7a2nd"]
+[ext_resource type="FontFile" uid="uid://duxvgsxo4olce" path="res://assets/fonts/hellfire/HELLFIRE font.otf" id="2_yfymp"]
+[ext_resource type="Theme" uid="uid://de47fgehqbvo3" path="res://resources/font.tres" id="3_ywxup"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3735w"]
+font = ExtResource("2_yfymp")
 font_size = 96
 
 [node name="pause_menu" type="CanvasLayer"]
@@ -15,10 +18,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -284.0
-offset_top = -66.0
-offset_right = 284.0
-offset_bottom = 66.0
+offset_left = -289.0
+offset_top = -266.0
+offset_right = 279.0
+offset_bottom = -134.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Pause"
@@ -31,12 +34,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -48.0
-offset_top = 57.0
-offset_right = 48.0
-offset_bottom = 193.0
+offset_left = -140.0
+offset_top = -71.0
+offset_right = 549.0
+offset_bottom = 829.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+theme = ExtResource("3_ywxup")
 
 [node name="Resume" type="Button" parent="ButtonContainer"]
 unique_name_in_owner = true
