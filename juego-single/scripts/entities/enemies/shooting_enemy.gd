@@ -50,5 +50,5 @@ func shoot():
 	right_bullet.set_collision_layer_value(3, true)
 	#right_bullet.set_collision_mask_value(3, false)
 	
-	left_bullet.SPEED_MULTIPLIER = 1.8
-	right_bullet.SPEED_MULTIPLIER = 1.8
+	left_bullet.SPEED_MULTIPLIER = 1.7
+	right_bullet.SPEED_MULTIPLIER = 1.7

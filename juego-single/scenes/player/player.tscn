@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://ygpasvck8iev"]
+[gd_scene load_steps=52 format=3 uid="uid://ygpasvck8iev"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_mos1g"]
 [ext_resource type="Texture2D" uid="uid://b03urp0y7yjxn" path="res://assets/skins/base_character.png" id="2_cebw6"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://dnptqfl7lstdf" path="res://scenes/UI/victory_menu.tscn" id="9_lcn1h"]
 [ext_resource type="Texture2D" uid="uid://rqt0daxxjo83" path="res://assets/tmm/shield-64x64.png" id="9_rsaqb"]
 [ext_resource type="PackedScene" uid="uid://bn01xrmve8asx" path="res://scenes/UI/pause_menu.tscn" id="10_hsun1"]
-[ext_resource type="Texture2D" uid="uid://dfb8g1hgqmkpx" path="res://assets/cd_icon.png" id="12_1a3og"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4i42i"]
 radius = 44.0
@@ -384,7 +383,7 @@ shape = SubResource("CircleShape2D_4i42i")
 debug_color = Color(0.917647, 0.21824, 0.470979, 0.42)
 
 [node name="Camera" type="Camera2D" parent="."]
-zoom = Vector2(0.4, 0.4)
+zoom = Vector2(0.6, 0.6)
 
 [node name="BulletPivot" type="Node2D" parent="."]
 
@@ -467,20 +466,22 @@ process_mode = 3
 layer = 2
 
 [node name="TopLeftHUD" type="TextureRect" parent="UI"]
+modulate = Color(0.31, 1, 0.4365, 1)
 z_index = -1
-offset_right = 463.0
-offset_bottom = 215.0
+offset_right = 415.0
+offset_bottom = 183.0
 texture = ExtResource("6_si82i")
 expand_mode = 1
 stretch_mode = 4
 
 [node name="BottomLeftHUD" type="TextureRect" parent="UI"]
+modulate = Color(0.309804, 1, 0.435294, 1)
 z_index = -1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -336.0
-offset_right = 306.0
+offset_top = -288.0
+offset_right = 232.0
 grow_vertical = 0
 scale = Vector2(0.84, 1)
 texture = ExtResource("7_736c4")
@@ -488,9 +489,9 @@ expand_mode = 1
 
 [node name="HearthIcon" type="TextureRect" parent="UI"]
 offset_left = 12.0
-offset_top = 20.0
+offset_top = 16.0
 offset_right = 58.0
-offset_bottom = 66.0
+offset_bottom = 62.0
 texture = ExtResource("7_uejyh")
 expand_mode = 1
 stretch_mode = 4
@@ -498,8 +499,8 @@ stretch_mode = 4
 [node name="HealthBar" type="ProgressBar" parent="UI"]
 offset_left = 70.0
 offset_top = 21.0
-offset_right = 319.0
-offset_bottom = 67.0
+offset_right = 273.0
+offset_bottom = 57.0
 theme_override_styles/background = SubResource("StyleBoxFlat_h5mxd")
 theme_override_styles/fill = SubResource("StyleBoxFlat_gkhjb")
 max_value = 10.0
@@ -509,18 +510,18 @@ show_percentage = false
 
 [node name="ShieldIcon" type="TextureRect" parent="UI"]
 offset_left = 12.0
-offset_top = 91.0
+offset_top = 71.0
 offset_right = 60.0
-offset_bottom = 138.0
+offset_bottom = 118.0
 texture = ExtResource("9_rsaqb")
 expand_mode = 1
 stretch_mode = 4
 
 [node name="ShieldCDBar" type="ProgressBar" parent="UI"]
-offset_left = 70.0
-offset_top = 100.0
-offset_right = 263.0
-offset_bottom = 132.0
+offset_left = 71.0
+offset_top = 77.0
+offset_right = 243.0
+offset_bottom = 109.0
 theme_override_styles/background = SubResource("StyleBoxFlat_8cok5")
 theme_override_styles/fill = SubResource("StyleBoxFlat_vwh6k")
 step = 1.0
@@ -528,35 +529,26 @@ value = 75.0
 show_percentage = false
 
 [node name="ShieldBar" type="ProgressBar" parent="UI"]
-offset_left = 70.0
-offset_top = 100.0
-offset_right = 263.0
-offset_bottom = 132.0
+offset_left = 71.0
+offset_top = 77.0
+offset_right = 242.0
+offset_bottom = 109.0
 theme_override_styles/background = SubResource("StyleBoxFlat_bl2lp")
 theme_override_styles/fill = SubResource("StyleBoxFlat_srhuc")
 value = 50.0
 show_percentage = false
-
-[node name="CooldownIcon" type="TextureRect" parent="UI"]
-modulate = Color(0.615686, 0.309804, 1, 1)
-offset_left = -2.0
-offset_top = 692.0
-offset_right = 59.0
-offset_bottom = 744.0
-texture = ExtResource("12_1a3og")
-expand_mode = 1
-stretch_mode = 4
 
 [node name="CooldownProgress" type="ProgressBar" parent="UI"]
 unique_name_in_owner = true
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 53.0
-offset_top = -63.0
-offset_right = 182.0
-offset_bottom = -35.0
+offset_left = 63.0
+offset_top = -12.0
+offset_right = 232.0
+offset_bottom = 16.0
 grow_vertical = 0
+rotation = 4.71239
 theme_override_styles/background = SubResource("StyleBoxFlat_0ulmc")
 theme_override_styles/fill = SubResource("StyleBoxFlat_1lq0n")
 value = 50.0
@@ -566,11 +558,12 @@ show_percentage = false
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 53.0
-offset_top = 180.0
-offset_right = 182.0
-offset_bottom = 207.0
+offset_left = 15.0
+offset_top = 371.0
+offset_right = 184.0
+offset_bottom = 398.0
 grow_vertical = 2
+rotation = 4.71239
 theme_override_styles/background = SubResource("StyleBoxFlat_34dlb")
 theme_override_styles/fill = SubResource("StyleBoxFlat_8qe2y")
 step = 1.0
