@@ -53,6 +53,7 @@ func _physics_process(delta: float) -> void:
 
 
 func take_damage(damage: int) -> void:
+	hit_sound()
 	on_damage_timer.start()
 	sprite.modulate = damage_color
 	
@@ -62,6 +63,8 @@ func take_damage(damage: int) -> void:
 		get_parent().enemyDead()
 		queue_free()
 
+func hit_sound() -> void:
+	pass
 
 func _on_hitbox_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if Input.is_action_pressed("select"):

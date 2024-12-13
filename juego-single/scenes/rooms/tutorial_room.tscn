@@ -44,10 +44,7 @@ position = Vector2(1007.5, -70.5)
 shape = SubResource("RectangleShape2D_0vf26")
 
 [node name="Player" parent="." instance=ExtResource("7_ssfdq")]
-position = Vector2(1038, 1154)
-
-[node name="pause_menu" parent="Player/UI" index="12"]
-visible = false
+position = Vector2(160, 1605)
 
 [node name="Enemy" parent="." instance=ExtResource("4_qa741")]
 position = Vector2(713, 422)
@@ -65,7 +62,7 @@ direction = Vector2(-1, 1)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_5trna")
-volume_db = -20.0
+volume_db = -30.0
 autoplay = true
 parameters/looping = true
 

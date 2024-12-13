@@ -9,6 +9,8 @@ class_name Player
 @onready var damaged_timer: Timer = $DamagedTimer
 @onready var overheat_timer: Timer = $OverheatTimer
 @onready var decrease_heat_timer: Timer = $DecreaseHeatTimer
+@onready var shoot_sfx: AudioStreamPlayer = $ShootSFX
+@onready var hit_sfx: AudioStreamPlayer = $HitSFX
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -139,6 +141,8 @@ func take_damage(damage: int) -> void:
 	
 	sprite.modulate = damage_color
 	
+	hit_sfx.play()
+	
 	if SHIELD:
 		SHIELD = max(SHIELD - damage, 0)
 		shield_bar.value = SHIELD
@@ -173,6 +177,8 @@ func _shoot() -> void:
 		_bullet.global_position = marker.global_position
 		_bullet.rotation = pivot.rotation
 		_bullet.SPEED_MULTIPLIER = 2.
+		
+		shoot_sfx.play()
 		
 		_bullet.set_collision_layer_value(5, false)
 		_bullet.set_collision_layer_value(2, true)

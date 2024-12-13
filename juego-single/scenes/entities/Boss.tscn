@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dca2bh7553sjp"]
+[gd_scene load_steps=39 format=3 uid="uid://dca2bh7553sjp"]
 
 [ext_resource type="Script" path="res://scripts/entities/boss/boss.gd" id="1_qwjmg"]
 [ext_resource type="Script" path="res://components/hitbox.gd" id="2_4wi41"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/entities/boss/idle_state.gd" id="7_2sg3r"]
 [ext_resource type="Script" path="res://scripts/entities/boss/charged_attack_state.gd" id="8_7l3du"]
 [ext_resource type="Script" path="res://scripts/entities/boss/run_state.gd" id="8_fm0pq"]
+[ext_resource type="AudioStream" uid="uid://ceyb5c4if08dh" path="res://assets/sfx/Retro Impact Punch Hurt 01.wav" id="11_nfj1b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_si4gy"]
 size = Vector2(22.3167, 23.1)
@@ -437,3 +438,7 @@ theme_override_styles/background = SubResource("StyleBoxFlat_mu82k")
 theme_override_styles/fill = SubResource("StyleBoxFlat_16dnp")
 value = 100.0
 show_percentage = false
+
+[node name="HitSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_nfj1b")
+volume_db = -15.0

@@ -9,6 +9,7 @@ class_name Boss
 @onready var sprite_pivot: Node2D = $SpritePivot
 @onready var state_timer: Timer = $StateTimer
 @onready var on_damage_timer: Timer = $OnDamageTimer
+@onready var hit_sfx: AudioStreamPlayer = $HitSFX
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var health_bar: ProgressBar = $HealthBar
@@ -38,6 +39,7 @@ func _process(delta: float) -> void:
 
 
 func take_damage(damage: int) -> void:
+	hit_sfx.play()
 	on_damage_timer.start()
 	sprite.modulate = damage_color
 	
