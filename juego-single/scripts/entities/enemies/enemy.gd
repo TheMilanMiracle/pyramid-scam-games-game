@@ -5,7 +5,8 @@ class_name Enemy
 @export var noIA: bool = false
 @export var direction: = Vector2.ZERO
 
-var selected = false
+var mouse_inside: bool = false
+var selected: bool = false
 var mouse_position = Vector2(0, 0)
 var mouse_offset = Vector2(0, 0)
 var new_pos = Vector2(0, 0)
@@ -36,7 +37,22 @@ func _ready() -> void:
 	animation_tree.active = true
 	
 	on_damage_timer.timeout.connect(func(): sprite.modulate = default_color)
-	hitbox.input_event.connect(_on_hitbox_input_event)
+	
+	hitbox.mouse_entered.connect(
+		func():
+			mouse_inside = true
+			if LevelController.player.selecting:
+				return
+			Input.set_custom_mouse_cursor(LevelController.player.hand_open)
+	)
+	hitbox.mouse_exited.connect(
+		func():
+			mouse_inside = false
+			if LevelController.player.selecting:
+				return
+			Input.set_custom_mouse_cursor(LevelController.player.shoot_cursor)
+	)
+	
 	
 	if noIA:
 		enemy_state_machine.queue_free()
@@ -50,6 +66,15 @@ func _physics_process(delta: float) -> void:
 	
 	if selected and Input.is_action_pressed("force"):  # Apply impulse when holding a key
 		apply_my_impulse()
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("select"):
+		if not LevelController.player.selecting and mouse_inside:
+			mouse_offset = position - get_global_mouse_position()
+			selected = true
+			LevelController.player.selecting = true
+			Input.set_custom_mouse_cursor(LevelController.player.hand_closed)
 
 
 func take_damage(damage: int) -> void:
@@ -66,22 +91,18 @@ func take_damage(damage: int) -> void:
 func hit_sound() -> void:
 	pass
 
-func _on_hitbox_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if Input.is_action_pressed("select"):
-		mouse_offset = position - get_global_mouse_position()
-		selected = true
-
-
 func apply_my_impulse() -> void:
-	impulse_direction = get_global_mouse_position() - position  # Calcula el vector de dirección
+	impulse_direction = get_global_mouse_position() - position
 	
 	var max_impulse = 1000
 	
 	if impulse_direction.length() > max_impulse:
 		impulse_direction = impulse_direction.normalized() * max_impulse
 	
-	apply_central_impulse(impulse_direction)  # Aplica el impulso
-	selected = false  # Deselecciona después de aplicar el impulso
+	apply_central_impulse(impulse_direction)
+	selected = false 
+	LevelController.player.selecting = false
+	Input.set_custom_mouse_cursor(LevelController.player.shoot_cursor)
 
 
 func update_animation_parameters() -> void:

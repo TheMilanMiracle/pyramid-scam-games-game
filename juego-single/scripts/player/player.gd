@@ -1,6 +1,12 @@
 extends CharacterBody2D
 class_name Player
 
+@onready var shoot_cursor = preload("res://assets/cursor/PNG/Basic/Default/target_a.png")
+@onready var hand_open = preload("res://assets/cursor/PNG/Basic/Default/hand_small_open.png")
+@onready var hand_closed = preload("res://assets/cursor/PNG/Basic/Default/hand_thin_closed.png")
+
+
+
 @onready var camera: Camera2D = $Camera
 @onready var pivot: Node2D = $Pivot
 @onready var sprite: Sprite2D = $Pivot/MainSprite
@@ -44,6 +50,7 @@ var damage_color: Color = Color(0.8, 0.2, 0.4, 1.)
 @export var slow_area: Area2D
 var slow_area_cooldown_timer: Timer
 
+var selecting: bool = false
 
 func _ready() -> void:
 	HEALTH = LevelController.current_player_hp
@@ -52,6 +59,8 @@ func _ready() -> void:
 	default_color = sprite.modulate
 	
 	animation_tree.active = true
+	
+	Input.set_custom_mouse_cursor(shoot_cursor)
 	
 	on_damage_timer.timeout.connect(func():sprite.modulate = default_color)
 	damaged_timer.timeout.connect(func():SHIELD=MAX_SHIELD; shield_bar.value = SHIELD)
@@ -176,7 +185,7 @@ func _shoot() -> void:
 		
 		_bullet.global_position = marker.global_position
 		_bullet.rotation = pivot.rotation
-		_bullet.SPEED_MULTIPLIER = 2.
+		_bullet.SPEED_MULTIPLIER = 3.
 		
 		shoot_sfx.play()
 		
@@ -212,7 +221,7 @@ func _on_heat_reset() -> void:
 
 
 func _point_camera() -> void:
-	const max_move = 400
+	const max_move = 600
 	const move_speed = 25
 	var mouse_direction = (get_local_mouse_position() - camera.position).normalized()
 	
