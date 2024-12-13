@@ -68,8 +68,20 @@ position = Vector2(-49.5, 130.625)
 scale = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_xihkt")
 
+[node name="ShootingEnemy" parent="." instance=ExtResource("3_jesi2")]
+position = Vector2(519, 868)
+
+[node name="ShootingEnemy2" parent="." instance=ExtResource("3_jesi2")]
+position = Vector2(519, 1516)
+
+[node name="ShootingEnemy3" parent="." instance=ExtResource("3_jesi2")]
+position = Vector2(569, -522)
+
+[node name="ShootingEnemy4" parent="." instance=ExtResource("3_jesi2")]
+position = Vector2(3505, -529)
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_drmsv")
-volume_db = -20.0
+volume_db = -30.0
 autoplay = true
 parameters/looping = true

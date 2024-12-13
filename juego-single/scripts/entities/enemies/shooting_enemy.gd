@@ -8,6 +8,7 @@ const bullet = preload("res://scenes/entities/bullet.tscn")
 @onready var right_direction: Marker2D = $PathPivot/RMarker/REnemyDirection
 @onready var shoot_cooldown: Timer = $PathPivot/ShootCooldown
 @onready var path_pivot: Node2D = $PathPivot
+@onready var hit_sfx: AudioStreamPlayer = $HitSFX
 
 @onready var backing_timer: Timer = $BackingTimer
 var backing: bool = false
@@ -22,6 +23,8 @@ func _ready() -> void:
 	shoot_cooldown.timeout.connect(shoot)
 	backing_timer.timeout.connect(func(): backing = false)
 
+func hit_sound() -> void:
+	hit_sfx.play()
 
 func shoot():
 	var left_bullet: Bullet = bullet.instantiate()

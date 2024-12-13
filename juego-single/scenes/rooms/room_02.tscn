@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://b4u2iqu2m2gax"]
+[gd_scene load_steps=10 format=4 uid="uid://b4u2iqu2m2gax"]
 
 [ext_resource type="Script" path="res://scripts/rooms/room_02.gd" id="1_4iw3m"]
 [ext_resource type="TileSet" uid="uid://dkyl7fxpus8tw" path="res://resources/tile_set.tres" id="1_jo0uh"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" path="res://scripts/entities/victory_goal.gd" id="6_dgh73"]
 [ext_resource type="PackedScene" uid="uid://8bkc5iqcovta" path="res://scenes/entities/enemies/shooting_enemy.tscn" id="7_bnp5d"]
 [ext_resource type="AudioStream" uid="uid://bbpsvsi2g54xx" path="res://assets/music/04 - DavidKBD - Purgatory Pack - Life Eternal.ogg" id="8_4r2fn"]
-[ext_resource type="PackedScene" uid="uid://bs8l4pppagp2t" path="res://scenes/entities/enemies/melee_enemy.tscn" id="9_rpb7s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_potfu"]
 size = Vector2(63.5, 48.75)
@@ -122,44 +121,29 @@ position = Vector2(10474, 3957)
 position = Vector2(10814, 7758)
 rotation = -3.14159
 
+[node name="ShootingEnemy" parent="." instance=ExtResource("7_bnp5d")]
+position = Vector2(3144, 4410)
+
+[node name="ShootingEnemy2" parent="." instance=ExtResource("7_bnp5d")]
+position = Vector2(3040, 7282)
+
+[node name="ShootingEnemy3" parent="." instance=ExtResource("7_bnp5d")]
+position = Vector2(4624, 10314)
+
+[node name="ShootingEnemy4" parent="." instance=ExtResource("7_bnp5d")]
+position = Vector2(5704, 10338)
+
+[node name="ShootingEnemy5" parent="." instance=ExtResource("7_bnp5d")]
+position = Vector2(6752, 10314)
+
+[node name="ShootingEnemy6" parent="." instance=ExtResource("7_bnp5d")]
+position = Vector2(7576, 10210)
+
+[node name="ShootingEnemy7" parent="." instance=ExtResource("7_bnp5d")]
+position = Vector2(8216, 10394)
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_4r2fn")
-volume_db = -20.0
+volume_db = -30.0
 autoplay = true
 parameters/looping = true
-
-[node name="MeleeEnemy" parent="." instance=ExtResource("9_rpb7s")]
-position = Vector2(4678, 10289)
-
-[node name="MeleeEnemy2" parent="." instance=ExtResource("9_rpb7s")]
-position = Vector2(5748, 10296)
-
-[node name="MeleeEnemy3" parent="." instance=ExtResource("9_rpb7s")]
-position = Vector2(6799, 10307)
-
-[node name="MeleeEnemy4" parent="." instance=ExtResource("9_rpb7s")]
-position = Vector2(7650, 10303)
-
-[node name="MeleeEnemy5" parent="." instance=ExtResource("9_rpb7s")]
-position = Vector2(8242, 10307)
-
-[node name="MeleeEnemy6" parent="." instance=ExtResource("9_rpb7s")]
-position = Vector2(3771, 7463)
-rotation = -3.11411
-
-[node name="MeleeEnemy7" parent="." instance=ExtResource("9_rpb7s")]
-position = Vector2(3771, 6957)
-rotation = -3.11117
-
-[node name="MeleeEnemy8" parent="." instance=ExtResource("9_rpb7s")]
-position = Vector2(3771, 6455)
-rotation = -3.10457
-
-[node name="MeleeEnemy9" parent="." instance=ExtResource("9_rpb7s")]
-position = Vector2(3769, 5455)
-
-[node name="MeleeEnemy10" parent="." instance=ExtResource("9_rpb7s")]
-position = Vector2(3769, 4859)
-
-[node name="MeleeEnemy11" parent="." instance=ExtResource("9_rpb7s")]
-position = Vector2(3778, 4344)
