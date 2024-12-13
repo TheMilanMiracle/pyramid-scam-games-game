@@ -12,6 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://dnptqfl7lstdf" path="res://scenes/UI/victory_menu.tscn" id="9_lcn1h"]
 [ext_resource type="Texture2D" uid="uid://rqt0daxxjo83" path="res://assets/tmm/shield-64x64.png" id="9_rsaqb"]
 [ext_resource type="PackedScene" uid="uid://bn01xrmve8asx" path="res://scenes/UI/pause_menu.tscn" id="10_hsun1"]
+[ext_resource type="Texture2D" uid="uid://dfb8g1hgqmkpx" path="res://assets/cd_icon.png" id="12_1a3og"]
+[ext_resource type="AudioStream" uid="uid://ddml2wdtb6dll" path="res://assets/sfx/Retro Gun SingleShot 04.wav" id="14_y5xjh"]
+[ext_resource type="AudioStream" uid="uid://ceyb5c4if08dh" path="res://assets/sfx/Retro Impact Punch Hurt 01.wav" id="15_xxy3q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4i42i"]
 radius = 44.0
@@ -577,3 +580,11 @@ visible = false
 visible = false
 
 [node name="pause_menu" parent="UI" instance=ExtResource("10_hsun1")]
+
+[node name="ShootSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_y5xjh")
+volume_db = -15.0
+
+[node name="HitSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_xxy3q")
+volume_db = -15.0

@@ -1,8 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://8bkc5iqcovta"]
+[gd_scene load_steps=28 format=3 uid="uid://8bkc5iqcovta"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemies/shooting_enemy.gd" id="1_xnjjm"]
 [ext_resource type="Script" path="res://components/hitbox.gd" id="2_8nm0e"]
 [ext_resource type="Texture2D" uid="uid://bfr42cfonoyrg" path="res://assets/skins/monster.png" id="4_2ioho"]
+[ext_resource type="AudioStream" uid="uid://ceyb5c4if08dh" path="res://assets/sfx/Retro Impact Punch Hurt 01.wav" id="5_38kpa"]
 [ext_resource type="PackedScene" uid="uid://b77jacp8eoq75" path="res://scenes/entities/enemies/enemy_state_machine.tscn" id="5_du8px"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f3la2"]
@@ -319,3 +320,7 @@ vframes = 7
 [node name="BackingTimer" type="Timer" parent="."]
 wait_time = 0.3
 one_shot = true
+
+[node name="HitSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_38kpa")
+volume_db = -15.0

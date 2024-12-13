@@ -10,7 +10,7 @@ extends Room
 var levers: int = 0
 
 func _ready() -> void:
-	enemy_count = 24
+	enemy_count = 20
 	left_lever.activated.connect(_on_left_activated)
 	down_lever.activated.connect(_on_down_activated)
 	right_lever.activated.connect(_on_right_activated)

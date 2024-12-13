@@ -78,6 +78,7 @@ func _input(event: InputEvent) -> void:
 
 
 func take_damage(damage: int) -> void:
+	hit_sound()
 	on_damage_timer.start()
 	sprite.modulate = damage_color
 	
@@ -87,6 +88,8 @@ func take_damage(damage: int) -> void:
 		get_parent().enemyDead()
 		queue_free()
 
+func hit_sound() -> void:
+	pass
 
 func apply_my_impulse() -> void:
 	impulse_direction = get_global_mouse_position() - position
