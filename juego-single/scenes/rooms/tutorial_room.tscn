@@ -44,12 +44,9 @@ script = ExtResource("5_n3anb")
 shape = SubResource("RectangleShape2D_0vf26")
 
 [node name="Player" parent="." instance=ExtResource("7_ssfdq")]
-position = Vector2(160, 1605)
+position = Vector2(-316, 2066)
 
-[node name="UI" parent="Player" index="13"]
-visible = false
-
-[node name="pause_menu" parent="Player/UI" index="12"]
+[node name="pause_menu" parent="Player/UI" index="11"]
 visible = false
 
 [node name="Enemy" parent="." instance=ExtResource("4_qa741")]

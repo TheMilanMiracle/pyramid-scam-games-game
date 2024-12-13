@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://ygpasvck8iev"]
+[gd_scene load_steps=54 format=3 uid="uid://ygpasvck8iev"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_mos1g"]
 [ext_resource type="Texture2D" uid="uid://b03urp0y7yjxn" path="res://assets/skins/base_character.png" id="2_cebw6"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://dnptqfl7lstdf" path="res://scenes/UI/victory_menu.tscn" id="9_lcn1h"]
 [ext_resource type="Texture2D" uid="uid://rqt0daxxjo83" path="res://assets/tmm/shield-64x64.png" id="9_rsaqb"]
 [ext_resource type="PackedScene" uid="uid://bn01xrmve8asx" path="res://scenes/UI/pause_menu.tscn" id="10_hsun1"]
-[ext_resource type="Texture2D" uid="uid://dfb8g1hgqmkpx" path="res://assets/cd_icon.png" id="12_1a3og"]
 [ext_resource type="AudioStream" uid="uid://ddml2wdtb6dll" path="res://assets/sfx/Retro Gun SingleShot 04.wav" id="14_y5xjh"]
 [ext_resource type="AudioStream" uid="uid://ceyb5c4if08dh" path="res://assets/sfx/Retro Impact Punch Hurt 01.wav" id="15_xxy3q"]
 

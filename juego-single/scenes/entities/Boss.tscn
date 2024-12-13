@@ -436,7 +436,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_mu82k")
 theme_override_styles/fill = SubResource("StyleBoxFlat_16dnp")
-value = 100.0
+max_value = 50.0
+value = 50.0
 show_percentage = false
 
 [node name="HitSFX" type="AudioStreamPlayer" parent="."]

@@ -118,7 +118,7 @@ uri = "https://davidkbd.itch.io/purgatory-extreme-metal-music-pack"
 
 [node name="Song" type="AudioStreamPlayer" parent="VBoxContainer/Music"]
 stream = ExtResource("3_0k5ll")
-volume_db = -20.0
+volume_db = -30.0
 
 [node name="Return" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -126,7 +126,7 @@ text = "Return to Main menu"
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_pqrl0")
-volume_db = -20.0
+volume_db = -30.0
 autoplay = true
 parameters/looping = true
 

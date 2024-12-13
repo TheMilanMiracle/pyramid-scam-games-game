@@ -14,7 +14,6 @@ extends Node2D
 	tutorial,
 	room_03,
 	room_02,
-	room_01,
 	boss_room
 ]
 
@@ -39,7 +38,7 @@ func main_menu_ready(_main_menu: MainMenu) -> void:
 
 
 func _on_main_menu_start_press() -> void:
-	tree.change_scene_to_packed(tutorial)
+	tree.change_scene_to_packed(ROOMS[current_level])
 	main_menu.start.disconnect("pressed", _on_main_menu_start_press)
 
 
@@ -53,7 +52,6 @@ func change_to_level(idx: int) -> void:
 
 func player_victory(player: Player) -> void:
 	current_player_hp = player.HEALTH
-
 	current_level += 1
 
 	tree.change_scene_to_packed(ROOMS[current_level])

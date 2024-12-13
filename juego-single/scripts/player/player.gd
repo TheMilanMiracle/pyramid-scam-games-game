@@ -34,7 +34,7 @@ class_name Player
 
 var camera_toggle: bool = false
 
-const SPEED = 1000.0
+var SPEED = 1000.0
 var direction: Vector2 = Vector2.ZERO
 @export var HEALTH: int
 const MAX_HEALTH: int = 10
@@ -82,6 +82,11 @@ func _ready() -> void:
 
 
 func _physics_process(delta) -> void:
+	if overheated:
+		SPEED = 1500
+	else:
+		SPEED = 1000
+	
 	#CAMERA
 	_point_camera()
 	
