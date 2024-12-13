@@ -44,10 +44,7 @@ position = Vector2(1007.5, -70.5)
 shape = SubResource("RectangleShape2D_0vf26")
 
 [node name="Player" parent="." instance=ExtResource("7_ssfdq")]
-position = Vector2(160, 1605)
-
-[node name="UI" parent="Player" index="13"]
-visible = false
+position = Vector2(1038, 1154)
 
 [node name="pause_menu" parent="Player/UI" index="12"]
 visible = false
