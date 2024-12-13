@@ -51,21 +51,17 @@ position = Vector2(4381, 1001)
 noIA = true
 direction = Vector2(-1, 1)
 
-[node name="Enemy4" parent="." instance=ExtResource("5_4pu1j")]
-position = Vector2(7436, 1865)
-rotation = 3.13614
+[node name="ShootingEnemy4" parent="." instance=ExtResource("5_4pu1j")]
+position = Vector2(7081, 1517)
 
-[node name="Enemy5" parent="." instance=ExtResource("5_4pu1j")]
-position = Vector2(8503, 1865)
-rotation = -3.139
+[node name="ShootingEnemy5" parent="." instance=ExtResource("5_4pu1j")]
+position = Vector2(7542, 1792)
 
-[node name="Enemy6" parent="." instance=ExtResource("5_4pu1j")]
-position = Vector2(7065, 1487)
-rotation = -2.58749
+[node name="ShootingEnemy6" parent="." instance=ExtResource("5_4pu1j")]
+position = Vector2(8387, 1790)
 
-[node name="Enemy7" parent="." instance=ExtResource("5_4pu1j")]
-position = Vector2(8815, 1439)
-rotation = 2.34236
+[node name="ShootingEnemy7" parent="." instance=ExtResource("5_4pu1j")]
+position = Vector2(8706, 1510)
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(4848, 2932)
@@ -80,7 +76,7 @@ shape = SubResource("RectangleShape2D_s8330")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_tvg5n")
-volume_db = -20.0
+volume_db = -30.0
 autoplay = true
 parameters/looping = true
 
