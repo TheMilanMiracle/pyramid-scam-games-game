@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cuyxgua1sug0v"]
+
+[ext_resource type="Script" path="res://autoload/level_controller.gd" id="1_5yuxg"]
+
+[node name="LevelController" type="Node2D"]
+script = ExtResource("1_5yuxg")

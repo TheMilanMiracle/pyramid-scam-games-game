@@ -1,38 +1,60 @@
-class_name Bullet
 extends Area2D
+class_name Bullet
 
 signal bullet_died()
+@onready var main_sprite: Sprite2D = $MainSprite
+@onready var death_sprite: Sprite2D = $DeathSprite
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
-const speed: int = 800
+const SPEED: int = 600
+var SPEED_MULTIPLIER: float = 1.
+var DELTA_MULTIPLIER: float = 1.
+var DAMAGE: int = 1
+
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	area_entered.connect(_on_area_entered)
 
-func take_damage_en():
-	queue_free()
 
 func _physics_process(delta: float) -> void:
-	position += speed * transform.y * delta
+	position += SPEED * SPEED_MULTIPLIER * DELTA_MULTIPLIER * transform.x * delta
+
+
+func slow_down(multiplier: float) -> void:
+	DELTA_MULTIPLIER = multiplier
+
+
+func speed_up() -> void:
+	DELTA_MULTIPLIER = 1.
 
 
 func _on_body_entered(body: Node2D):
 	if body.has_method("take_damage"):
-		body.take_damage()
-		queue_free()
-	if body.has_method("take_damage_en"):
-		body.take_damage_en()
-		queue_free()
+		body.take_damage(DAMAGE)
 	
+	queue_free()
 	bullet_died.emit()
 
 
-func _on_area_entered(body: Area2D):
-	if body.has_method("take_damage"):
-		body.take_damage()
-		queue_free()
+func _on_area_entered(area: Area2D):
+	if area.has_method("take_damage"):
+		area.take_damage(DAMAGE)
 	
-	if body.has_method("defense"):
+	if get_collision_layer_value(6)\
+	and area.get_collision_layer_value(2)\
+	and DAMAGE == 4:
+		return
+	
+	area = area as SlowArea
+	if not area:
+		SPEED_MULTIPLIER = 0
+		collision_shape_2d.queue_free()
+		main_sprite.hide()
+		death_sprite.show()
+		animation_player.play("death")
+		await get_tree().create_timer(0.25).timeout
 		queue_free()
 	
 	bullet_died.emit()

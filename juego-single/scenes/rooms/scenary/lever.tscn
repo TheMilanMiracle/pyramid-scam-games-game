@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://7y8gym2iut3s"]
+
+[ext_resource type="Script" path="res://scripts/rooms/scenary/lever.gd" id="1_6h0m1"]
+[ext_resource type="TileSet" uid="uid://dkyl7fxpus8tw" path="res://resources/tile_set.tres" id="2_w4exq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r5jwr"]
+radius = 35.0
+
+[node name="Lever" type="Node2D"]
+script = ExtResource("1_6h0m1")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray(0, 0, 255, 255, 254, 255, 2, 0, 4, 0, 5, 0, 0, 0, 255, 255, 255, 255, 2, 0, 4, 0, 6, 0, 0, 0, 0, 0, 254, 255, 2, 0, 5, 0, 5, 0, 0, 0, 0, 0, 255, 255, 2, 0, 5, 0, 6, 0, 0, 0)
+tile_set = ExtResource("2_w4exq")
+
+[node name="ActionArea" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="ActionAreaCollisionShape" type="CollisionShape2D" parent="ActionArea"]
+position = Vector2(8, -9)
+shape = SubResource("CircleShape2D_r5jwr")
+
+[node name="FrameTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true

@@ -1,5 +1,13 @@
 extends CharacterBody2D
+class_name Player
 
+@onready var shoot_cursor = preload("res://assets/cursor/PNG/Basic/Default/target_a.png")
+@onready var hand_open = preload("res://assets/cursor/PNG/Basic/Default/hand_small_open.png")
+@onready var hand_closed = preload("res://assets/cursor/PNG/Basic/Default/hand_thin_closed.png")
+
+
+
+@onready var camera: Camera2D = $Camera
 @onready var pivot: Node2D = $Pivot
 @onready var sprite: Sprite2D = $Pivot/MainSprite
 @onready var death_sprite: Sprite2D = $Pivot/DeathSprite
@@ -7,6 +15,8 @@ extends CharacterBody2D
 @onready var damaged_timer: Timer = $DamagedTimer
 @onready var overheat_timer: Timer = $OverheatTimer
 @onready var decrease_heat_timer: Timer = $DecreaseHeatTimer
+@onready var shoot_sfx: AudioStreamPlayer = $ShootSFX
+@onready var hit_sfx: AudioStreamPlayer = $HitSFX
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -20,38 +30,51 @@ extends CharacterBody2D
 @onready var cooldown_progress: ProgressBar = %CooldownProgress
 @onready var victory_menu: Control = $UI/victory_menu
 
-const SPEED = 1000.0
+@onready var qol_heat_bar: ProgressBar = $QolHeatBar
+
+var camera_toggle: bool = false
+
+var SPEED = 1000.0
 var direction: Vector2 = Vector2.ZERO
-@export var HEALTH: int = 10
+@export var HEALTH: int
+const MAX_HEALTH: int = 10
 @export var SHIELD: int = 5
 @export var MAX_SHIELD: int = 5
 var HEAT: int = 0
-const MAX_HEAT: int = 10
+const MAX_HEAT: int = 20
 var overheated: bool = false
 
-var defaultColor: Color
-var damageColor: Color = Color(0.8, 0.2, 0.4, 1.)
+var default_color: Color
+var damage_color: Color = Color(0.8, 0.2, 0.4, 1.)
 
 @export var slow_area: Area2D
 var slow_area_cooldown_timer: Timer
 
+var selecting: bool = false
+
 func _ready() -> void:
-	defaultColor = sprite.modulate
+	HEALTH = LevelController.current_player_hp
+	LevelController.player = self
+	
+	default_color = sprite.modulate
 	
 	animation_tree.active = true
 	
-	on_damage_timer.timeout.connect(func():sprite.modulate = defaultColor)
+	Input.set_custom_mouse_cursor(shoot_cursor)
+	
+	on_damage_timer.timeout.connect(func():sprite.modulate = default_color)
 	damaged_timer.timeout.connect(func():SHIELD=MAX_SHIELD; shield_bar.value = SHIELD)
 	overheat_timer.timeout.connect(_on_heat_reset)
 	decrease_heat_timer.timeout.connect(_on_heat_decrease)
 	
-	health_bar.max_value = HEALTH
+	health_bar.max_value = MAX_HEALTH
 	health_bar.value = HEALTH
 	
 	shield_bar.max_value = SHIELD
 	shield_bar.value = SHIELD
 	
 	heat_bar.max_value = 100
+	qol_heat_bar.max_value = 100
 	heat_bar.value = 0
 	
 	slow_area_cooldown_timer = slow_area.cooldown_timer
@@ -59,6 +82,14 @@ func _ready() -> void:
 
 
 func _physics_process(delta) -> void:
+	if overheated:
+		SPEED = 1500
+	else:
+		SPEED = 1000
+	
+	#CAMERA
+	_point_camera()
+	
 	#HUD
 	if damaged_timer.time_left:
 		shield_cd_bar.value = (damaged_timer.wait_time - damaged_timer.time_left) / damaged_timer.wait_time * 100
@@ -72,9 +103,14 @@ func _physics_process(delta) -> void:
 	else:
 		heat_bar.value = float(HEAT) / float(MAX_HEAT) * 100
 	
-	print("value %d" % heat_bar.value)
-	if not overheated: print("calc %f" % (HEAT / MAX_HEAT * 100))
-	print("HEAT %d" % HEAT)
+	if HEAT:
+		if overheated:
+			qol_heat_bar.value = overheat_timer.time_left / overheat_timer.wait_time * 100
+		else:
+			qol_heat_bar.show()
+			qol_heat_bar.value = float(HEAT) / float(MAX_HEAT) * 100
+	else:
+		qol_heat_bar.hide()
 	
 	#MOVEMENT
 	var Xdirection = Input.get_axis("left", "right")
@@ -103,27 +139,30 @@ func _input(event: InputEvent) -> void:
 		match event.button_index:
 			MOUSE_BUTTON_LEFT:
 				_shoot()
+				_point_camera()
+	
+	if event.is_action_released("space"):
+		camera_toggle = not camera_toggle
 
-
-func victory() -> void:
-		victory_menu.show()
-		get_tree().paused = true
 
 func _on_damage_dealt() -> void:
 	pass
 
-func take_damage() -> void:
+
+func take_damage(damage: int) -> void:
 	on_damage_timer.start()
 	damaged_timer.start()
 	
-	sprite.modulate = damageColor
+	sprite.modulate = damage_color
+	
+	hit_sfx.play()
 	
 	if SHIELD:
-		SHIELD -= 1
+		SHIELD = max(SHIELD - damage, 0)
 		shield_bar.value = SHIELD
 		return
 	
-	HEALTH -= 1
+	HEALTH = max(HEALTH - damage, 0)
 	health_bar.value = HEALTH
 	if HEALTH == 0:
 		sprite.hide()
@@ -142,19 +181,28 @@ func _shoot() -> void:
 		var bullet = load("res://scenes/entities/bullet.tscn")
 		
 		pivot.look_at(get_global_mouse_position())
+		direction = (get_global_mouse_position() - global_position).normalized()
+		update_animation_parameters()
 		
-		bullet = bullet.instantiate()
-		bullet.modulate = bullet_color
-		get_parent().add_child(bullet)
+		var _bullet: Bullet = bullet.instantiate()
+		_bullet.modulate = bullet_color
+		get_parent().add_child(_bullet)
 		
-		bullet.global_position = marker.global_position
-		bullet.rotation = pivot.rotation - PI/2
+		_bullet.global_position = marker.global_position
+		_bullet.rotation = pivot.rotation
+		_bullet.SPEED_MULTIPLIER = 3.
+		
+		shoot_sfx.play()
+		
+		_bullet.set_collision_layer_value(5, false)
+		_bullet.set_collision_layer_value(2, true)
 		
 		HEAT = min(HEAT + 1, MAX_HEAT)
 		decrease_heat_timer.start()
 		
 		if HEAT == MAX_HEAT:
 			_overheat()
+
 
 func _on_heat_decrease() -> void:
 	if overheated:
@@ -175,6 +223,24 @@ func _on_heat_reset() -> void:
 	HEAT = 0
 	
 	heat_bar.get_theme_stylebox("fill").bg_color = Color("c9803c")
+
+
+func _point_camera() -> void:
+	const max_move = 600
+	const move_speed = 25
+	var mouse_direction = (get_local_mouse_position() - camera.position).normalized()
+	
+	if not camera_toggle:
+		camera.position = Vector2(
+			move_toward(camera.position.x, 0, move_speed * 5),
+			move_toward(camera.position.y, 0, move_speed * 5),
+		)
+		return
+	
+	camera.position = Vector2(
+		move_toward(camera.position.x, max_move * mouse_direction[0], move_speed),
+		move_toward(camera.position.y, max_move * mouse_direction[1], move_speed),
+	)
 
 
 func update_animation_parameters() -> void:

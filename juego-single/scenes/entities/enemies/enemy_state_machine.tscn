@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://b77jacp8eoq75"]
+
+[ext_resource type="Script" path="res://scripts/entities/enemies/state_machine/enemy_state_machine.gd" id="1_41r85"]
+[ext_resource type="Script" path="res://scripts/entities/enemies/state_machine/enemy_idle_state.gd" id="2_0n5an"]
+[ext_resource type="Script" path="res://scripts/entities/enemies/state_machine/enemy_shooting_state.gd" id="2_5y4k7"]
+[ext_resource type="Script" path="res://scripts/entities/enemies/state_machine/enemy_following_state.gd" id="4_5f6q2"]
+
+[node name="EnemyStateMachine" type="Node2D"]
+script = ExtResource("1_41r85")
+
+[node name="EnemyIdleState" type="Node2D" parent="."]
+script = ExtResource("2_0n5an")
+
+[node name="EnemyShootingState" type="Node2D" parent="."]
+script = ExtResource("2_5y4k7")
+
+[node name="EnemyFollowingState" type="Node2D" parent="."]
+script = ExtResource("4_5f6q2")
+
+[node name="StateTimer" type="Timer" parent="."]
